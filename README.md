@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/BenjMy/geophysics-python-course/HEAD)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/BenjMy/geophysics_postfire_book-jb2/HEAD)
 
 Welcome to the Geophysics with Python course! This comprehensive course teaches geophysical data analysis using resipy (resistivity) and emagpy (electromagnetic) Python packages.
 
@@ -27,7 +27,7 @@ This course covers:
 #### Option 1: Using Poetry (Recommended)
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/geophysics-python-course.git
+git clone https://github.com/BenjMy/geophysics_postfire_book-jb2.git
 cd geophysics-python-course
 
 # Install Poetry (if not already installed)
@@ -46,8 +46,8 @@ jupyter lab
 #### Option 2: Using Conda
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/geophysics-python-course.git
-cd geophysics-python-course
+git clone https://github.com/BenjMy/geophysics_postfire_book-jb2.git
+cd geophysics_postfire_book-jb2
 
 # Create conda environment
 conda env create -f environment.yml
