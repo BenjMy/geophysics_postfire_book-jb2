@@ -1,0 +1,108 @@
+{
+  "input": {
+    "files": [],
+    "opts": {
+      "execute": false,
+      "pdf": true,
+      "tex": false,
+      "typst": false,
+      "docx": false,
+      "md": false,
+      "xml": false,
+      "meca": false,
+      "cff": false,
+      "site": false,
+      "html": false,
+      "all": false,
+      "doiBib": false,
+      "watch": false,
+      "force": false,
+      "checkLinks": false,
+      "strict": false,
+      "ci": false,
+      "maxSizeWebp": 1572864,
+      "keepHost": false
+    }
+  },
+  "exports": [
+    {
+      "format": "pdf",
+      "template": "plain_latex",
+      "output": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/cursos_geophy/geophysics-book-jb2/exports/intro_microcredential_UCLM.pdf",
+      "articles": [
+        {
+          "level": 1,
+          "title": "📅 Agenda"
+        },
+        {
+          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/cursos_geophy/geophysics-book-jb2/docs/agenda.md",
+          "level": 2,
+          "slug": "agenda"
+        },
+        {
+          "level": 1,
+          "title": "📚 How-to"
+        },
+        {
+          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/cursos_geophy/geophysics-book-jb2/docs/getting_started.md",
+          "level": 2,
+          "slug": "getting-started"
+        },
+        {
+          "level": 1,
+          "title": "Theory"
+        },
+        {
+          "level": 2,
+          "title": "🐍 Bloc 1 · Fundamentals"
+        },
+        {
+          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/cursos_geophy/geophysics-book-jb2/notebooks/01_introduction/012_geophysics_basics.md",
+          "level": 3,
+          "slug": "geophysics-basics"
+        },
+        {
+          "level": 2,
+          "title": "⚡ Bloc 2 · Resistivity with resipy"
+        },
+        {
+          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/cursos_geophy/geophysics-book-jb2/notebooks/02_resipy/01_resipy_introduction.md",
+          "level": 3,
+          "slug": "resipy-introduction"
+        },
+        {
+          "level": 2,
+          "title": "⚛ Bloc 3 · Electromagnetics with emagpy"
+        },
+        {
+          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/cursos_geophy/geophysics-book-jb2/notebooks/03_emagpy/01_emagpy_introduction.md",
+          "level": 3,
+          "slug": "emagpy-introduction"
+        },
+        {
+          "level": 1,
+          "title": "Practical Cases"
+        },
+        {
+          "level": 2,
+          "title": "💧 Humedad del suelo a escala de cuenca"
+        },
+        {
+          "level": 2,
+          "title": "🪨 Diques de sedimentación"
+        },
+        {
+          "level": 1,
+          "title": "🧪 Exercises"
+        },
+        {
+          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/cursos_geophy/geophysics-book-jb2/exercises/README.md",
+          "level": 2,
+          "slug": "readme"
+        }
+      ],
+      "$file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/cursos_geophy/geophysics-book-jb2/myst.yml",
+      "$project": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/cursos_geophy/geophysics-book-jb2"
+    }
+  ]
+}

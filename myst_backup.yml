@@ -1,0 +1,108 @@
+version: 1
+
+# ── Project metadata ────────────────────────────────────────────────────────
+project:
+  title: Geophysics with Python
+  subtitle: resipy & emagpy Course
+  short_title: Geophysics Course
+  jupyter: true
+  
+  # ── Authors ────────────────────────────────────────────────────────────────
+  authors:
+    - name: Benjamin Mary
+      email: benjamin.mary@ica.csic.es
+      orcid: 0000-0000-0000-0000
+      affiliations:
+        - id: uni
+          institution: CSIC
+          department: ICA
+          city: Madrid
+          country: Spain
+      corresponding: true
+
+
+  # ── Publication info ───────────────────────────────────────────────────────
+  copyright: "2025"
+  license:
+    content: CC-BY-4.0
+    code: MIT
+  doi: 10.5281/zenodo.0000000   # update once published
+  version: "1.0.0"
+  date: 2025-01-19
+
+  keywords:
+    - geophysics
+    - electrical resistivity tomography
+    - electromagnetic induction
+    - python
+    - resipy
+    - emagpy
+    - open education
+
+  # ── Repository & links ─────────────────────────────────────────────────────
+  github: https://github.com/BenjMy/geophysics-python-course
+  binder: https://mybinder.org/v2/gh/BenjMy/geophysics-python-course/HEAD
+
+  # ── Notebook execution ─────────────────────────────────────────────────────
+  execute:
+    execute_notebooks: auto      # auto | force | never
+    timeout: 600                 # seconds per cell before aborting
+    allow_errors: false          # fail build on cell error
+    stderr_output: show          # show | remove | warn
+    requirements: requirements.txt
+
+  # Kernel to use for .md code-cell pages (MyST notebooks without .ipynb)
+  kernels:
+    - id: python3
+      display_name: Python 3 (Geophysics)
+      language: python
+
+  # ── Table of Contents ──────────────────────────────────────────────────────
+  toc:
+    - file: intro.md
+
+    - title: 📚 Documentation
+      children:
+        - file: docs/getting_started.md
+        #- file: docs/installation.md
+        #- file: docs/troubleshooting.md
+
+
+    - title: 🐍 Week 1 · Python Fundamentals
+      children:
+        - file: notebooks/01_introduction/01_python_basics.md
+        - file: notebooks/01_introduction/012_geophysics_basics.md
+
+    - title:  ⚡ Bloc 2 · Resistivity with resipy
+      children:
+        - file: notebooks/02_resipy/01_resipy_introduction.md
+
+    - title: ⚛ Week 3 · Electromagnetics with emagpy
+      children:
+        - file: notebooks/03_emagpy/01_emagpy_introduction.md
+
+    - title: 🧪 Exercises
+      children:
+        - file: exercises/README.md
+
+# ── Site (web) settings ─────────────────────────────────────────────────────
+site:
+  template: book-theme
+  index: intro.md
+  logo: logo.svg
+
+  # ── Call-to-action buttons ────────────────────────────────────────────────
+  actions:
+    - title: ⭐ Star on GitHub
+      url: https://github.com/yourusername/geophysics-python-course
+    - title: 🚀 Launch on Binder
+      url: https://mybinder.org/v2/gh/yourusername/geophysics-python-course/main
+
+  # ── Theme options ─────────────────────────────────────────────────────────
+  options:
+    show_nav_depth: 2
+    hide_outline: false
+    # Show "Open in JupyterLab / Binder / Thebe" launch buttons on notebook pages
+    launch_buttons: true
+    thebe: true                  # 🐝 Enable Thebe live code execution in-page
+    binderhub_url: "https://mybinder.org"  # The URL for your BinderHub (e.g., https://mybinder.org)

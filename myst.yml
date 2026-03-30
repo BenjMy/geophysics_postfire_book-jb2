@@ -1,0 +1,158 @@
+version: 1
+
+# ── Project metadata ────────────────────────────────────────────────────────
+project:
+  title: Geophysics as a tool for post-fire soil restauration 🔥 
+  subtitle: resipy & emagpy Course
+  short_title: Geophysics & post-fire soil restauration 🔥 
+  jupyter: true
+  bibliography: references.bib
+  settings:
+    output_stderr: show
+    
+  # ── Authors ────────────────────────────────────────────────────────────────
+  authors:
+    - name: Benjamin Mary
+      email: benjamin.mary@ica.csic.es
+      orcid: 0000-0000-0000-0000
+      affiliations:
+        - id: uni
+          institution: CSIC
+          department: ICA
+          city: Madrid
+          country: Spain
+      corresponding: true
+
+
+  # ── Publication info ───────────────────────────────────────────────────────
+  copyright: "2025"
+  license:
+    content: CC-BY-4.0
+    code: MIT
+  doi: 10.5281/zenodo.0000000   # update once published
+  version: "1.0.0"
+  date: 2025-01-19
+
+  keywords:
+    - geophysics
+    - electrical resistivity tomography
+    - electromagnetic induction
+    - python
+    - resipy
+    - emagpy
+    - open education
+
+  # ── Repository & links ─────────────────────────────────────────────────────
+  github: https://github.com/BenjMy/geophysics-python-course
+  binder: https://mybinder.org/v2/gh/BenjMy/geophysics-python-course/main
+
+  # ── Exports ───────────────────────────────────────────────────────────────
+  exports:
+    - format: pdf
+      template: plain_latex  # clean academic PDF template
+      output: exports/intro_microcredential_UCLM.pdf
+
+  # ── Notebook execution ─────────────────────────────────────────────────────
+  execute:
+    execute_notebooks: auto      # auto | force | never
+    timeout: 600                 # seconds per cell before aborting
+    allow_errors: false          # fail build on cell error
+    stderr_output: show          # show | remove | warn
+    requirements: requirements.txt
+
+  # Kernel to use for .md code-cell pages (MyST notebooks without .ipynb)
+  kernels:
+    - id: python3
+      display_name: Python 3 (Geophysics)
+      language: python
+
+  # ── Table of Contents ──────────────────────────────────────────────────────
+  toc:
+    - file: intro_microcredential_UCLM.md
+
+    - title: "📅 Agenda"
+      children:
+        - file: docs/agenda.md
+
+    - title: "📚 How-to"
+      children:
+        - file: docs/getting_started.md
+        #- file: docs/installation.md
+        #- file: docs/troubleshooting.md
+
+    # ── Theory ───────────────────────────────────────────────────────────────
+    - title: Theory
+      children:
+        - title: "🐍 Bloc 1 · Fundamentals"
+          children:
+            #- file: notebooks/01_introduction/01_python_basics.md
+            - file: notebooks/01_introduction/013_postfire_soil_basics.md
+            - file: notebooks/01_introduction/013_postfire_soil_basics_geophysics.md                       
+            - file: notebooks/01_introduction/01_python_basics.md            
+
+
+        - title: "⚡ Bloc 2 · Resistivity"
+          children:
+            - file: notebooks/02_resistivity/012_ER_concept.md           
+            - file: notebooks/02_resistivity/01_resistivity_introduction.md  
+            - file: notebooks/02_resistivity/01_resipy_introduction.md
+
+        - title: "⚛ Bloc 3 · Electromagnetics"
+          children:
+            - file: notebooks/03_electromagnetics/01_electromagnetics_introduction.md
+            - file: notebooks/03_electromagnetics/01_emagpy_introduction.md
+            
+    # ── Practical Cases ───────────────────────────────────────────────────────
+    - title: Practical Cases
+      children:
+        - file: notebooks/practical_cases/introduction_GRWATER.md
+        - title: "💧 Humedad del suelo a escala de cuenca"
+          children:
+            - file: notebooks/practical_cases/Agramon.md
+            - file: notebooks/practical_cases/Hellin.md
+        - title: "🪨 Diques de sedimentación"
+          children:
+            - file: notebooks/practical_cases/Hellin_diques.md
+
+    # ── Exercises ─────────────────────────────────────────────────────────────
+    - title: "🧪 Exercises"
+      children:
+        - file: exercises/README.md
+
+
+    # ── R&D ─────────────────────────────────────────────────────────────
+    #- title: "R&D"
+    # children:
+    #   - file: docs/RD.md
+
+
+# ── Site (web) settings ─────────────────────────────────────────────────────
+site:
+  template: book-theme
+  index: intro.md
+  logo: logo.svg
+
+    
+    
+  # ── Call-to-action buttons ────────────────────────────────────────────────
+  actions:
+    - title: ⭐ Star
+      url: https://github.com/BenjMy/geophysics-python-course
+    - title: 🚀 Launch
+      url: https://mybinder.org/v2/gh/BenjMy/geophysics-python-course/main
+
+
+  # ── Theme options ─────────────────────────────────────────────────────────
+  options:
+    show_nav_depth: 2
+    hide_outline: false
+    # Show "Open in JupyterLab / Binder / Thebe" launch buttons on notebook pages
+    launch_buttons: true
+    thebe: true                  # 🐝 Enable Thebe live code execution in-page
+    default_mode: light          # Default to light mode
+    
+    
+
+  
+  
+  
