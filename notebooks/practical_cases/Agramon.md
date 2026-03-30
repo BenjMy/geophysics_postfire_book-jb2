@@ -105,9 +105,14 @@ Key sub-questions:
   - Electrical Resistivity Tomography
   - Wenner-Schlumberger, 48 electrodes, 2 m spacing
   - Two transects across the catchment
+* - TDR probes
+  - Time Domain Reflectometry
+  - 5 cm / 20 cm / 40 cm depth
+  - Continuous logging at 4 stations
 * - UAV (DJI Phantom 4)
   - Aerial photogrammetry
   - RGB + multispectral
+  - For co-registration and NDVI mapping
 ```
 
 ```{admonition} Data availability
@@ -119,8 +124,6 @@ Raw data are stored in the ICA-CSIC data repository. Contact the authors for acc
 ---
 
 ## 🔬 Analysis & Processing
-
-This section contains the full data processing workflow, from raw EMI data import through to spatial analysis and visualisation.
 
 ### Setup & Imports
 
@@ -152,317 +155,368 @@ import rioxarray as rxr
 ### File Paths & DTM Loading
 
 ```{code-cell} ipython3
-rootPath = Path('.')
-figPath = rootPath / 'figures'
+:tags: [hide-cell]
+rootPath  = Path('.')
+figPath   = rootPath / 'figures'
 preproDir = rootPath / 'prepro'
-rawDir = rootPath / 'raw/EM6L/April2025/'
+rawDir    = rootPath / 'raw/EM6L/April2025/'
 
 dtm_dataset = AgUtils.load_dtm_stack(rootPath)
 ```
 
-### Study Area: Plot Boundaries
+### Study Area — Plot Boundaries
 
 ```{code-cell} ipython3
+:tags: [hide-input]
 gdf_Agramon = gpd.read_file(rootPath / 'shapefiles/microcuencas_13.shp')
 gdf_Agramon = gdf_Agramon.rename(columns={'TRATAMIENT': 'PlotID'})
 
-fig, ax = plt.subplots(figsize=(10, 8))
-gdf_Agramon.plot(
-    ax=ax,
-    column="PlotID",
-    legend=True,
-    edgecolor="black",
-    alpha=0.5
+gdf_wgs = gdf_Agramon.to_crs(epsg=4326)
+fig = px.choropleth_mapbox(
+    gdf_wgs,
+    geojson=gdf_wgs.__geo_interface__,
+    locations=gdf_wgs.index,
+    color='PlotID',
+    mapbox_style='open-street-map',
+    center={"lat": gdf_wgs.geometry.centroid.y.mean(),
+            "lon": gdf_wgs.geometry.centroid.x.mean()},
+    zoom=13,
+    opacity=0.5,
+    title='Plot Boundaries — Agramón Catchment',
 )
-ax.set_title("All Plot Boundaries")
-plt.show()
+fig.update_layout(margin={"r": 0, "t": 40, "l": 0, "b": 0}, height=500)
+fig.show()
 ```
 
-### Load Survey Log
+### Preprocessing — Concatenate Raw DAT Files
 
 ```{code-cell} ipython3
-logEM_Agramon = pd.read_csv(
-    rootPath / 'raw/log_EM_Agramon_test.csv',
-    sep=';'
-)
-logEM_Agramon.columns
-```
+:tags: [hide-cell]
+logEM_Agramon = pd.read_csv(rootPath / 'raw/log_EM_Agramon_test.csv', sep=';')
 
-### Preprocessing — Read & Concatenate Raw DAT Files
-
-```{code-cell} ipython3
-plt.close('all')
-
-file2plot = [
-    '02AG2',
-    'AG3',
-]
-
-# Read and concatenate into one DataFrame
+file2plot = ['02AG2', 'AG3']
 df_all = pd.concat(
     [pd.read_csv(f'{rawDir}/{fname}.DAT', sep='\t') for fname in file2plot],
     ignore_index=True
 )
-
 EM_prepro_file_Agramon = '02AG2.DAT'
 df_all.to_csv(f'{rawDir}/{EM_prepro_file_Agramon}', sep='\t', index=False)
 
 selec_survey = logEM_Agramon[logEM_Agramon['Filename'] == {EM_prepro_file_Agramon}]
-CLH = 0
+CLH  = 0
 MODE = 'High'
 ```
 
 ### EMI Data Import with emagpy
 
 ```{code-cell} ipython3
-k = Problem()  # create the main emagpy object
+:tags: [hide-cell]
+k = Problem()
 k.importGF(
     fnameHi=f'{rawDir}/{EM_prepro_file_Agramon}',
     device='CMD Mini-Explorer 6L',
     hx=CLH,
     calib='Yes',
 )
-
 k.convertFromCoord(targetProjection='EPSG:32630')
 
-col2plot = ['HCP0.20', 'HCP0.33', 'HCP0.50', 'HCP0.72', 'HCP1.03', 'HCP1.50']
+col2plot  = ['HCP0.20', 'HCP0.33', 'HCP0.50', 'HCP0.72', 'HCP1.03', 'HCP1.50']
+coils     = k.surveys[0].coils
+df_survey = k.surveys[0].df.copy()
 ```
 
-### Quick Map & Profile Plot
+### ECa Profile along Survey Transect
+
+Apparent electrical conductivity (ECa) recorded along the survey transect. Use the dropdown to switch between coil spacings (shallow → deep).
 
 ```{code-cell} ipython3
-fig, ax = plt.subplots()
-k.showMap(
-    coil=col2plot[0],
-    contour=False,
-    pts=True,
-    ax=ax,
+:tags: [hide-input]
+df_survey['dist_m'] = (
+    np.sqrt(df_survey['x'].diff().fillna(0)**2 +
+            df_survey['y'].diff().fillna(0)**2)
+    .cumsum()
 )
-plt.show()
+
+fig = go.Figure()
+for col in col2plot:
+    fig.add_trace(go.Scatter(
+        x=df_survey['dist_m'],
+        y=df_survey[col],
+        mode='lines',
+        name=col,
+        visible=(col == col2plot[0]),
+        hovertemplate='Distance: %{x:.1f} m<br>ECa: %{y:.1f} mS/m<extra></extra>',
+    ))
+
+buttons = [
+    dict(
+        label=col,
+        method='update',
+        args=[{'visible': [c == col for c in col2plot]},
+              {'title': f'ECa Profile — {col}  (Height: {CLH} m, Mode: {MODE})'}]
+    )
+    for col in col2plot
+]
+fig.update_layout(
+    updatemenus=[dict(type='dropdown', x=0.01, y=1.14,
+                      showactive=True, buttons=buttons)],
+    title=f'ECa Profile — {col2plot[0]}  (Height: {CLH} m, Mode: {MODE})',
+    xaxis_title='Distance along transect (m)',
+    yaxis_title='ECa (mS/m)',
+    height=420,
+)
+fig.show()
+```
+
+### Spatial Distribution of ECa — Multi-Coil Map
+
+Interactive scatter map of all six coil spacings (faceted). Hover for coordinates and ECa value; use the colour scale to identify high-conductivity zones.
+
+```{code-cell} ipython3
+:tags: [hide-input]
+df_long = df_survey[['x', 'y'] + col2plot].melt(
+    id_vars=['x', 'y'],
+    value_vars=col2plot,
+    var_name='Coil',
+    value_name='ECa_mSm'
+)
+
+fig = px.scatter(
+    df_long,
+    x='x', y='y',
+    color='ECa_mSm',
+    facet_col='Coil',
+    facet_col_wrap=3,
+    color_continuous_scale='Viridis',
+    range_color=[5, 60],
+    labels={'ECa_mSm': 'ECa (mS/m)', 'x': 'Easting (m)', 'y': 'Northing (m)'},
+    title=f'ECa Spatial Distribution — All Coils  |  Height: {CLH} m, Mode: {MODE}',
+    height=600,
+    hover_data={'ECa_mSm': ':.1f', 'x': ':.1f', 'y': ':.1f'},
+)
+fig.update_traces(marker=dict(size=4))
+fig.update_layout(coloraxis_colorbar=dict(title='ECa (mS/m)'))
+fig.show()
+```
+
+### Spatial Join — Treatments, Elevation & Conductivity Stats
+
+```{code-cell} ipython3
+:tags: [hide-cell]
+geometry = [Point(xy) for xy in zip(df_survey['x'], df_survey['y'])]
+gdf_survey_geo   = gpd.GeoDataFrame(df_survey, geometry=geometry, crs=gdf_Agramon.crs)
+gdf_Agramon      = AgUtils.assign_treatments(gdf_Agramon)
+gdf_measurements = AgUtils.spatially_join_treatments(gdf_survey_geo, gdf_Agramon)
+stats_df         = AgUtils.compute_conductivity_stats(coils, gdf_measurements)
 ```
 
 ```{code-cell} ipython3
-fig, ax = plt.subplots()
-k.show(ax=ax, dist=True)
-plt.suptitle(f'EM 6L ({EM_prepro_file_Agramon}) — Coil Height: {CLH} ; Mode: {MODE}')
-fig.savefig(f'{rootPath}/figures/EM_ECa_2d.png', dpi=450, transparent=True)
-plt.show()
-```
+:tags: [hide-cell]
+dtm_reprojected  = dtm_dataset.rio.reproject(gdf_measurements.crs)
+gdf_survey_geo   = AgUtils.create_gdf_survey(k, crs=gdf_Agramon.crs)
+gdf_Agramon      = AgUtils.assign_treatments(gdf_Agramon)
+gdf_measurements = AgUtils.spatially_join_treatments(gdf_survey_geo, gdf_Agramon)
 
-### Multi-Coil Map with Catchment Boundaries
+dtm_cropped      = rxr.open_rasterio(preproDir / 'DEM_Agramon_cropped.tif').squeeze()
+dtm_cropped_repr = dtm_cropped.rio.reproject(gdf_measurements.crs)
+df_with_elev     = AgUtils.extract_dtm_values(dtm_cropped_repr, gdf_measurements)
 
-```{code-cell} ipython3
-minx, miny, maxx, maxy = gdf_Agramon.total_bounds
-
-fig, axes = plt.subplots(nrows=2, ncols=3, figsize=(7, 5))
-axes = axes.flatten()
-
-vmin, vmax = 5, 60
-
-for i, col in enumerate(col2plot):
-    ax = axes[i]
-    k.showMap(coil=col, contour=False, pts=True, ax=ax, vmin=vmin, vmax=vmax)
-    gdf_Agramon.plot(ax=ax, facecolor='none', edgecolor='red', linewidth=1)
-    ax.set_xlim(minx, maxx)
-    ax.set_ylim(miny, maxy)
-    ax.set_title(col, fontsize=10)
-    ax.set_axis_off()
-
-plt.suptitle(f'EM6L  |  Coil Height: {CLH} ; Mode: {MODE}')
-fig.savefig(f'{rootPath}/figures/EM_ECa_map_scaled.png', dpi=450, transparent=True)
-plt.show()
-```
-
-### Spatial Join — Treatments & Conductivity Stats
-
-```{code-cell} ipython3
-df = k.surveys[0].df.copy()
-coils = k.surveys[0].coils
-
-# Build GeoDataFrame from survey coordinates
-geometry = [Point(xy) for xy in zip(df['x'], df['y'])]
-gdf_survey = gpd.GeoDataFrame(df, geometry=geometry, crs=gdf_Agramon.crs)
-
-# Annotate treatment types and spatially join
-gdf_Agramon = AgUtils.assign_treatments(gdf_Agramon)
-gdf_measurements = AgUtils.spatially_join_treatments(gdf_survey, gdf_Agramon)
-
-# Compute per-coil conductivity statistics
-stats_df = AgUtils.compute_conductivity_stats(coils, gdf_measurements)
-stats_df
-```
-
-### Elevation Extraction from DTM
-
-```{code-cell} ipython3
-dtm_reprojected = dtm_dataset.rio.reproject(gdf_measurements.crs)
-df_with_elev = AgUtils.extract_dtm_values(dtm_reprojected, gdf_measurements)
-```
-
-```{code-cell} ipython3
-# Use cropped DEM for elevation correction
-gdf_survey = AgUtils.create_gdf_survey(k, crs=gdf_Agramon.crs)
-gdf_Agramon = AgUtils.assign_treatments(gdf_Agramon)
-gdf_measurements = AgUtils.spatially_join_treatments(gdf_survey, gdf_Agramon)
-
-dtm_dataset_cropped = rxr.open_rasterio(preproDir / 'DEM_Agramon_cropped.tif').squeeze()
-dtm_dataset_cropped_reprojected = dtm_dataset_cropped.rio.reproject(gdf_measurements.crs)
-df_with_elev = AgUtils.extract_dtm_values(dtm_dataset_cropped_reprojected, gdf_measurements)
-
-GPS_pts_elevation = k.surveys[0].df.elevation
-print('Correcting GPS elevation using DEM values...')
+print('Applying DEM-based elevation correction...')
 k.surveys[0].df.elevation = df_with_elev['Elevation']
-
 df_with_elev.to_csv(preproDir / 'ECa_withElevation.csv')
-print(f'Saved: {preproDir}/ECa_withElevation.csv')
+print(f'Saved → {preproDir}/ECa_withElevation.csv')
 ```
 
-### Conductivity Maps by Coil — Raw Points
+### Interpolated ECa Maps
+
+Gridded (linear) interpolation of ECa across all six coil spacings. Brighter colours indicate higher apparent conductivity (wetter / finer material).
 
 ```{code-cell} ipython3
-fig, axs = plt.subplots(3, 2, figsize=(12, 12), sharex=True, sharey=True)
-axs = axs.flatten()
+:tags: [hide-input]
+xi = np.linspace(gdf_measurements['x'].min(), gdf_measurements['x'].max(), 250)
+yi = np.linspace(gdf_measurements['y'].min(), gdf_measurements['y'].max(), 250)
+XI, YI = np.meshgrid(xi, yi)
 
-for i in range(len(axs)):
-    gdf_Agramon.plot(ax=axs[i], edgecolor="black", facecolor="none", linewidth=1)
-
-AgUtils.plot_conductivity_sensors(gdf_measurements, coils, axs)
-fig.savefig(f'{rootPath}/figures/EM_ECa_DEM_coil0.png', dpi=300)
-plt.show()
-```
-
-### Conductivity Maps — Interpolated Grid
-
-```{code-cell} ipython3
-fig, axes = plt.subplots(2, 3, figsize=(15, 10), sharex=True, sharey=True)
-axes = axes.flatten()
-
-AgUtils.plot_interpolated_conductivity(
-    gdf_measurements, coils, axes,
-    grid_res=10,
-    vmin=10, vmax=40
+fig = make_subplots(
+    rows=2, cols=3,
+    subplot_titles=col2plot,
+    horizontal_spacing=0.04,
+    vertical_spacing=0.10,
 )
 
-for i in range(len(axes)):
-    gdf_Agramon.plot(ax=axes[i], edgecolor="black", facecolor="none", linewidth=1)
+for idx, col in enumerate(col2plot):
+    row, c = divmod(idx, 3)
+    zi = griddata(
+        (gdf_measurements['x'], gdf_measurements['y']),
+        gdf_measurements[col],
+        (XI, YI),
+        method='linear'
+    )
+    fig.add_trace(
+        go.Heatmap(
+            x=xi, y=yi, z=zi,
+            colorscale='Viridis',
+            zmin=10, zmax=40,
+            colorbar=dict(
+                title='ECa<br>(mS/m)',
+                len=0.42,
+                y=0.77 if row == 0 else 0.22,
+                x=1.02,
+                thickness=12,
+            ),
+            showscale=(idx in (0, 3)),
+            hovertemplate='E: %{x:.0f} m<br>N: %{y:.0f} m<br>ECa: %{z:.1f} mS/m<extra>' + col + '</extra>',
+            name=col,
+        ),
+        row=row + 1, col=c + 1,
+    )
 
-plt.tight_layout()
-fig.savefig(f'{rootPath}/figures/EM_ECa_interp.png', dpi=300)
-plt.show()
-```
-
-### Conductivity Statistics per Plot (Mean, GeoTIFF export)
-
-```{code-cell} ipython3
-fig, axes = plt.subplots(2, 3, figsize=(15, 10))
-axes = axes.ravel()
-
-AgUtils.plot_conductivity_statistics(
-    gdf=gdf_measurements,
-    coils=coils,
-    axes=axes,
-    stat='mean',
-    grid_res=25,
-    vmin=0,
-    vmax=50,
-    save_tif=True,
-    output_prefix=preproDir / 'conductivity'
+fig.update_xaxes(showticklabels=False)
+fig.update_yaxes(showticklabels=False)
+fig.update_layout(
+    title=f'Interpolated ECa — All Coils  |  Height: {CLH} m, Mode: {MODE}',
+    height=620,
 )
-
-plt.tight_layout()
-plt.show()
+fig.show()
 ```
 
-### Conductivity vs Elevation & Treatment — 2D Binned Maps
+---
+
+## 📊 Statistical Interpretation
+
+### Conductivity Distribution by Sensor & Treatment
+
+Boxplots comparing ECa across coil spacings (depth proxies) grouped by burn treatment. Hover for quartile values; click legend entries to isolate treatments.
 
 ```{code-cell} ipython3
-fig, ax = plt.subplots(figsize=(8, 6))
-cax = AgUtils.imshow_cond_by_elevation_treatment(
-    df_with_elev, cond_col=coils[0], bins=3, ax=ax
-)
-fig.colorbar(cax, label=f"{coils[0]} [mS/m]")
-ax.set_title(f"Conductivity vs Elevation & Treatment — {coils[0]}")
-fig.savefig(f'{rootPath}/figures/EM_ECa_DEM_coil0.png', dpi=300)
-plt.show()
-```
-
-```{code-cell} ipython3
-fig, ax = plt.subplots(figsize=(8, 6))
-cax = AgUtils.imshow_cond_by_elevation_treatment(
-    df_with_elev, cond_col=coils[5], bins=3, ax=ax
-)
-fig.colorbar(cax, label=f"{coils[5]} [mS/m]")
-ax.set_title(f"Conductivity vs Elevation & Treatment — {coils[5]}")
-plt.show()
-```
-
-### Boxplot — Conductivity Distribution by Sensor & Treatment
-
-```{code-cell} ipython3
+:tags: [hide-input]
 melted = gdf_measurements.melt(
     id_vars='Treatment',
     value_vars=coils,
     var_name='Sensor',
-    value_name='Conductivity'
+    value_name='ECa_mSm'
 )
 
-fig, ax = plt.subplots(figsize=(8, 4))
-sns.boxplot(data=melted, x='Sensor', y='Conductivity', hue='Treatment', ax=ax)
-ax.set_title('Conductivity Distribution per Sensor and Treatment')
-ax.set_ylabel('ECa (mS/m)')
-plt.xticks(rotation=45)
-plt.tight_layout()
-fig.savefig(f'{rootPath}/figures/EM_ECa_stats_barplot.png', dpi=450, transparent=True)
-plt.show()
+fig = px.box(
+    melted,
+    x='Sensor',
+    y='ECa_mSm',
+    color='Treatment',
+    points='outliers',
+    labels={'ECa_mSm': 'ECa (mS/m)', 'Sensor': 'Coil (depth proxy)'},
+    title='ECa Distribution per Coil and Treatment',
+    color_discrete_sequence=px.colors.qualitative.Set2,
+    height=480,
+)
+fig.update_layout(boxmode='group', legend_title='Treatment')
+fig.show()
 ```
 
-### 3D Visualisation with PyVista
+### Conductivity vs Elevation & Treatment
+
+Scatter plots with OLS trendlines comparing how ECa varies with terrain elevation across treatments. The **shallowest coil** (HCP0.20, ~0–0.3 m) captures near-surface moisture; the **deepest coil** (HCP1.50, ~0–1.8 m) integrates the full profile.
 
 ```{code-cell} ipython3
-import pyvista as pv
-from scipy.interpolate import RegularGridInterpolator
+:tags: [hide-input]
+for coil_col, depth_label in [
+    (coils[0], f'Shallow (~0–0.3 m)  —  {coils[0]}'),
+    (coils[5], f'Deep (~0–1.8 m)  —  {coils[5]}'),
+]:
+    fig = px.scatter(
+        df_with_elev.dropna(subset=[coil_col, 'Elevation', 'Treatment']),
+        x='Elevation',
+        y=coil_col,
+        color='Treatment',
+        facet_col='Treatment',
+        trendline='ols',
+        labels={coil_col: 'ECa (mS/m)', 'Elevation': 'Elevation (m a.s.l.)'},
+        title=depth_label,
+        color_discrete_sequence=px.colors.qualitative.Set2,
+        height=400,
+        hover_data={coil_col: ':.1f', 'Elevation': ':.1f'},
+    )
+    fig.update_traces(marker=dict(size=4, opacity=0.6))
+    fig.update_layout(showlegend=False)
+    fig.show()
+```
 
-# --- Step 1: Prepare raster grid ---
+### 3-D Terrain & EMI Point Cloud
+
+Interactive 3-D scene: DEM surface coloured by terrain type, overlaid with HCP0.50 survey points coloured by ECa. **Rotate** with left-click drag, **pan** with right-click drag, **zoom** with scroll.
+
+```{code-cell} ipython3
+:tags: [hide-input]
 array_name = "Plot6Control"
-da = dtm_reprojected[array_name].fillna(0)
-
-x = dtm_reprojected['x'].values
-y = dtm_reprojected['y'].values
+da     = dtm_reprojected[array_name].fillna(0)
+x_rast = dtm_reprojected['x'].values
+y_rast = dtm_reprojected['y'].values
 z_grid = da.values
 
-# Ensure y is increasing for interpolation
+# Subsample raster for browser rendering
+step  = max(1, len(x_rast) // 150)
+x_sub = x_rast[::step]
+y_sub = y_rast[::step]
+z_sub = z_grid[::step, ::step]
+XX, YY = np.meshgrid(x_sub, y_sub)
+
+# Interpolate elevation at survey points
 interp_func = RegularGridInterpolator(
-    (y[::-1], x), z_grid[::-1, :],
+    (y_rast[::-1], x_rast), z_grid[::-1, :],
     bounds_error=False, fill_value=0
 )
-
-# --- Step 2: Extract and interpolate elevation at survey points ---
 x_pts = gdf_measurements['x'].values
 y_pts = gdf_measurements['y'].values
-xy_pts = np.column_stack((y_pts, x_pts))  # (y, x) order
-z_pts = interp_func(xy_pts)
+z_pts = interp_func(np.column_stack((y_pts, x_pts)))
 
-# --- Step 3: Build PyVista point cloud ---
-points = np.column_stack((x_pts, y_pts, z_pts))
-point_cloud = pv.PolyData(points)
-point_cloud["HCP0.50"] = gdf_measurements["HCP0.50"].values
+fig = go.Figure()
 
-# --- Step 4: Build terrain surface ---
-xx, yy = np.meshgrid(x, y)
-grid = pv.StructuredGrid(xx, yy, z_grid)
+# DEM surface
+fig.add_trace(go.Surface(
+    x=XX, y=YY, z=z_sub,
+    colorscale='earth',
+    opacity=0.72,
+    showscale=False,
+    name='DEM',
+    hoverinfo='skip',
+))
 
-# --- Step 5: Render ---
-plotter = pv.Plotter()
-plotter.add_mesh(grid, cmap="terrain", show_edges=False)
-plotter.add_mesh(grid.outline(), color="black", line_width=2)
-plotter.add_points(
-    point_cloud,
-    render_points_as_spheres=True,
-    point_size=10,
-    cmap="viridis",
-    scalar_bar_args={"title": "HCP0.50"}
+# EMI survey points
+fig.add_trace(go.Scatter3d(
+    x=x_pts, y=y_pts,
+    z=z_pts + 2,   # +2 m offset so points float above surface
+    mode='markers',
+    marker=dict(
+        size=4,
+        color=gdf_measurements['HCP0.50'].values,
+        colorscale='Viridis',
+        cmin=10, cmax=40,
+        colorbar=dict(title='HCP0.50<br>(mS/m)', thickness=14, len=0.55),
+        opacity=0.9,
+    ),
+    text=[
+        f"ECa: {v:.1f} mS/m<br>Elev: {e:.1f} m<br>Treatment: {t}"
+        for v, e, t in zip(
+            gdf_measurements['HCP0.50'].values,
+            z_pts,
+            gdf_measurements['Treatment'].values,
+        )
+    ],
+    hoverinfo='text',
+    name='ECa HCP0.50',
+))
+
+fig.update_layout(
+    title='3-D Terrain & EMI Survey — HCP0.50 Coil',
+    scene=dict(
+        xaxis_title='Easting (m)',
+        yaxis_title='Northing (m)',
+        zaxis_title='Elevation (m)',
+        aspectmode='data',
+    ),
+    height=650,
+    margin=dict(l=0, r=0, b=0, t=50),
 )
-plotter.show()
+fig.show()
 ```
 
 ---
