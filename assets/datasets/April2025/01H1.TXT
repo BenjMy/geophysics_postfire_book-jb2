@@ -1,0 +1,9 @@
+File name:	h1
+Locality:	hellin
+Note:	
+Meas. type:	GPS Continual
+Meas. mode:	Combined
+Cal./Depth:	F-Ground, Hi
+Meas. time:	1.0 s
+Probe:	CMD-MiniExplorer 6L, shortest dipole has index 1	SN: 25010994 v2.8
+Control unit:	24090962 v4.7
