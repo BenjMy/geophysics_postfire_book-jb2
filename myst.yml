@@ -43,8 +43,8 @@ project:
     - open education
 
   # ── Repository & links ─────────────────────────────────────────────────────
-  github: https://github.com/BenjMy/geophysics-python-course
-  binder: https://mybinder.org/v2/gh/BenjMy/geophysics-python-course/main
+  github: https://github.com/BenjMy/geophysics_postfire_book-jb2
+  binder: https://mybinder.org/v2/gh/BenjMy/geophysics_postfire_book-jb2/main
 
   # ── Exports ───────────────────────────────────────────────────────────────
   exports:
