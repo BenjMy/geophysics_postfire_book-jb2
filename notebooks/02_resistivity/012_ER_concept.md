@@ -5,8 +5,6 @@ kernelspec:
   display_name: Python 3 (Geophysics)
   language: python
 ---
-
-
 ```{admonition} Learning Objectives
 :class: note
 - Understand the physical basis of electrical resistivity methods
@@ -32,9 +30,8 @@ $$R = \rho \frac{L}{A}$$
 where $R$ is resistance (Ω). Rearranging:
 
 $$\rho = R \frac{A}{L}$$
-
 ```{code-cell} ipython3
-:tags: [hide-input]
+:tags: [remove-input]
 import numpy as np
 import matplotlib.pyplot as plt
 import ipywidgets as widgets
@@ -53,9 +50,8 @@ print(f"\033[96mResistance of 1 m3 loam cube : {R:.1f} Ω\033[0m")
 ### 🎛️ Interactive Explorer — Ohm's Law
 
 Adjust resistivity, length and cross-section to see how resistance changes:
-
 ```{code-cell} ipython3
-:tags: [hide-input]
+:tags: [remove-input]
 def ohm_widget():
     rho_slider = widgets.FloatLogSlider(
         value=50, base=10, min=0, max=6,
@@ -82,7 +78,7 @@ def ohm_widget():
         sigma = 1 / rho_slider.value
         with out:
             out.clear_output(wait=True)
-            print(f"  Resistance  R = {R:.4f} Ω")
+            print(f"  Resistance   R = {R:.4f} Ω")
             print(f"  Conductivity σ = {sigma:.6f} S/m")
 
     rho_slider.observe(update, names='value')
@@ -102,13 +98,11 @@ ohm_widget()
 
 ## Typical Resistivity Values
 
-
-https://em.geosci.xyz/content/physical_properties/electrical_conductivity/electrical_conductivity_values.html
-
+See the [EMGeoSci reference table](https://em.geosci.xyz/content/physical_properties/electrical_conductivity/electrical_conductivity_values.html) for a comprehensive overview of resistivity ranges for common earth materials.
 
 ---
 
-## The 4-Electrode concept
+## The 4-Electrode Concept
 
 In the field we inject current through two **current electrodes** (A, B) and measure voltage across two **potential electrodes** (M, N):
 
@@ -118,28 +112,22 @@ where $K$ is the **geometric factor** that depends on electrode geometry.
 
 For the **Wenner** array with spacing $a$:
 
-$$K_{Wenner} = 2 \pi a$$
+$$K_{\text{Wenner}} = 2 \pi a$$
 
-Explain here why 4 electrodes (to avoid electrical resistance)
+Using four electrodes rather than two avoids the problem of **contact resistance**: the resistance at the electrode–soil interface contaminates the measurement when current injection and voltage measurement share the same electrodes. By separating the roles, the potential electrodes draw negligible current, so their contact resistance has no effect on the voltage reading.
 
-
-### Electrode geometry and sequence 
+### Electrode Geometry and Sequence
 
 Adjust electrode spacing, current and true resistivity to explore the measurement:
 
 ---
-
-
-
----
-
 ```{admonition} Summary
 :class: tip
 You now understand:
 - Electrical resistivity and its physical meaning
 - Typical resistivity values for common earth materials
-- How the 4-electrode measurement works
+- How the 4-electrode measurement works and why it is necessary
 - The Wenner geometric factor $K = 2\pi a$
 
-Next: [resipy Introduction](../02_resipy/01_resipy_introduction.md) — use **resipy** to process real survey data.
+Next: [ResIPy Introduction](../02_resipy/01_resipy_introduction.md) — use **ResIPy** to process real survey data.
 ```

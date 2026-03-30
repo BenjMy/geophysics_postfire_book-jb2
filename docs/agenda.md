@@ -13,3 +13,39 @@
 
 
 
+---
+
+## Topics
+
+::::{grid} 1 1 2 2
+:gutter: 3
+
+:::{grid-item-card} 📘 Theory
+:class-header: bg-light
+Practice variables, lists, loops, and functions using geophysics-themed examples.
+
+**Key skills:** ERT methods· EM methods
+:::
+
+:::{grid-item-card} 📗 Practical cases
+:class-header: bg-light
+Load a real resistivity dataset, visualise the pseudosection, and run your first inversion.
+
+**Key skills:** `Project()` · `createSurvey()` · `invert()` · pseudosection plot
+:::
+
+:::{grid-item-card} 📙 Exercices
+:class-header: bg-light
+Using user friendly softwares import data, apply calibration, and perform inversion.
+:::
+
+:::{grid-item-card} 📕 To go further
+:class-header: bg-light
+
+ICA geophysical service 
+
+:::
+
+::::
+
+---

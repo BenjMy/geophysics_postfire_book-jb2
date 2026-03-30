@@ -88,6 +88,7 @@ project:
             #- file: notebooks/01_introduction/01_python_basics.md
             - file: notebooks/01_introduction/013_postfire_soil_basics.md
             - file: notebooks/01_introduction/013_postfire_soil_basics_geophysics.md                       
+            - file: notebooks/01_introduction/02_geophysical_methods.md                       
             - file: notebooks/01_introduction/01_python_basics.md            
 
 
@@ -118,6 +119,10 @@ project:
     - title: "🧪 Exercises"
       children:
         - file: exercises/README.md
+        - file: exercises/Exercice1_ResistivityBasics.md
+        - file: exercises/Exercice2_ERTSurveyDesign.md
+        - file: exercises/Exercice3_FieldDataAnalysis.md
+        - file: exercises/Exercice4_FieldDataInterpretation.md
 
 
     # ── R&D ─────────────────────────────────────────────────────────────

@@ -24,6 +24,7 @@ ipywidgets>=8.0.0
 seaborn>=0.12.0
 pyvista>=0.43.0
 folium>=0.14.0
+plotly
 
 # Utilities
 scikit-learn>=1.0.0
