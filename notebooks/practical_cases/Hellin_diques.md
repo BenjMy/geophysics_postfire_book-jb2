@@ -48,18 +48,40 @@ folium.Marker([38.495, -1.671], popup='<b>Dique 3</b><br>Check dam - sediment mo
 m
 ```
 
+
 ---
 
 ## 🌍 Context
 
-```{figure} ../../assets/images/hellin_diques_context.jpg
+
+
+```{figure} ../../assets/images/diques2.jpeg
 :width: 60%
 :align: center
-:alt: Check dam in the Hellín rambla
+:alt: diques1
+:name: diques1
 
-One of the sediment check dams in the Hellín rambla network, showing sediment accumulation behind the structure.
-<!-- TODO: replace with actual image path -->
+One of the sediment check dams in the Hellín rambla network. Picture credit to ??.
 ```
+
+```{figure} ../../assets/images/diques1.jpeg
+:width: 60%
+:align: center
+:alt: diques2
+:name: diques2
+
+One of the sediment check dams in the Hellín rambla network. Picture credit to ??.
+```
+
+```{figure} ../../assets/images/diques3.jpeg
+:width: 60%
+:align: center
+:alt: diques3
+:name: diques3
+
+One of the sediment check dams in the Hellín rambla network. Picture credit to ??.
+```
+
 
 Sediment check dams (*diques de sedimentación*) are a common post-fire restoration measure in Spanish ramblas and ephemeral streams. They are designed to trap sediment mobilised by post-fire erosion, reduce downstream flood risk, and promote vegetation recovery in gully floors. However, their effectiveness and the physical properties of trapped sediments remain poorly characterised.
 
@@ -67,6 +89,12 @@ Sediment check dams (*diques de sedimentación*) are a common post-fire restorat
 :class: note
 After the 2022 wildfires in the Hellín area, a network of check dams was installed along the main rambla as an emergency erosion-control measure. This study provides the first geophysical characterisation of the sediment body behind these structures.
 ```
+
+```{admonition} Semi-permeable or confined dam?
+:class: caution
+From the figures above, we can observe that the dam are not design all the same way i.e. {numref}`diques1` show a concrete dam that does not let sediment nor water going trough, while {numref}`diques2` and {numref}`diques3` are permeable to water. 
+```
+
 
 ---
 
@@ -96,10 +124,6 @@ Key sub-questions:
   - Electrical Resistivity Tomography
   - Wenner, 48 electrodes, 0.5 m spacing
   - Longitudinal + cross-dam transects
-* - GPR (MALA ProEx)
-  - Ground-Penetrating Radar
-  - 250 MHz antenna
-  - Longitudinal profiles along sediment surface
 * - CMD Mini-Explorer
   - Electromagnetic Induction (EMI)
   - 0.32 / 0.71 / 1.18 m coil spacings

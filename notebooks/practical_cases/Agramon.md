@@ -57,7 +57,7 @@ m
 
 ## 🌍 Context
 
-```{figure} ../../assets/images/agramon_context.jpg
+```{figure} ../../assets/images/agramon_compressed.mp4
 :width: 60%
 :align: center
 :alt: Aerial view of the Agramón catchment
