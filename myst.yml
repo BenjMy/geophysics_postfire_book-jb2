@@ -122,7 +122,8 @@ project:
         - file: exercises/Exercice1_ResistivityBasics.md
         - file: exercises/Exercice2_ERTSurveyDesign.md
         - file: exercises/Exercice3_FieldDataAnalysis.md
-        - file: exercises/Exercice4_FieldDataInterpretation.md
+        - file: exercises/Exercice4_FieldDataInterpretation.md    
+        - file: exercises/Exercice5_PostFire_bib.md
 
 
     # ── R&D ─────────────────────────────────────────────────────────────

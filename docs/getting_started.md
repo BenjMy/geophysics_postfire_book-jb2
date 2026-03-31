@@ -36,22 +36,7 @@ You will see a status message while the kernel starts — this can take **20–3
 
 ---
 
-### 2 — Run a cell
-
-Each code cell has a **Run** button on the left, or you can click inside the cell and press:
-
-> **`Shift + Enter`** — run the current cell and move to the next  
-> **`Ctrl + Enter`** — run the current cell and stay on it
-
-The output (text, plot, or widget) appears directly below the cell.
-```{admonition} Nothing happening?
-:class: caution
-If a cell does not respond, the kernel may still be loading. Wait for the status indicator to show **idle** (a small circle in the toolbar), then try again. If the problem persists, restart the kernel via the toolbar menu.
-```
-
----
-
-### 3 — Use widgets and sliders
+### 2 — Use widgets and sliders
 
 Many pages include **interactive widgets**: sliders, dropdowns, and input boxes that let you change parameters without editing any code. Just:
 
@@ -69,7 +54,7 @@ Example widget: drag the slider and watch the plot update in real time.
 
 ---
 
-### 4 — Observe and interpret the results
+### 3 — Observe and interpret the results
 
 Widgets are not just animations — they are learning tools. As you change parameters, ask yourself:
 

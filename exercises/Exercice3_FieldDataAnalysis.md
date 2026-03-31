@@ -55,7 +55,7 @@ print(k.elec)
 k.createMesh(typ='trian', show_output=False, res0=200) # let's create the mesh based on these electrodes position
 k.showMesh()
 k.addRegion(np.array([[2,-0.3],[2,-2],[3,-2],[3,-0.3],[2,-0.3]]), 50, iplot=True)
-k.createSequence([('dpdp1', 1, 10)]) # create a dipole-dipole of diple spacing of 1 (=skip 0) with 10 levels
+k.createSequence([('dpdp', 1, 10, 1, 10)]) # create a dipole-dipole of diple spacing of 1 (=skip 0) with 10 levels
 k.forward(noise=0.05, iplot=True) # forward modelling with 5 % noise added to the output
 
 ```

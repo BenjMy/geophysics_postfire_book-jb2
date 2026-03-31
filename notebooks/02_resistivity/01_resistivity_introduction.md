@@ -167,6 +167,20 @@ the uncertainty bounds on any moisture estimate derived from ERT data
 {cite}`tso2019wrr`.
 :::
 
+
+
+:::{iframe} https://youtu.be/lt1qV-2d5Ps?si=qSj8aXnUs4Ynk-_X
+:width: 100%
+Dipole-Dipole Measurement (conductive body) - Credit https://www.youtube.com/@florianwagner4887
+:::
+
+:::{iframe} https://www.youtube.com/embed/lt1qV-2d5Ps
+:width: 100%
+Dipole-Dipole Measurement (conductive body) - Credit [@florianwagner4887](https://www.youtube.com/@florianwagner4887)
+:::
+
+To protect your security, www.youtube.com will not allow Firefox to display the page if another site has embedded it. To see this page, you need to open it in a new window.
+
 ---
 
 ## References
