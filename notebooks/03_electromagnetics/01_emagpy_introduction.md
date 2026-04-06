@@ -21,49 +21,7 @@ kernelspec:
 - Run a 1-D lateral inversion to estimate subsurface conductivity
 ```
 
----
 
-## EMI Measurement Principle
-
-An EMI instrument consists of a **transmitter coil** and one or more **receiver coils** separated by a fixed distance (coil spacing $s$).
-
-The transmitter generates a **primary magnetic field** $H_p$ that induces eddy currents in the ground. These currents generate a **secondary field** $H_s$ measured at the receiver. The ratio $H_s / H_p$ relates to the bulk apparent electrical conductivity (ECa, mS/m):
-
-$$ECa = \frac{4}{\omega \mu_0 s^2} \cdot \text{Im}\!\left(\frac{H_s}{H_p}\right)$$
-
-where $\omega = 2\pi f$ is the angular frequency and $\mu_0$ is the magnetic permeability of free space.
-
----
-
-## Coil Orientations
-
-```{code-cell} ipython3
-import numpy as np
-import matplotlib.pyplot as plt
-
-# Sensitivity functions (McNeill 1980)
-def sensitivity_HCP(z, s=1.0):
-    """Horizontal coplanar (HCP) — vertical dipole."""
-    return (4*z**3) / (4*z**2 + s**2)**1.5
-
-def sensitivity_VCP(z, s=1.0):
-    """Vertical coplanar (VCP) — horizontal dipole."""
-    return (2*z) / (4*z**2 + s**2)**0.5 - (4*z**3) / (4*z**2 + s**2)**1.5
-
-z = np.linspace(0.01, 3, 300)
-
-fig, ax = plt.subplots(figsize=(7, 5))
-ax.plot(sensitivity_HCP(z), z, label='HCP (vertical dipole)', color='steelblue', linewidth=2)
-ax.plot(sensitivity_VCP(z), z, label='VCP (horizontal dipole)', color='firebrick', linewidth=2, linestyle='--')
-ax.set_xlabel("Relative sensitivity")
-ax.set_ylabel("Depth / coil spacing ratio (z / s)")
-ax.set_ylim(3, 0)
-ax.set_title("McNeill (1980) depth sensitivity functions")
-ax.legend()
-ax.grid(True, alpha=0.3)
-plt.tight_layout()
-plt.show()
-```
 
 ---
 
@@ -164,34 +122,6 @@ plt.show()
 
 ---
 
-## Comparison: resipy vs emagpy
-
-```{list-table}
-:header-rows: 1
-:widths: 20 40 40
-
-* - Feature
-  - **resipy** (ERT)
-  - **emagpy** (EMI)
-* - Physical quantity
-  - Resistivity ρ (Ω·m)
-  - Conductivity σ (mS/m)
-* - Survey speed
-  - Slow (electrode deployment)
-  - Fast (continuous walking)
-* - Depth of investigation
-  - Up to tens of metres
-  - Up to ~6 m (depends on coil spacing)
-* - Resolution
-  - High (dense electrode layout)
-  - Lower (smooth depth sensitivity)
-* - Best for
-  - Detailed 2-D/3-D imaging
-  - Rapid field-scale mapping
-```
-
----
-
 ```{admonition} Summary
 :class: tip
 You have learned:
@@ -199,7 +129,4 @@ You have learned:
 - How coil orientation affects depth sensitivity (McNeill 1980)
 - How to create an emagpy `Problem` and load survey data
 - What the inverted conductivity model looks like
-
-Well done — you have now covered both **resipy** and **emagpy**!
-Proceed to the [Exercises](../../exercises/README.md) to practise with real datasets.
 ```

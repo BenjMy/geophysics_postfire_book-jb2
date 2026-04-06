@@ -1,5 +1,5 @@
 ---
-title: Agramón — Soil Moisture at Catchment Scale
+title: Agramón — EM
 authors:
   - name: Benjamin Mary
     email: benjamin.mary@ica.csic.es
@@ -97,22 +97,14 @@ Key sub-questions:
   - Method
   - Configuration
   - Notes
-* - CMD Mini-Explorer
+* - CMD Mini-Explorer 6L
   - Electromagnetic Induction (EMI)
-  - 3 coil spacings: 0.32 / 0.71 / 1.18 m
-  - Vertical dipole mode; ~0–1.8 m depth
-* - ERT system (ABEM)
-  - Electrical Resistivity Tomography
-  - Wenner-Schlumberger, 48 electrodes, 2 m spacing
-  - Two transects across the catchment
-* - TDR probes
-  - Time Domain Reflectometry
-  - 5 cm / 20 cm / 40 cm depth
-  - Continuous logging at 4 stations
+  - 6 coil spacings
+  - Vertical dipole mode; 
 * - UAV (DJI Phantom 4)
   - Aerial photogrammetry
-  - RGB + multispectral
-  - For co-registration and NDVI mapping
+  - RGB + multispectral + thermal
+  - For co-registration and ET mapping
 ```
 
 ```{admonition} Data availability
@@ -523,10 +515,10 @@ fig.show()
 
 ## 🔄 On-going & Perspective Work
 
-- [ ] Seasonal time-lapse EMI surveys (4× per year)
+- [ ] Seasonal time-lapse EMI surveys
 - [ ] Joint inversion of EMI + ERT for improved depth resolution
-- [ ] Coupling with hydrological model (SWAT+) at catchment scale
-- [ ] Integration with remote sensing (Sentinel-1 SAR) for spatial upscaling
+- [ ] Coupling with hydrological model (pyCATHY) at catchment scale
+- [ ] Integration with remote sensing for spatial upscaling
 
 ```{admonition} GRWater project
 :class: tip

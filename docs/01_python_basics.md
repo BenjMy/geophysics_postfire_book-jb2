@@ -181,5 +181,4 @@ You have covered:
 - NumPy arrays and vectorised operations
 - Basic Matplotlib plotting
 
-Move on to [Geophysics Basics](012_geophysics_basics.md) for an introduction to geophysical theory.
 ```

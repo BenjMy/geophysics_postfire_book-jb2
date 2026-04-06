@@ -19,21 +19,21 @@ kernelspec:
 - Create and configure a resipy `Project`
 - Import field data and visualise a pseudosection
 - Run a basic regularised inversion
-- Interpret an inverted resistivity section
+
 ```
 
-:::{iframe} https://www.youtube.com/watch?v=wfJ62rz0EsU
+:::{iframe} https://www.youtube.com/embed/wfJ62rz0EsU?si=K32bWdkjYoZWRdRN
 :width: 100%
 ResIPy Python API - Getting Started 
 :::
 
-
-:::{iframe} https://youtu.be/48VN_e8J2kc?si=hpC-JFdG1oChjm28
+:::{iframe} https://www.youtube.com/embed/48VN_e8J2kc?si=vH4NVe1OHKQsGf0P
 :width: 100%
 Introduction to 2D forward modeling with ResIPy (beginner to professional) 
 :::
 
-:::{iframe} https://www.youtube.com/watch?v=OjZlRZ7QeMk
+
+:::{iframe} https://www.youtube.com/embed/OjZlRZ7QeMk?si=o0VImy3k-X_jDYbM
 :width: 100%
 Introduction to 2D inversion with ResIPy 
 :::

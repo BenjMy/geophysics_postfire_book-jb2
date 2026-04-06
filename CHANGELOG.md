@@ -17,3 +17,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Poetry and Conda environment configurations
 - Unit tests framework
 - Contributing guidelines and Code of Conduct
+
+
+
+## Not yet published [1.0.1]
+- Create a glossary

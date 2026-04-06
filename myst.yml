@@ -50,8 +50,8 @@ project:
   exports:
     - format: pdf
       template: plain_latex  # clean academic PDF template
-      output: exports/intro_microcredential_UCLM.pdf
-
+      output: exports/intro_microcredential_UCLM.pdf    
+      
   # ── Notebook execution ─────────────────────────────────────────────────────
   execute:
     execute_notebooks: auto      # auto | force | never
@@ -77,6 +77,7 @@ project:
     - title: "📚 How-to"
       children:
         - file: docs/getting_started.md
+        - file: docs/01_python_basics.md            
         #- file: docs/installation.md
         #- file: docs/troubleshooting.md
 
@@ -87,9 +88,9 @@ project:
           children:
             #- file: notebooks/01_introduction/01_python_basics.md
             - file: notebooks/01_introduction/013_postfire_soil_basics.md
-            - file: notebooks/01_introduction/013_postfire_soil_basics_geophysics.md                       
             - file: notebooks/01_introduction/02_geophysical_methods.md                       
-            - file: notebooks/01_introduction/01_python_basics.md            
+            - file: notebooks/01_introduction/013_postfire_soil_basics_geophysics.md                       
+
 
 
         - title: "⚡ Bloc 2 · Resistivity"
@@ -102,16 +103,21 @@ project:
           children:
             - file: notebooks/03_electromagnetics/01_electromagnetics_introduction.md
             - file: notebooks/03_electromagnetics/01_emagpy_introduction.md
-            
+
+
+        - title: "Bloc 4 · Petro/pedophysics"
+          file: notebooks/pedophysics.md
+          
     # ── Practical Cases ───────────────────────────────────────────────────────
     - title: Practical Cases
       children:
         - file: notebooks/practical_cases/introduction_GRWATER.md
-        - title: "💧 Humedad del suelo a escala de cuenca"
+        - title: "💧 Watershed case study"
           children:
-            - file: notebooks/practical_cases/Agramon.md
-            - file: notebooks/practical_cases/Hellin.md
-        - title: "🪨 Diques de sedimentación"
+            - file: notebooks/practical_cases/Agramon_EM.md
+            - file: notebooks/practical_cases/Agramon_ERT.md
+            - file: notebooks/practical_cases/Hellin_EM.md
+        - title: "🪨 Sedimendation dams"
           children:
             - file: notebooks/practical_cases/Hellin_diques.md
 
@@ -124,14 +130,17 @@ project:
         - file: exercises/Exercice3_FieldDataAnalysis.md
         - file: exercises/Exercice4_FieldDataInterpretation.md    
         - file: exercises/Exercice5_PostFire_bib.md
-
-
+    
+    - file: glossary.md
+      title: Glossary
+  
+  
     # ── R&D ─────────────────────────────────────────────────────────────
     #- title: "R&D"
     # children:
     #   - file: docs/RD.md
 
-
+	
 # ── Site (web) settings ─────────────────────────────────────────────────────
 site:
   template: book-theme
@@ -143,9 +152,9 @@ site:
   # ── Call-to-action buttons ────────────────────────────────────────────────
   actions:
     - title: ⭐ Star
-      url: https://github.com/BenjMy/geophysics-python-course
+      url: https://github.com/BenjMy/geophysics_postfire_book-jb2
     - title: 🚀 Launch
-      url: https://mybinder.org/v2/gh/BenjMy/geophysics-python-course/main
+      url: https://mybinder.org/v2/gh/BenjMy/geophysics_postfire_book-jb2/main
 
 
   # ── Theme options ─────────────────────────────────────────────────────────
@@ -156,9 +165,11 @@ site:
     launch_buttons: true
     thebe: true                  # 🐝 Enable Thebe live code execution in-page
     default_mode: light          # Default to light mode
-    
-    
 
-  
-  
+glossary: glossary.md
+
+
+
+
+
   

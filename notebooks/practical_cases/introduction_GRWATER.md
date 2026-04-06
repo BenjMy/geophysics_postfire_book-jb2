@@ -13,8 +13,8 @@ This research is supported by the FBBVA programme. The project logo and further 
 
 ```{figure} ../../assets/images/fbbva.png
 :name: fig-fbbva
-:width: 30%
-:align: left
+:width: 60%
+:align: center
 
 Fundación BBVA project logo.
 ```

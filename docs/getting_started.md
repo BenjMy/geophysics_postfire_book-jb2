@@ -25,14 +25,22 @@ Under the hood, each page is a Jupyter notebook running on a remote server. When
 ### 1 — Launch the kernel
 
 At the top of any executable page, click the 🚀 **rocket icon** in the top toolbar, then select **Live Code** (or **Binder** / **JupyterHub**, depending on your setup).
-```{figure} ../assets/images/launch_button.png
-:width: 60%
+```{figure} ../assets/images/Screenshot_powerKernel.png
+:width: 5%
 :align: center
 :alt: Screenshot of the launch button in Jupyter Book
-Click the rocket icon to activate live code on the page.
+Click the power button to start live code on the page.
+```
+You will see a status message while the kernel starts — this can take **20–30 seconds** the first time. Once the kernel is ready, all code cells become interactive.
+
+```{figure} ../assets/images/Screenshot_runcell.png
+:width: 8%
+:align: center
+:alt: Screenshot of the launch button in Jupyter Book
+Click the triangle icon to execute live code on the page.
 ```
 
-You will see a status message while the kernel starts — this can take **20–30 seconds** the first time. Once the kernel is ready, all code cells become interactive.
+
 
 ---
 

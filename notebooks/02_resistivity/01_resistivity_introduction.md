@@ -8,90 +8,84 @@ bibliography:
   - references.bib
 ---
 
-## What is ERT and why does it matter?
+```{admonition} Learning Objectives
+:class: note
+- Introduce the concept of a 4-electrode measurement
+```
 
-Electrical Resistivity Tomography (ERT) is a near-surface geophysical method that
-images the spatial distribution of the **electrical resistivity** (or its inverse,
-electrical conductivity) of the subsurface.  Unlike borehole or soil-core
-measurements—which are local and destructive—ERT is **non-invasive**, provides
-**2D and 3D spatial coverage**, and can be repeated over time to track **dynamic
-processes** (time-lapse, or 4D, ERT).
+
+## What is ERT?
+
+Previously, we saw that soil can be physically characterised by its electrical resistivity. Here, we extend this concept to electrical resistivity tomography. Electrical Resistivity Tomography (ERT) is a near-surface geophysical method that images the spatial distribution of the **electrical resistivity** (or its inverse, electrical conductivity) of the subsurface. Unlike borehole or soil-core measurements — which are localised and destructive — ERT is **non-invasive**, provides **2D and 3D spatial coverage**, and can be repeated over time to track **dynamic processes** (time-lapse, or 4D, ERT).
 
 Key capabilities at a glance:
-
-- Maps subsurface resistivity contrasts in **2D, 3D and through time**
-  {cite}`dimech2022`
-- Sensitive to changes in **soil water content, salinity, clay content and
-  temperature** {cite}`telford1990,binley2005dc`
-- Bridges the gap between sparse point sensors and large-scale remote sensing
-  {cite}`carriere2022rs`
-
----
-
-## ERT is sensitive to subsurface electrical properties
-
-The measured quantity is the **apparent resistivity** $\rho_a$ (Ω·m), derived
-from Ohm's law:
-
-$$
-\rho_a = K \frac{\Delta V}{I}
-$$
-
-where $K$ is the geometric factor of the electrode array, $\Delta V$ is the
-measured potential difference and $I$ is the injected current.
-
-Soil resistivity is controlled by the **Archie's law** petrophysical chain:
-
-$$
-\rho = a \, \phi^{-m} \, S_w^{-n} \, \rho_w
-$$
-
-where $\phi$ is porosity, $S_w$ is the degree of water saturation, $\rho_w$ is
-the pore-water resistivity, and $a$, $m$, $n$ are empirical Archie parameters.
-Because the petrophysical relationship is site-specific, interpreting resistivity
-images in terms of soil moisture always carries uncertainty
-{cite}`tso2019wrr`.
+- Maps subsurface resistivity contrasts in **2D, 3D and through time** {cite}`dimech2022`
+- Sensitive to changes in **soil water content, salinity, clay content and temperature** {cite}`telford1990,binley2005dc`
+- Bridges the gap between sparse point sensors and large-scale remote sensing {cite}`carriere2022rs`
+```{admonition} Tomography
+:class: note
+Tomography refers to the spatial reconstruction of a physical property within a medium from indirect measurements. The term is also widely used in medicine — most famously in CT (Computed Tomography) scans.
+```
 
 ---
 
-## Application domains
 
-ERT has been applied across a wide range of scientific and engineering contexts.
 
-### Civil engineering and geotechnical studies
+## The 4-electrode concept: apparent resistivity and geometric Factor
 
-Subsurface structure, void detection, dam monitoring, and embankment stability
-are classic civil engineering targets for ERT {cite}`dimech2022`.
+In Electrical Resistivity Tomography (ERT) and other resistivity surveys, the **4-electrode method** is used to measure the **apparent resistivity (ρₐ)** of the subsurface. This method avoids the issue of **contact resistance** and accounts for the **geometric arrangement** of electrodes through the **geometric factor (K)**.
 
-### Ecohydrology and forest ecology
+### Why four electrodes? avoiding contact resistance
 
-ERT provides spatially distributed information on root water uptake (RWU) and
-soil-water dynamics that point sensors cannot match.  Time-lapse ERT has been
-used to image RWU dynamics in vineyards {cite}`mary2020soil,mary2019srep`,
-orchard trees {cite}`vanella2018jhydrol`, and mixed forest stands
-{cite}`loiseau2023scitotenv,carriere2022rs`.  Machine-learning approaches
-combining ERT with proximal sensing data can now assess grapevine water status
-non-invasively {cite}`mary2023bg`.
+Using four electrodes separates the roles of **current injection** and **voltage measurement**, which is crucial for eliminating the influence of **contact resistance**:
 
-### Hydrological studies and petrophysical relationships
+1. **Current Electrodes (A, B):**
+   - Inject current into the ground.
+   - Contact resistance at these electrodes does not affect the voltage measurement because voltage is measured separately.
 
-ERT couples naturally with hydrological modelling through petrophysical
-relationships between resistivity and soil moisture
-{cite}`tso2019wrr,mary2021vzj`.  Long-term monitoring systems have advanced
-understanding of processes ranging from hillslope drainage to groundwater–surface
-water exchange {cite}`slater2021wires`.  Geophysics can also be framed as a
-**hypothesis-testing tool** to constrain critical-zone hydrogeological models
-{cite}`dumont2024wires`.
+2. **Potential Electrodes (M, N):**
+   - Measure the voltage drop in the subsurface.
+   - These electrodes draw **negligible current** because they are connected to a high-impedance voltmeter.
+   - As a result, the voltage drop across their contact resistance is insignificant, and the measured voltage (Vₘₙ) reflects only the subsurface resistivity.
 
-### Post-wildfire environments
+By separating these roles, the measurement is **insensitive to contact resistance**, ensuring that ρₐ accurately represents the subsurface conditions.
 
-Combined ERT and stable-water-isotope analyses revealed that rainfall infiltrates
-into weathered bedrock more deeply in fire-affected catchments than previously
-thought, complicating simple runoff models {cite}`atwood2023natcomm`.
+
+```{figure} ../../assets/images/current-flow-lines-and-equipotential-lines-for-a-half-space.png
+:name: fig-timeline-2
+:width: 100%
+:align: center
+Source: Sharma, (1997).  
+```
+
+### Apparent resistivity (ρₐ)
+
+**Apparent resistivity (ρₐ)** is the resistivity value calculated from field measurements using four electrodes. It is called "apparent" because it represents an **average resistivity** of the subsurface volume influenced by the electrode configuration. The subsurface is rarely homogeneous, so ρₐ is an effective value that simplifies interpretation.
+
+The apparent resistivity is calculated using the formula:
+
+$$
+\rho_a = K \cdot \frac{V_{MN}}{I_{AB}}
+$$
+
+- **ρₐ:** Apparent resistivity (Ω·m)
+- **K:** Geometric factor (m), which depends on the electrode arrangement
+- **Vₘₙ:** Voltage measured between potential electrodes M and N (V)
+- **IAB:** Current injected between current electrodes A and B (A)
+
+
+```{admonition} Summary
+:class: tip
+You now understand:
+- Electrical resistivity and its physical meaning
+- Typical resistivity values for common earth materials
+- How the 4-electrode measurement works and why it is necessary
+- The Wenner geometric factor $K = 2\pi a$
+```
 
 ---
 
-## ERT survey design and prospection strategy
+## ERT survey design and sequence strategy
 
 Choosing the right measurement sequence is fundamental: the electrode
 configuration controls sensitivity, depth of investigation and resolution.
@@ -108,6 +102,25 @@ through an **a-priori forward modelling** step: a plausible subsurface model is
 assumed, synthetic data are computed, and array performance (resolution, signal
 strength) is evaluated before deploying in the field
 {cite}`binley2005dc,blanchy2020cageo`.
+
+
+:::{iframe} https://www.youtube.com/embed/IlqWXWprC1g?si=KJfat9-sMGUsI2Fh
+:width: 100%
+Wenner Measurement (conductive body) - Credit [@florianwagner4887](https://www.youtube.com/@florianwagner4887)
+:::
+
+:::{iframe} https://www.youtube.com/embed/lt1qV-2d5Ps?si=C1Vz5CDo1zCovlKQ
+:width: 100%
+Dipole-Dipole Measurement (resistive body) - Credit [@florianwagner4887](https://www.youtube.com/@florianwagner4887)
+:::
+
+
+:::{iframe} https://www.youtube.com/embed/lt1qV-2d5Ps
+:width: 100%
+Dipole-Dipole Measurement (conductive body) - Credit [@florianwagner4887](https://www.youtube.com/@florianwagner4887)
+:::
+
+
 
 ---
 
@@ -169,17 +182,7 @@ the uncertainty bounds on any moisture estimate derived from ERT data
 
 
 
-:::{iframe} https://youtu.be/lt1qV-2d5Ps?si=qSj8aXnUs4Ynk-_X
-:width: 100%
-Dipole-Dipole Measurement (conductive body) - Credit https://www.youtube.com/@florianwagner4887
-:::
 
-:::{iframe} https://www.youtube.com/embed/lt1qV-2d5Ps
-:width: 100%
-Dipole-Dipole Measurement (conductive body) - Credit [@florianwagner4887](https://www.youtube.com/@florianwagner4887)
-:::
-
-To protect your security, www.youtube.com will not allow Firefox to display the page if another site has embedded it. To see this page, you need to open it in a new window.
 
 ---
 
