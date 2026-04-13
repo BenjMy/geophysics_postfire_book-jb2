@@ -8,43 +8,141 @@ kernelspec:
 
 ```{admonition} Learning Objectives
 :class: note
-- Understand the physical basis of magnetic permeability, electrical permitivity and conductivity
+- Understand the physical basis of {term}`magnetic permeability`, {term}`electrical permittivity` and {term}`electrical conductivity`
+- Learn how {term}`EMI` instruments measure {term}`apparent electrical conductivity`
+- Understand how coil orientation and spacing control {term}`depth of investigation`
+- Know how multi-coil multi-frequency instruments sample multiple depths simultaneously
 ```
-
-While conductivity is the generally the main physical property of interest, EM induction methods also depend on the magnetic permeability and electrical permitivity of rocks. Their importance depends upon the frequency of the EM signal used for given a system.
-
-Electromagnetic survey methods are based on two fundamental principles: 
-(i) Faraday’s law of electromagnetic induction and the fact that electric currents generate magnetic fields, expressed in Ampère’s law. In its simplest form Faraday’s law states that the electromotive force (EMF) in a closed circuit is proportional to the rate of change of magnetic flux through the circuit, or in even simpler terms: a changing magnetic field will induce an EMF.
-
-
-{cite}`boaga2017use` 
-
-
-## EMI Measurement Principle
-
-An EMI instrument consists of a **transmitter coil** and one or more **receiver coils** separated by a fixed distance (coil spacing $s$).
-
-The transmitter generates a **primary magnetic field** $H_p$ that induces eddy currents in the ground. These currents generate a **secondary field** $H_s$ measured at the receiver. The ratio $H_s / H_p$ relates to the bulk apparent electrical conductivity (ECa, mS/m):
-
-$$ECa = \frac{4}{\omega \mu_0 s^2} \cdot \text{Im}\!\left(\frac{H_s}{H_p}\right)$$
-
-where $\omega = 2\pi f$ is the angular frequency and $\mu_0$ is the magnetic permeability of free space.
 
 ---
 
-## Coil Orientations
+## Physical basis
+
+Electromagnetic (EM) survey methods are based on **{term}`Faraday's law`** of induction:
+a changing magnetic field induces an {term}`electromotive force (EMF)` in any nearby
+conductor. A time-varying magnetic field creates {term}`eddy currents` in the ground,
+and those currents reveal subsurface properties.
+
+While {term}`electrical conductivity` $\sigma$ (S/m) is the primary property of
+interest, EM methods also depend on:
+
+- {term}`Magnetic permeability` $\mu$ — how easily a material is magnetised
+  (important in magnetically susceptible soils and rocks)
+- {term}`Electrical permittivity` $\varepsilon$ — how much a material stores
+  electrical energy (dominates at high frequencies, e.g. GPR)
+
+At low frequencies (< 100 kHz), conductivity dominates. At high frequencies,
+permittivity takes over ({cite}`boaga2017use`).
+
+---
+
+## Measurement principle
+
+### From antenna to ground
+
+A transmitter coil — a loop of wire carrying an alternating current — acts as an
+antenna. The oscillating current generates a time-varying **{term}`primary magnetic
+field`** $H_p$ that radiates into the ground.
+
+When $H_p$ penetrates a conductive body, it induces **{term}`eddy currents`** — small
+loops of electrical current circulating inside the conductor. These generate a
+**{term}`secondary field`** $H_s$. A receiver coil detects the superposition of $H_p$
+and $H_s$. Since $H_p$ is known, $H_s$ can be isolated — and it carries
+information about subsurface conductivity.
+
+
+```{figure} ../../assets/images/fsoil-04-1239497-g001.png
+:name: fig-fsoilEM1
+:width: 100%
+:align: center
+Example ECa maps from multiple coil configurations acquired simultaneously with
+a multi-coil EMI instrument. From {cite}`mclachlan2021emagpy`.
+```
+
+
+### Apparent electrical conductivity
+
+Under the **{term}`low induction number (LIN)`** assumption — valid when the
+{term}`coil spacing` $s \ll$ {term}`skin depth` — the {term}`apparent electrical conductivity`
+ECa (mS/m) is:
+
+$$ECa = \frac{4}{\omega \mu_0 s^2} \cdot \text{Im}\!\left(\frac{H_s}{H_p}\right)$$
+
+where $\omega = 2\pi f$ is the {term}`angular frequency` and $\mu_0$ the
+{term}`magnetic permeability` of free space.
+
+:::{note}
+The {term}`low induction number (LIN)` approximation breaks down in highly conductive
+soils (ECa > ~100 mS/m). {term}`Full solution inversion` should be used in those cases.
+:::
+
+---
+
+## Multi-coil and multi-frequency instruments
+
+A single transmitter–receiver pair at one frequency and one spacing yields a
+single ECa value — a depth-weighted average of conductivity over a broad volume.
+To recover a **conductivity depth profile**, modern {term}`FDEM` instruments
+combine multiple configurations simultaneously:
+
+- **Multiple coil spacings** $s_1, s_2, \dots$ — larger spacing → deeper
+  {term}`depth of investigation`
+- **Multiple frequencies** $f_1, f_2, \dots$ — lower frequency → deeper
+  {term}`skin depth` → greater penetration
+
+Each combination yields one ECa value at a different effective depth, giving a
+set of independent measurements per location that can be jointly inverted for a
+conductivity depth profile.
+
+
+```{figure} ../../assets/images/fsoil-04-1239497-g002.png
+:name: fig-fsoilEM2
+:width: 100%
+:align: center
+EMI measurement principle — primary field $H_p$, induced eddy currents, and
+secondary field $H_s$. From {cite}`mclachlan2021emagpy`.
+```
+
+
+
+
+```{figure} ../../assets/images/placeholder_multicoil_depth.png
+:name: fig-multicoil-depth
+:width: 75%
+:align: center
+Cumulative sensitivity curves for multiple coil spacings in HCP mode — increasing
+spacing extends the {term}`depth of investigation`. *[figure to add]*
+```
+
+---
+
+## Coil orientations
+
+Two standard configurations are used, each with a different **{term}`depth sensitivity`**
+profile (McNeill, 1980):
+
+- **{term}`HCP` — Horizontal Coplanar** (coils flat, vertical {term}`magnetic dipole`):
+  deeper sensitivity, peaks below the surface — reaches ~ $0.75\,s$
+- **{term}`VCP` — Vertical Coplanar** (coils upright, horizontal {term}`magnetic dipole`):
+  shallower, stronger near-surface response — reaches ~ $0.5\,s$
+
+```{figure} ../../assets/images/placeholder_coil_geometry.png
+:name: fig-coil-geometry
+:width: 70%
+:align: center
+HCP and VCP coil configurations with their respective magnetic dipole
+orientations. *[figure to add]*
+```
 
 ```{code-cell} ipython3
+:tags: [hide-input]
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Sensitivity functions (McNeill 1980)
 def sensitivity_HCP(z, s=1.0):
-    """Horizontal coplanar (HCP) — vertical dipole."""
     return (4*z**3) / (4*z**2 + s**2)**1.5
 
 def sensitivity_VCP(z, s=1.0):
-    """Vertical coplanar (VCP) — horizontal dipole."""
     return (2*z) / (4*z**2 + s**2)**0.5 - (4*z**3) / (4*z**2 + s**2)**1.5
 
 z = np.linspace(0.01, 3, 300)
@@ -60,22 +158,5 @@ ax.legend()
 ax.grid(True, alpha=0.3)
 plt.tight_layout()
 plt.show()
-```
-
-
-
-
-
-```{figure} ../../assets/images/fsoil-04-1239497-g001.png
-:name: fig-fsoilEM1
-:width: 100%
-:align: center
-fsoilEM1 from {cite}`mclachlan2021emagpy` 
-```
-```{figure} ../../assets/images/fsoil-04-1239497-g002.png
-:name: fig-fsoilEM2
-:width: 100%
-:align: center
-fsoilEM2 from {cite}`mclachlan2021emagpy` 
 ```
 

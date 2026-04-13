@@ -84,7 +84,7 @@ project:
     # ── Theory ───────────────────────────────────────────────────────────────
     - title: Theory
       children:
-        - title: "🐍 Bloc 1 · Fundamentals"
+        - title: "Bloc 1 · Fundamentals"
           children:
             #- file: notebooks/01_introduction/01_python_basics.md
             - file: notebooks/01_introduction/013_postfire_soil_basics.md
@@ -116,7 +116,7 @@ project:
           children:
             - file: notebooks/practical_cases/Agramon_EM.md
             - file: notebooks/practical_cases/Agramon_ERT.md
-            - file: notebooks/practical_cases/Hellin_EM.md
+            #- file: notebooks/practical_cases/Hellin_EM.md
         - title: "🪨 Sedimendation dams"
           children:
             - file: notebooks/practical_cases/Hellin_diques.md

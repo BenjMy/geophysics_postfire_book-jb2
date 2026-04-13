@@ -1,5 +1,9 @@
 ---
 title: "Post-fire soil restoration"
+exports:
+  - format: pdf
+    template: plain_latex
+    output: exports/013_postfire_soil_basics.pdf
 ---
 
 # Post-fire soil and water cycle restoration

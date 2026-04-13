@@ -6,6 +6,10 @@ kernelspec:
   language: python
 bibliography:
   - references.bib
+exports:
+  - format: pdf
+    template: plain_latex
+    output: exports/01_resistivity_introduction.pdf
 ---
 
 ```{admonition} Learning Objectives
@@ -22,22 +26,18 @@ Key capabilities at a glance:
 - Maps subsurface resistivity contrasts in **2D, 3D and through time** {cite}`dimech2022`
 - Sensitive to changes in **soil water content, salinity, clay content and temperature** {cite}`telford1990,binley2005dc`
 - Bridges the gap between sparse point sensors and large-scale remote sensing {cite}`carriere2022rs`
-```{admonition} Tomography
-:class: note
-Tomography refers to the spatial reconstruction of a physical property within a medium from indirect measurements. The term is also widely used in medicine — most famously in CT (Computed Tomography) scans.
-```
+
 
 ---
 
 
 
-## The 4-electrode concept: apparent resistivity and geometric Factor
+## Apparent resistivity and geometric Factor
 
 In Electrical Resistivity Tomography (ERT) and other resistivity surveys, the **4-electrode method** is used to measure the **apparent resistivity (ρₐ)** of the subsurface. This method avoids the issue of **contact resistance** and accounts for the **geometric arrangement** of electrodes through the **geometric factor (K)**.
 
-### Why four electrodes? avoiding contact resistance
 
-Using four electrodes separates the roles of **current injection** and **voltage measurement**, which is crucial for eliminating the influence of **contact resistance**:
+Using four electrodes separates the roles of **current injection** and **voltage measurement**:
 
 1. **Current Electrodes (A, B):**
    - Inject current into the ground.
@@ -45,17 +45,21 @@ Using four electrodes separates the roles of **current injection** and **voltage
 
 2. **Potential Electrodes (M, N):**
    - Measure the voltage drop in the subsurface.
-   - These electrodes draw **negligible current** because they are connected to a high-impedance voltmeter.
-   - As a result, the voltage drop across their contact resistance is insignificant, and the measured voltage (Vₘₙ) reflects only the subsurface resistivity.
-
-By separating these roles, the measurement is **insensitive to contact resistance**, ensuring that ρₐ accurately represents the subsurface conditions.
 
 
 ```{figure} ../../assets/images/current-flow-lines-and-equipotential-lines-for-a-half-space.png
 :name: fig-timeline-2
-:width: 100%
+:width: 70%
 :align: center
 Source: Sharma, (1997).  
+```
+
+
+```{admonition} Why four electrodes?
+:class: hint
+By separating these roles AB/MN, the measurement is **insensitive to contact resistance**, ensuring that ρₐ accurately represents the subsurface conditions.
+Potential electrodes draw **negligible current** because they are connected to a high-impedance voltmeter. As a result, the voltage drop across their contact resistance is insignificant, and the measured voltage (Vₘₙ) reflects only the subsurface resistivity.
+
 ```
 
 ### Apparent resistivity (ρₐ)
@@ -74,14 +78,6 @@ $$
 - **IAB:** Current injected between current electrodes A and B (A)
 
 
-```{admonition} Summary
-:class: tip
-You now understand:
-- Electrical resistivity and its physical meaning
-- Typical resistivity values for common earth materials
-- How the 4-electrode measurement works and why it is necessary
-- The Wenner geometric factor $K = 2\pi a$
-```
 
 ---
 
@@ -89,6 +85,23 @@ You now understand:
 
 Choosing the right measurement sequence is fundamental: the electrode
 configuration controls sensitivity, depth of investigation and resolution.
+
+
+:::{iframe} https://www.youtube.com/embed/IlqWXWprC1g?si=KJfat9-sMGUsI2Fh
+:width: 50%
+Wenner Measurement (resistive body) - Credit [@florianwagner4887](https://www.youtube.com/@florianwagner4887)
+:::
+
+:::{iframe} https://www.youtube.com/embed/lt1qV-2d5Ps?si=C1Vz5CDo1zCovlKQ
+:width: 50%
+Dipole-Dipole Measurement (resistive body) - Credit [@florianwagner4887](https://www.youtube.com/@florianwagner4887)
+:::
+
+:::{iframe} https://www.youtube.com/embed/h0fnnpU5Pf8?si=DkoYLza1tkrqI6UO
+:width: 50%
+Schlumberger Measurement (conductive body) - Credit [@florianwagner4887](https://www.youtube.com/@florianwagner4887)
+:::
+
 
 | Array        | Sensitivity pattern         | Typical use case            |
 |--------------|-----------------------------|-----------------------------|
@@ -103,30 +116,25 @@ assumed, synthetic data are computed, and array performance (resolution, signal
 strength) is evaluated before deploying in the field
 {cite}`binley2005dc,blanchy2020cageo`.
 
-
-:::{iframe} https://www.youtube.com/embed/IlqWXWprC1g?si=KJfat9-sMGUsI2Fh
-:width: 100%
-Wenner Measurement (conductive body) - Credit [@florianwagner4887](https://www.youtube.com/@florianwagner4887)
-:::
-
-:::{iframe} https://www.youtube.com/embed/lt1qV-2d5Ps?si=C1Vz5CDo1zCovlKQ
-:width: 100%
-Dipole-Dipole Measurement (resistive body) - Credit [@florianwagner4887](https://www.youtube.com/@florianwagner4887)
-:::
-
-
-:::{iframe} https://www.youtube.com/embed/lt1qV-2d5Ps
-:width: 100%
-Dipole-Dipole Measurement (conductive body) - Credit [@florianwagner4887](https://www.youtube.com/@florianwagner4887)
-:::
-
-
-
 ---
 
 ## ERT processing workflow
 
 A standard ERT processing chain consists of the following steps:
+
+```{mermaid}
+
+flowchart TD
+    A["Acquisition — R = ΔV/I"]
+    B["✅ Quality Control — filtering · stacking"]
+    C["📊 Error Modelling — data uncertainties"]
+    D["🔲 Mesh — topography · electrodes"]
+    E["🔁 Inversion"]
+    F["⏱️ Time-lapse — difference · ratio"]
+
+    A --> B --> C --> D --> E --> F
+```
+
 
 1. **Data acquisition** – raw resistance measurements $R = \Delta V / I$
 2. **Quality control** – reciprocal-error filtering, stacking, noise estimation
@@ -142,18 +150,49 @@ A standard ERT processing chain consists of the following steps:
 The open-source package **ResIPy** {cite}`blanchy2020cageo` (the Python API of
 which is `resipy`) implements steps 2–6 in a single, user-friendly environment.
 
+---
+
+## What is inversion in geophysics?
+
+We want to know what is **hidden underground** without digging. We place sensors
+on the surface, record signals, and work backwards to find which underground
+could have produced them. This is inversion.
 
 
-## True space VS Model space 
+### 🧩 The model
+
+The real underground is infinitely complex. We simplify it into a grid of cells —
+like **pixels in an image** — each with one value. This pixelated underground is
+what the computer actually works with.
 
 
 ```{figure} ../../assets/images/image1-2_Dimechetal.png
-:name: fig-timeline-1
+:name: fig-timeline-2_Dimechetal
 :width: 75%
 :align: center
 
 Temporal dynamics of key soil properties following wildfire (after Dimech et al.). Shaded zones indicate the three intervention windows: emergency (red), early recovery (orange), and late recovery (green).
 ```
+
+---
+
+### 🔀 No unique answer
+
+Many different undergrounds can produce **exactly the same surface signal**. This
+is not a software limitation — it is a mathematical certainty.
+
+Think of guessing the shape of an object while blindfolded, poking it in just a
+few places. Many shapes would feel identical.
+
+To pick one answer, we favour the **simplest model** that fits the data.
+
+:::{warning}
+The result is **a** possible underground — not **the** real one.
+:::
+
+
+
+
 
 
 
@@ -181,12 +220,18 @@ the uncertainty bounds on any moisture estimate derived from ERT data
 :::
 
 
-
-
-
 ---
 
-## References
+```{admonition} Summary
+:class: tip
+You now understand:
+- Electrical resistivity and its physical meaning
+- Typical resistivity values for common earth materials
+- How the 4-electrode measurement works and why it is necessary
+- The Wenner geometric factor $K = 2\pi a$
+```
+
+---
 
 ```{bibliography}
 :style: unsrt

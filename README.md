@@ -4,7 +4,7 @@
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/BenjMy/geophysics_postfire_book-jb2/HEAD)
 
-Welcome to the Geophysics with Python course! This comprehensive course teaches geophysical data analysis using resipy (resistivity) and emagpy (electromagnetic) Python packages.
+Welcome to the Geophysics with Python course! This comprehensive course teaches geophysical data analysis using resipy (resistivity) and emagpy (electromagnetic) Python packages applied to post-fire topic.
 
 ## 📚 Course Overview
 

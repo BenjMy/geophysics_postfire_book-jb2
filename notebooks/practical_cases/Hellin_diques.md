@@ -147,7 +147,7 @@ The cells below implement the full interactive forward-modelling workflow. All p
 ### Dependencies
 
 ```{code-cell} ipython3
-:tags: [hide-input]
+:tags: [remove-input, cache]
 import numpy as np
 import matplotlib.pyplot as plt
 import ipywidgets as widgets
@@ -159,7 +159,7 @@ from resipy import Project
 ### Electrode & Acquisition Settings
 
 ```{code-cell} ipython3
-:tags: [hide-input]
+:tags: [remove-input, cache]
 style  = {'description_width': '180px'}
 layout = widgets.Layout(width='420px')
 
@@ -200,7 +200,7 @@ display(VBox([w_n_elec, w_spacing, w_sequence, w_noise]))
 ### Channel Geometry
 
 ```{code-cell} ipython3
-:tags: [hide-input]
+:tags: [remove-input, cache]
 w_river_width = widgets.FloatSlider(
     value=10.0, min=2.0, max=30.0, step=0.5,
     description='Channel width (m)',
@@ -225,7 +225,7 @@ display(VBox([w_river_width, w_bank_height, w_bank_slope]))
 Depths are measured **below the channel floor**. Layer order is from shallowest to deepest.
 
 ```{code-cell} ipython3
-:tags: [hide-input]
+:tags: [remove-input, cache]
 layers_config = [
     ('Gravel bed (channel fill)',  2.0,  150),
     ('Hyporheic zone',             4.0,   40),
@@ -275,7 +275,7 @@ display(VBox([w_res_bank, HBox([w_clay_on, w_res_clay])]))
 ### Run the Simulation
 
 ```{code-cell} ipython3
-:tags: [hide-input]
+:tags: [remove-input, cache]
 run_button    = widgets.Button(description='▶  Run Forward Model',
                                button_style='success',
                                layout=widgets.Layout(width='220px', height='40px'))

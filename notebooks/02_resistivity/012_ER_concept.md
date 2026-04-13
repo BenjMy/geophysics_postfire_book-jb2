@@ -5,6 +5,7 @@ kernelspec:
   display_name: Python 3 (Geophysics)
   language: python
 ---
+    
 ```{admonition} Learning Objectives
 :class: note
 - Understand the physical basis of electrical resistivity 
@@ -50,7 +51,7 @@ print(f"\033[96mResistance of 1 m3 loam cube : {R:.1f} Ω\033[0m")
 
 Adjust resistivity, length and cross-section to see how resistance changes:
 ```{code-cell} ipython3
-:tags: [remove-input]
+:tags: [remove-input, cache]
 import ipywidgets as widgets
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches

@@ -42,7 +42,7 @@ ICA-CSIC, Madrid, Spain
 **Elevation:** ~550 m a.s.l.
 
 ```{code-cell} ipython3
-:tags: [hide-input]
+:tags: [remove-input, cache]
 import folium
 m = folium.Map(location=[38.43, -1.55], zoom_start=12, tiles='OpenStreetMap')
 folium.Marker(
@@ -120,6 +120,7 @@ Raw data are stored in the ICA-CSIC data repository. Contact the authors for acc
 ### Setup & Imports
 
 ```{code-cell} ipython3
+:tags: [remove-input, cache]
 import os
 import sys
 from pathlib import Path
@@ -142,25 +143,24 @@ from shapely.geometry import Point
 import geopandas as gpd
 import seaborn as sns
 import rioxarray as rxr
+import plotly.express as px
+import plotly.graph_objects as go
 ```
 
-### File Paths & DTM Loading
 
 ```{code-cell} ipython3
-:tags: [hide-cell]
-rootPath  = Path('.')
-figPath   = rootPath / 'figures'
-preproDir = rootPath / 'prepro'
-rawDir    = rootPath / 'raw/EM6L/April2025/'
+:tags: [remove-input, cache]
+preproDir = assets_path / 'prepro'
+rawDir    = assets_path / 'complementary_data/raw/EM6L/April2025/'
 
-dtm_dataset = AgUtils.load_dtm_stack(rootPath)
+dtm_dataset = AgUtils.load_dtm_stack(assets_path / 'complementary_data')
 ```
 
-### Study Area — Plot Boundaries
+### Study area
 
 ```{code-cell} ipython3
-:tags: [hide-input]
-gdf_Agramon = gpd.read_file(rootPath / 'shapefiles/microcuencas_13.shp')
+:tags: [remove-input, cache]
+gdf_Agramon = gpd.read_file(assets_path / 'complementary_data/shapefiles/microcuencas_13.shp')
 gdf_Agramon = gdf_Agramon.rename(columns={'TRATAMIENT': 'PlotID'})
 
 gdf_wgs = gdf_Agramon.to_crs(epsg=4326)
@@ -180,11 +180,10 @@ fig.update_layout(margin={"r": 0, "t": 40, "l": 0, "b": 0}, height=500)
 fig.show()
 ```
 
-### Preprocessing — Concatenate Raw DAT Files
 
 ```{code-cell} ipython3
-:tags: [hide-cell]
-logEM_Agramon = pd.read_csv(rootPath / 'raw/log_EM_Agramon_test.csv', sep=';')
+:tags: [remove-input, cache]
+logEM_Agramon = pd.read_csv(assets_path / 'complementary_data/raw/log_EM_Agramon_test.csv', sep=';')
 
 file2plot = ['02AG2', 'AG3']
 df_all = pd.concat(
@@ -199,7 +198,7 @@ CLH  = 0
 MODE = 'High'
 ```
 
-### EMI Data Import with emagpy
+### Data import
 
 ```{code-cell} ipython3
 :tags: [hide-cell]
@@ -217,12 +216,12 @@ coils     = k.surveys[0].coils
 df_survey = k.surveys[0].df.copy()
 ```
 
-### ECa Profile along Survey Transect
+### ECa profile 2D
 
 Apparent electrical conductivity (ECa) recorded along the survey transect. Use the dropdown to switch between coil spacings (shallow → deep).
 
 ```{code-cell} ipython3
-:tags: [hide-input]
+:tags: [remove-input, cache]
 df_survey['dist_m'] = (
     np.sqrt(df_survey['x'].diff().fillna(0)**2 +
             df_survey['y'].diff().fillna(0)**2)
@@ -260,7 +259,7 @@ fig.update_layout(
 fig.show()
 ```
 
-### Spatial Distribution of ECa — Multi-Coil Map
+### Spatial distribution of ECa — multi-coil map
 
 Interactive scatter map of all six coil spacings (faceted). Hover for coordinates and ECa value; use the colour scale to identify high-conductivity zones.
 
@@ -291,10 +290,9 @@ fig.update_layout(coloraxis_colorbar=dict(title='ECa (mS/m)'))
 fig.show()
 ```
 
-### Spatial Join — Treatments, Elevation & Conductivity Stats
 
 ```{code-cell} ipython3
-:tags: [hide-cell]
+:tags: [remove-input, cache]
 geometry = [Point(xy) for xy in zip(df_survey['x'], df_survey['y'])]
 gdf_survey_geo   = gpd.GeoDataFrame(df_survey, geometry=geometry, crs=gdf_Agramon.crs)
 gdf_Agramon      = AgUtils.assign_treatments(gdf_Agramon)

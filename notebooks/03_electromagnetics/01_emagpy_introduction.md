@@ -1,132 +1,206 @@
 ---
-title: "Emagpy processing"
+title: "Processing with EMagPy"
 kernelspec:
   name: python3
   display_name: Python 3 (Geophysics)
   language: python
 ---
 
+# Introduction to EMagPy
 
-# Introduction to emagpy
+```{contents} Table of Contents
+:depth: 3
+:local:
+:backlinks: none
+```
+
+---
 
 ## Overview
 
-**emagpy** is a Python API for processing and inverting **Electromagnetic Induction (EMI)** data, often collected with ground-conductivity meters such as the Dualem or CMD instruments.
+**EMagPy** is a Python package for processing and inverting {term}`EMI` data. It provides
+both a **standalone graphical user interface (GUI)** and a **Python API** designed
+for use in Jupyter notebooks. The main class is `Problem`.
 
 ```{admonition} Learning Objectives
 :class: note
-- Understand the EMI measurement principle
-- Import and inspect an EMI dataset with emagpy
-- Visualise raw ECa maps and profiles
-- Run a 1-D lateral inversion to estimate subsurface conductivity
+
+By the end of this notebook you will be able to:
+
+- Install EMagPy and import the `Problem` class
+- Load field data and inspect the CSV format
+- Visualise ECa profiles and maps
+- Define a starting model and run a 1D inversion
+- Visualise inverted conductivity depth profiles and slices
 ```
 
-
+> **Citation:** McLachlan P., Blanchy G. and Binley A. 2021.
+> *EMagPy: Open-source, platform-independent processing and inversion of electromagnetic induction data.*
+> Computers & Geosciences, 146, 104561. <https://doi.org/10.1016/j.cageo.2020.104561>
 
 ---
 
-## Creating a Problem
+## Installation
 
-```{code-cell} ipython3
-from emagpy import Problem
+EMagPy can be installed in three ways depending on your needs.
 
-k = Problem()
-print("emagpy Problem created successfully!")
+#### Option A — Standalone executable (no Python required, recommended for this course)
+
+1. Go to the [EMagPy releases page](https://gitlab.com/hkex/emagpy/-/releases) on GitLab.
+2. Download the latest **`EMagPy_x.x.x_windows.zip`**.
+3. Extract the zip and double-click **`EMagPy.exe`** to launch the GUI.
+
+```{admonition} Windows SmartScreen warning
+:class: warning
+If you see *"Windows protected your PC"*, click **More info** → **Run anyway**.
+The executable is not commercially signed but is safe to use.
 ```
 
----
+#### Option B — pip (recommended for scripting and Jupyter)
 
-## Importing Data
-
-```{code-cell} ipython3
-# Load a CSV data file
-# k.importData('data/sample_em/survey.csv')
-
-# Expected CSV format:
-print("Expected CSV columns:")
-header = "x, y, ECa_HCP_0.32m, ECa_HCP_0.71m, ECa_HCP_1.18m, ECa_VCP_0.32m"
-print(" ", header)
-print("  0.0, 0.0, 35.2, 48.1, 62.4, 28.9")
-print("  0.5, 0.0, 36.8, 49.3, 63.1, 29.5")
-print("  ...")
-```
-
----
-
-## Synthetic ECa Map
-
-```{code-cell} ipython3
-np.random.seed(7)
-
-# Simulate a survey grid (50 × 20 m)
-x = np.linspace(0, 50, 60)
-y = np.linspace(0, 20, 25)
-X, Y = np.meshgrid(x, y)
-
-# Synthetic ECa: background + conductive anomaly
-ECa = 25 + 20 * np.exp(-((X - 25)**2 / 60 + (Y - 10)**2 / 15))
-ECa += np.random.normal(0, 1.5, ECa.shape)  # add noise
-
-fig, ax = plt.subplots(figsize=(11, 4))
-im = ax.pcolormesh(X, Y, ECa, cmap='viridis', shading='auto')
-cb = fig.colorbar(im, ax=ax, pad=0.02)
-cb.set_label("ECa (mS/m)")
-ax.set_xlabel("Easting (m)")
-ax.set_ylabel("Northing (m)")
-ax.set_title("Synthetic ECa map — HCP 1.18 m coil")
-ax.set_aspect('equal')
-plt.tight_layout()
-plt.show()
+```bash
+pip install emagpy
 ```
 
 ---
 
-## 1-D Lateral Inversion
+## Complete minimal workflow
 
-emagpy inverts each measurement position independently using a layered-earth model.
++++
 
-```{code-cell} ipython3
-# After importing real data:
-#
-# k.setInit(conds0=[30, 30, 30],    # initial conductivity (mS/m) per layer
-#           depths0=[0.5, 1.5])     # layer depths (m)
-# k.invertGN()                      # Gauss-Newton inversion
-# k.showResults()                   # plot conductivity maps per layer
+### 1 Imports
 
-# Conceptual layered model illustration
-layer_depths  = [0,    0.5,  1.5,  4.0]
-layer_conds   = [20,   55,   30,   15]   # mS/m
-layer_labels  = ["Topsoil", "Clay lens", "Sandy subsoil", "Bedrock"]
-colors        = ['#c4a35a', '#8b4513', '#d2b48c', '#808080']
+```{code-cell} python
+import os
+import numpy as np
+import pandas as pd
+from emagpy import Problem  # main class
+testdir = '../../assets/complementary_data/cover-crop/'
+```
 
-fig, ax = plt.subplots(figsize=(5, 6))
-for i in range(len(layer_conds)):
-    top    = -layer_depths[i]
-    bottom = -layer_depths[i+1] if i+1 < len(layer_depths) else -5.5
-    rect = plt.Rectangle((0, bottom), layer_conds[i], top - bottom,
-                          color=colors[i], alpha=0.85, edgecolor='k', linewidth=0.8)
-    ax.add_patch(rect)
-    ax.text(layer_conds[i] / 2, (top + bottom) / 2,
-            f"{layer_labels[i]}\n{layer_conds[i]} mS/m",
-            ha='center', va='center', fontsize=9)
++++
 
-ax.set_xlim(0, 70)
-ax.set_ylim(-5.5, 0.2)
-ax.set_xlabel("Electrical conductivity (mS/m)")
-ax.set_ylabel("Depth (m)")
-ax.set_title("Example 1-D inverted model")
-ax.grid(axis='x', alpha=0.3)
-plt.tight_layout()
-plt.show()
+### 2 Load data and inspect format
+
+EMagPy imports data from a `.csv` file where **column headers are the coil
+configurations** (e.g. `VCP0.71`, `HCP1.48`). Each row is one measurement
+location.
+
+```{code-cell} python
+k = Problem()                              # create the main object
+k.createSurvey(testdir + 'coverCrop.csv') # import the data
+```
+
+```{code-cell} python
+df = pd.read_csv(testdir + 'coverCrop.csv')
+df.head()  # inspect the header format
+```
+
++++
+
+### 3 Data visualisation
+
+`Problem.show()` plots ECa as a line graph per coil configuration.
+If spatial coordinates (`x`, `y`) are present, `Problem.showMap()` produces a
+plan-view {term}`apparent electrical conductivity` map.
+
+```{code-cell} python
+k.show(vmax=50)
+```
+
+```{code-cell} python
+k.showMap(coil='VCP0.71', contour=True, pts=True)
+```
+
++++
+
+### 4 Starting model
+
+Before inversion, define a layered starting model: the **bottom depth of each
+layer** and an initial {term}`electrical conductivity` value for each layer
+(including the half-space below).
+
+```{code-cell} python
+k.setInit(
+    depths0=[0.5, 1],           # bottom of each layer (m) — last layer is infinite
+    conds0=[20, 20, 20],        # starting conductivity (mS/m) per layer
+    fixedConds=[False, False, False]
+)
+```
+
++++
+
+### 5 Forward models and solvers
+
+Several forward models are available, trading accuracy for speed:
+
+| Model | Description |
+|---|---|
+| `CS` | Cumulative Sensitivity (McNeill 1980) — default, fastest |
+| `CSgn` | CS with Gauss-Newton solver — uses `invertGN()` automatically |
+| `FSlin` | Full Solution (Maxwell) with {term}`low induction number (LIN)` approximation |
+| `FSeq` | Full Solution without LIN — apparent ECa via optimisation (Andrade et al. 2016) |
+| `Q` | Full Solution minimising quadrature directly — preferred for ECa > 100 mS/m |
+
+Two families of solvers are available:
+
+- **Gradient-based** (`L-BFGS-B`, `TNC`, `CG`, `Nelder-Mead`) via `scipy.optimize.minimize()`
+- **MCMC-based** (`ROPE`, `SCEUA`, `DREAM`) via `spotpy` — suited when layer depths are free parameters
+
++++
+
+### 6 Inversion
+
+```{code-cell} python
+k.invert()       # default: CS forward model, L-BFGS-B solver
+k.showResults()  # inverted conductivity depth section
+k.showMisfit()   # data misfit per coil
+k.showOne2one()  # observed vs predicted ECa
+```
+
++++
+
+### 7 Depth slices
+
+If spatial coordinates are available, `showSlice()` produces plan-view maps
+of conductivity at a given layer index.
+
+```{code-cell} python
+k.showSlice(islice=0, contour=True, vmin=12, vmax=50)  # top layer
+k.showSlice(islice=2, contour=True, vmin=12, vmax=50)  # bottom layer
+```
+
+Access the method docstring for all available options:
+
+```{code-cell} python
+:tags: [hide-output]
+help(k.showSlice)
 ```
 
 ---
 
-```{admonition} Summary
+## Summary
+
+```{admonition} What you have learned
 :class: tip
-You have learned:
-- The physics of electromagnetic induction measurement
-- How coil orientation affects depth sensitivity (McNeill 1980)
-- How to create an emagpy `Problem` and load survey data
-- What the inverted conductivity model looks like
+
+| Step | Method | Purpose |
+|------|--------|---------|
+| 1 | `Problem()` | Create the main object |
+| 2 | `createSurvey(file)` | Load field data |
+| 3 | `show()` / `showMap()` | Visualise ECa data |
+| 4 | `setInit(depths0, conds0)` | Define starting model |
+| 5 | `invert()` | Run 1D inversion |
+| 6 | `showResults()` / `showMisfit()` / `showOne2one()` | Assess inversion quality |
+| 7 | `showSlice()` | Plan-view conductivity maps |
+
+**Next notebook:** [ERT Processing with ResIPy](nb_resipy.md) — process **electrical resistivity tomography** data with ResIPy.
 ```
+
+---
+
+## Additional Resources
+
+- [EMagPy official documentation](https://hkex.gitlab.io/emagpy/)
+- [EMagPy GitLab repository](https://gitlab.com/hkex/emagpy)
+- [EMagPy on PyPI](https://pypi.org/project/emagpy/)

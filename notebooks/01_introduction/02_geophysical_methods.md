@@ -1,5 +1,9 @@
 ---
 title: "Geophysical methods overview"
+exports:
+  - format: pdf
+    template: plain_latex
+    output: exports/02_geophysical_methods.pdf
 ---
 
 
@@ -8,6 +12,19 @@ title: "Geophysical methods overview"
 **Geo** (Earth) + **physics** = the physics of the Earth. Geophysics applies physical
 principles — mechanics, electromagnetism, thermodynamics — to study the subsurface
 **without being destructive**. 
+
+
+```{figure} ../../assets/images/ImageForArticle_1202_44837100215127314495.png
+:name: ImageForArticle_1202_44837100215127314495.png
+:width: 60%
+:align: center
+Image Credit: Lukiyanova Natalia / frenta / Shutterstock.com
+```
+
+
+
+
+
 
 Geophysics is classically split into two families:
 
@@ -21,15 +38,6 @@ Geophysics is classically split into two families:
   archaeological sites, and — more recently — ecosystem monitoring. Depths of interest
   range from centimetres to a few hundred metres.
 
-Applied geophysics operates by detecting  **physical contrast** between materials. Geophysical surveys are designed to measure spatial variations in intrinsic physical properties from the surface. Every rock, soil layer, or fluid possesses characteristic properties, including:
-- Electrical resistivity
-- Dielectric permittivity
-- Seismic velocity
-- ...
-
-A range of geophysical methods exists for measuring the physical properties of the soil. Each method responds to one or multiple specific properties, offering unique insights into subsurface characteristics.The [table below](#geophysical-methods-table) summarises the main geophysical methods used organised by the physical property they measure.
-
-
 
 
 ::::{admonition} Key Concept: The "Anomaly"
@@ -40,10 +48,20 @@ The physical contrast measured in geophysical surveys is often referred to as an
 
 ```{figure} ../../assets/images/Geological cross-section with water anomaly.png
 :name: Geological cross-section with water anomaly.png
-:width: 100%
+:width: 60%
 :align: center
 Conceptual subsurface cross-section showing a layered ground profile with a localized anomaly in the shallow subsurface. A distinct zone contrasts with surrounding material properties, representing a water-saturated region (e.g., a water table signature) that differs from the background soil and underlying bedrock in physical response (such as electrical resistivity).. 
 ```
+
+
+
+Applied geophysics operates by detecting  **physical contrast** between materials. Geophysical surveys are designed to measure spatial variations in intrinsic physical properties from the surface. Every rock, soil layer, or fluid possesses characteristic properties, including:
+- Electrical resistivity
+- Dielectric permittivity
+- Seismic velocity
+- ...
+
+A range of geophysical methods exists for measuring the physical properties of the soil. Each method responds to one or multiple specific properties, offering unique insights into subsurface characteristics.The [table below](#geophysical-methods-table) summarises the main geophysical methods used organised by the physical property they measure.
 
 
 
@@ -85,13 +103,12 @@ preserving soil structure.
 :width: 100%
 :align: center
 Illustration of four themes where geophysics has been used as a hypothesis-testing tool in critical zone (CZ) hydrogeologic studies
-(after {cite}`dumont2024geophysics`). 
+(after {cite}`dumont2024geophysics`).  
 ```
 
 ---
 
 The table below summarises the main geophysical methods used in soil and post-fire studies, organised by the physical property they measure.
-
 :::{table} Main geophysical methods
 :name: geophysical-methods-table
 
@@ -111,9 +128,13 @@ The table below summarises the main geophysical methods used in soil and post-fi
 
 ### Electrical Resistivity Tomography (ERT)
 
-More detailed on [ERT](resistivity-introduction)
 
-ERT is the **workhorse method** for shallow subsurface imaging in soil studies. Four electrodes are inserted into the ground: two inject electrical current, two measure the resulting voltage. By repeating this measurement across dozens of electrode combinations along a line or grid, a 2D or 3D image of subsurface **resistivity** is reconstructed through inversion.
+```{admonition} Analogy
+:class: hint
+Tomography refers to the spatial reconstruction of a physical property within a medium from indirect measurements. The term is also widely used in medicine — most famously in CT (Computed Tomography) scans.
+```
+
+ERT is the **workhorse method** for shallow subsurface imaging in soil studies. Four electrodes are inserted into the ground: two inject electrical current, two measure the resulting voltage. By repeating this measurement across dozens of electrode combinations along a line or grid, a 2D or 3D image of subsurface **resistivity** is reconstructed through [inversion](resistivity-introduction#true-space-vs-model-space) (see [fig](fig-timeline-2_Dimechetal)).
 ```{figure} ../../assets/images/ERT_dehesas.jpg
 :name: fig-ert
 :width: 75%
@@ -133,10 +154,11 @@ See [the dedicated section](er-concept#how-to-translate-er-to-another-proxy-of-i
 - Survey time: **1/2–1 hour** per 2D transect with a modern multichannel system
 - Limitation: requires good electrode–soil contact; dry or stony soils increase contact resistance
 
+(More detailed on [ERT physical principles fundation](resistivity-introduction).)
+
+---
 
 ERT has been applied across a wide range of scientific and engineering contexts.
-
-
 #### Civil engineering and geotechnical studies
 
 Subsurface structure, void detection, dam monitoring, and embankment stability
@@ -198,7 +220,7 @@ EMI antenna being towed across a burned area. The instrument measures apparent e
 **What EMI is sensitive to:**
 - Bulk electrical conductivity (same drivers as ERT: water, clay, salinity)
 - Spatial patterns of soil variability at field to catchment scale
-- Ash-induced salinity changes immediately after fire
+
 
 **Practical characteristics:**
 - Depth of investigation: **0.5–6 m** depending on coil geometry and frequency
@@ -264,6 +286,16 @@ MASW analyses the **dispersive properties of surface waves** (Rayleigh waves) to
 
 ## Multi-method strategy
 
+
+
+```{figure} ../../assets/images/1-s2.0-S0048969723041268-ga1_lrg
+:name: loiseau2023geophysical
+:width: 100%
+:align: center
+Field implementation of geophysical techniques mostly discussed in the review article  {cite}`loiseau2023geophysical`). 
+```
+
+
 No single geophysical method answers all questions. Often we combine:
 
 - **ERT** for high-resolution 2D profiles of water content and soil structure at plot scale
@@ -280,15 +312,6 @@ The [figure below](#loiseau2023geophysical) shows field the combination of geoph
 
 Seismic methods are not represented, but the implementation of seismic tomography is similar to that of ERT by replacing the electrodes with geophones and the transmitter is a shot, and it is also used to map spatial heterogeneity of subsurface properties.
 (after {cite}`loiseau2023geophysical`). 
-
-
-```{figure} ../../assets/images/1-s2.0-S0048969723041268-ga1_lrg
-:name: loiseau2023geophysical
-:width: 100%
-:align: center
-Field implementation of geophysical techniques mostly discussed in the review article  {cite}`loiseau2023geophysical`). 
-```
-
 
 
 
