@@ -9,9 +9,11 @@ kernelspec:
   name: python3
   display_name: Python 3 (Geophysics)
   language: python
+numbering:
+  headings: false
 ---
 
-# 💧 Agramón — Soil Moisture at Catchment Scale
+# Agramón — Soil Moisture at Catchment Scale
 
 ---
 

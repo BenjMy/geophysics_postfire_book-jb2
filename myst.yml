@@ -76,9 +76,9 @@ project:
 
   # ── Numbering ──────────────────────────────────────────────────────────────
   numbering:
-    heading_1: true
-    heading_2: true
-    heading_3: true   # stops at 1.1 — never goes to 1.1.1
+    heading_1: false
+    heading_2: false
+    heading_3: false   # stops at 1.1 — never goes to 1.1.1
     heading_4: false
     heading_5: false
     heading_6: false
