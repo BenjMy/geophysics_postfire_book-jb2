@@ -1,15 +1,10 @@
 ---
 title: "Post-fire & Geophysics: a good match?"
-exports:
-  - format: pdf
-    template: plain_latex
-    output: exports/013_postfire_soil_basics_geophysics.pdf
 ---
 
 
 
-```{admonition} A word of caution
-:class: caution
+```{caution} A word of caution
 Applying geophysical methods to post-fire soils is an **emerging field**. The sensitivities listed below are based on general geophysical principles and early case studies — they are **working hypotheses, not established facts**. Fire-induced changes in soil properties are complex, often co-occurring, and may produce competing or ambiguous geophysical signals. Empirical validation in burned soils remains limited.
 ```
 
@@ -52,8 +47,7 @@ geophysics can track non-invasively across space and time {cite}`mary2020coupled
 
 
 
-```{admonition} Open research questions
-:class: seealso
+```{seealso} Open research questions
 - Can ERT or EMI reliably distinguish between a **dry hydrophobic layer** and a **dry pre-fire soil**?
 - Does the **ash layer** produce a detectable geophysical contrast, or is it too thin and heterogeneous?
 - How quickly do fire-induced geophysical signals **converge back** to pre-fire baselines?

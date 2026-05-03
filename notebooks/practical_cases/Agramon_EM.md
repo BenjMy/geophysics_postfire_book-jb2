@@ -11,38 +11,30 @@ kernelspec:
   language: python
 ---
 
-
 # 💧 Agramón — Soil Moisture at Catchment Scale
-
-```{contents} On this page
-:depth: 2
-:local:
-```
 
 ---
 
 ## 👥 Authors
 
-```{admonition} Contributors
-:class: tip
+```{tip} Contributors
 **Benjamin Mary** — [benjamin.mary@ica.csic.es](mailto:benjamin.mary@ica.csic.es)
 ICA-CSIC, Madrid, Spain
 
 **Hector Nieto**
 ICA-CSIC, Madrid, Spain
-<!-- TODO: add co-authors -->
 ```
 
 ---
 
 ## 📍 Location
 
-**Site:** Agramón, Albacete, Spain
-**Coordinates:** 38.43° N, 1.55° W
+**Site:** Agramón, Albacete, Spain  
+**Coordinates:** 38.43° N, 1.55° W  
 **Elevation:** ~550 m a.s.l.
 
 ```{code-cell} ipython3
-:tags: [remove-input, cache]
+:tags: [remove-input, no-typst]
 import folium
 m = folium.Map(location=[38.43, -1.55], zoom_start=12, tiles='OpenStreetMap')
 folium.Marker(
@@ -57,19 +49,18 @@ m
 
 ## 🌍 Context
 
++++{"no-typst": true}
 ```{figure} ../../assets/images/agramon_compressed.mp4
 :width: 60%
 :align: center
 :alt: Aerial view of the Agramón catchment
-
 Aerial view of the Agramón catchment showing vegetation cover and topography.
-<!-- TODO: replace with actual image path -->
 ```
++++
 
 The Agramón catchment is located in a semi-arid region of southeastern Spain heavily impacted by recurring drought and wildfire events. Post-fire recovery of forest ecosystems in this area is tightly coupled to soil water availability, which controls vegetation re-establishment and erosion dynamics.
 
-```{admonition} Why this site?
-:class: note
+```{note} Why this site?
 Agramón offers a representative example of a Mediterranean catchment under combined fire and drought stress. Its relatively small size makes it tractable for multi-scale geophysical monitoring.
 ```
 
@@ -100,17 +91,15 @@ Key sub-questions:
 * - CMD Mini-Explorer 6L
   - Electromagnetic Induction (EMI)
   - 6 coil spacings
-  - Vertical dipole mode; 
+  - Vertical dipole mode
 * - UAV (DJI Phantom 4)
   - Aerial photogrammetry
   - RGB + multispectral + thermal
   - For co-registration and ET mapping
 ```
 
-```{admonition} Data availability
-:class: warning
+```{warning} Data availability
 Raw data are stored in the ICA-CSIC data repository. Contact the authors for access.
-<!-- TODO: add DOI or data repository link -->
 ```
 
 ---
@@ -120,37 +109,28 @@ Raw data are stored in the ICA-CSIC data repository. Contact the authors for acc
 ### Setup & Imports
 
 ```{code-cell} ipython3
-:tags: [remove-input, cache]
+:tags: [remove-input]
 import os
 import sys
 from pathlib import Path
-current_dir = Path().resolve()
-assets_path = current_dir.parents[1] / "assets"
-sys.path.append(str(assets_path))
-
-print(Path().resolve())
-print(assets_path)
-print(assets_path.exists())
-
-import Agramon_utils as AgUtils
-
+import matplotlib
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from emagpy import Problem
-from matplotlib import pyplot as plt
-import Agramon_utils as AgUtils
-from shapely.geometry import Point
 import geopandas as gpd
-import seaborn as sns
 import rioxarray as rxr
+from shapely.geometry import Point
+from matplotlib.gridspec import GridSpec
 import plotly.express as px
 import plotly.graph_objects as go
-```
 
+current_dir = Path().resolve()
+assets_path = current_dir.parents[1] / "assets"
+sys.path.append(str(assets_path))
+import Agramon_utils as AgUtils
 
-```{code-cell} ipython3
-:tags: [remove-input, cache]
-preproDir = assets_path / 'prepro'
+preproDir = assets_path / 'complementary_data'
 rawDir    = assets_path / 'complementary_data/raw/EM6L/April2025/'
 
 dtm_dataset = AgUtils.load_dtm_stack(assets_path / 'complementary_data')
@@ -159,11 +139,14 @@ dtm_dataset = AgUtils.load_dtm_stack(assets_path / 'complementary_data')
 ### Study area
 
 ```{code-cell} ipython3
-:tags: [remove-input, cache]
+:tags: [remove-input]
 gdf_Agramon = gpd.read_file(assets_path / 'complementary_data/shapefiles/microcuencas_13.shp')
 gdf_Agramon = gdf_Agramon.rename(columns={'TRATAMIENT': 'PlotID'})
-
 gdf_wgs = gdf_Agramon.to_crs(epsg=4326)
+```
+
+```{code-cell} ipython3
+:tags: [remove-input, no-typst]
 fig = px.choropleth_mapbox(
     gdf_wgs,
     geojson=gdf_wgs.__geo_interface__,
@@ -180,9 +163,21 @@ fig.update_layout(margin={"r": 0, "t": 40, "l": 0, "b": 0}, height=500)
 fig.show()
 ```
 
+```{code-cell} ipython3
+:tags: [remove-input]
+# Static fallback — only this cell reaches Typst; the plotly cell above is no-typst
+fig_s, ax_s = plt.subplots(figsize=(7, 5))
+gdf_wgs.plot(column='PlotID', ax=ax_s, legend=True,
+             legend_kwds={'title': 'PlotID', 'loc': 'lower right', 'fontsize': 7})
+ax_s.set_title('Plot Boundaries — Agramón Catchment', fontsize=11)
+ax_s.set_xlabel('Longitude')
+ax_s.set_ylabel('Latitude')
+plt.tight_layout()
+plt.show()
+```
 
 ```{code-cell} ipython3
-:tags: [remove-input, cache]
+:tags: [remove-input]
 logEM_Agramon = pd.read_csv(assets_path / 'complementary_data/raw/log_EM_Agramon_test.csv', sep=';')
 
 file2plot = ['02AG2', 'AG3']
@@ -199,6 +194,8 @@ MODE = 'High'
 ```
 
 ### Data import
+
+We import the collected data using Emagpy software specifying the **device** used, and the heigh of the antenna.
 
 ```{code-cell} ipython3
 :tags: [hide-cell]
@@ -218,16 +215,20 @@ df_survey = k.surveys[0].df.copy()
 
 ### ECa profile 2D
 
-Apparent electrical conductivity (ECa) recorded along the survey transect. Use the dropdown to switch between coil spacings (shallow → deep).
+Apparent electrical conductivity (ECa) recorded along the survey transect. Use the dropdown to switch between coil spacings (shallow to deep).
 
 ```{code-cell} ipython3
-:tags: [remove-input, cache]
+:tags: [remove-input]
 df_survey['dist_m'] = (
     np.sqrt(df_survey['x'].diff().fillna(0)**2 +
             df_survey['y'].diff().fillna(0)**2)
     .cumsum()
 )
+```
 
+<!--
+```{code-cell} ipython3
+:tags: [remove-input, no-typst]
 fig = go.Figure()
 for col in col2plot:
     fig.add_trace(go.Scatter(
@@ -238,7 +239,6 @@ for col in col2plot:
         visible=(col == col2plot[0]),
         hovertemplate='Distance: %{x:.1f} m<br>ECa: %{y:.1f} mS/m<extra></extra>',
     ))
-
 buttons = [
     dict(
         label=col,
@@ -258,20 +258,33 @@ fig.update_layout(
 )
 fig.show()
 ```
+-->
+
+```{code-cell} ipython3
+# Static fallback for Typst PDF
+fig_s, ax_s = plt.subplots(figsize=(8, 3))
+for col in col2plot:
+    ax_s.plot(df_survey['dist_m'], df_survey[col], label=col, lw=1)
+ax_s.set_xlabel('Distance along transect (m)')
+ax_s.set_ylabel('ECa (mS/m)')
+ax_s.set_title(f'ECa Profile — All coils  (Height: {CLH} m, Mode: {MODE})')
+ax_s.legend(fontsize=8, ncol=3)
+plt.tight_layout()
+plt.show()
+```
 
 ### Spatial distribution of ECa — multi-coil map
 
 Interactive scatter map of all six coil spacings (faceted). Hover for coordinates and ECa value; use the colour scale to identify high-conductivity zones.
 
 ```{code-cell} ipython3
-:tags: [hide-input]
+:tags: [hide-input, no-typst]
 df_long = df_survey[['x', 'y'] + col2plot].melt(
     id_vars=['x', 'y'],
     value_vars=col2plot,
     var_name='Coil',
     value_name='ECa_mSm'
 )
-
 fig = px.scatter(
     df_long,
     x='x', y='y',
@@ -290,18 +303,35 @@ fig.update_layout(coloraxis_colorbar=dict(title='ECa (mS/m)'))
 fig.show()
 ```
 
+```{code-cell} ipython3
+:tags: [remove-input]
+# Static fallback for Typst PDF
+fig_s = plt.figure(figsize=(10, 7))
+gs    = GridSpec(2, 3, figure=fig_s, hspace=0.45, wspace=0.35)
+for idx, col in enumerate(col2plot):
+    ax = fig_s.add_subplot(gs[idx // 3, idx % 3])
+    sc = ax.scatter(df_survey['x'], df_survey['y'],
+                    c=df_survey[col], cmap='viridis',
+                    vmin=5, vmax=60, s=4)
+    ax.set_title(col, fontsize=9)
+    ax.set_xlabel('Easting (m)', fontsize=7)
+    ax.set_ylabel('Northing (m)', fontsize=7)
+    ax.tick_params(labelsize=6)
+fig_s.colorbar(sc, ax=fig_s.axes, shrink=0.6, label='ECa (mS/m)')
+fig_s.suptitle(f'ECa Spatial Distribution  |  Height: {CLH} m, Mode: {MODE}', fontsize=11)
+plt.show()
+```
+
+### Compute statistics per treatments
 
 ```{code-cell} ipython3
-:tags: [remove-input, cache]
+:tags: [hide-input]
 geometry = [Point(xy) for xy in zip(df_survey['x'], df_survey['y'])]
 gdf_survey_geo   = gpd.GeoDataFrame(df_survey, geometry=geometry, crs=gdf_Agramon.crs)
 gdf_Agramon      = AgUtils.assign_treatments(gdf_Agramon)
 gdf_measurements = AgUtils.spatially_join_treatments(gdf_survey_geo, gdf_Agramon)
 stats_df         = AgUtils.compute_conductivity_stats(coils, gdf_measurements)
-```
 
-```{code-cell} ipython3
-:tags: [hide-cell]
 dtm_reprojected  = dtm_dataset.rio.reproject(gdf_measurements.crs)
 gdf_survey_geo   = AgUtils.create_gdf_survey(k, crs=gdf_Agramon.crs)
 gdf_Agramon      = AgUtils.assign_treatments(gdf_Agramon)
@@ -311,63 +341,7 @@ dtm_cropped      = rxr.open_rasterio(preproDir / 'DEM_Agramon_cropped.tif').sque
 dtm_cropped_repr = dtm_cropped.rio.reproject(gdf_measurements.crs)
 df_with_elev     = AgUtils.extract_dtm_values(dtm_cropped_repr, gdf_measurements)
 
-print('Applying DEM-based elevation correction...')
 k.surveys[0].df.elevation = df_with_elev['Elevation']
-df_with_elev.to_csv(preproDir / 'ECa_withElevation.csv')
-print(f'Saved → {preproDir}/ECa_withElevation.csv')
-```
-
-### Interpolated ECa Maps
-
-Gridded (linear) interpolation of ECa across all six coil spacings. Brighter colours indicate higher apparent conductivity (wetter / finer material).
-
-```{code-cell} ipython3
-:tags: [hide-input]
-xi = np.linspace(gdf_measurements['x'].min(), gdf_measurements['x'].max(), 250)
-yi = np.linspace(gdf_measurements['y'].min(), gdf_measurements['y'].max(), 250)
-XI, YI = np.meshgrid(xi, yi)
-
-fig = make_subplots(
-    rows=2, cols=3,
-    subplot_titles=col2plot,
-    horizontal_spacing=0.04,
-    vertical_spacing=0.10,
-)
-
-for idx, col in enumerate(col2plot):
-    row, c = divmod(idx, 3)
-    zi = griddata(
-        (gdf_measurements['x'], gdf_measurements['y']),
-        gdf_measurements[col],
-        (XI, YI),
-        method='linear'
-    )
-    fig.add_trace(
-        go.Heatmap(
-            x=xi, y=yi, z=zi,
-            colorscale='Viridis',
-            zmin=10, zmax=40,
-            colorbar=dict(
-                title='ECa<br>(mS/m)',
-                len=0.42,
-                y=0.77 if row == 0 else 0.22,
-                x=1.02,
-                thickness=12,
-            ),
-            showscale=(idx in (0, 3)),
-            hovertemplate='E: %{x:.0f} m<br>N: %{y:.0f} m<br>ECa: %{z:.1f} mS/m<extra>' + col + '</extra>',
-            name=col,
-        ),
-        row=row + 1, col=c + 1,
-    )
-
-fig.update_xaxes(showticklabels=False)
-fig.update_yaxes(showticklabels=False)
-fig.update_layout(
-    title=f'Interpolated ECa — All Coils  |  Height: {CLH} m, Mode: {MODE}',
-    height=620,
-)
-fig.show()
 ```
 
 ---
@@ -376,17 +350,16 @@ fig.show()
 
 ### Conductivity Distribution by Sensor & Treatment
 
-Boxplots comparing ECa across coil spacings (depth proxies) grouped by burn treatment. Hover for quartile values; click legend entries to isolate treatments.
+Boxplots comparing ECa across coil spacings (depth proxies) grouped by burn treatment.
 
 ```{code-cell} ipython3
-:tags: [hide-input]
+:tags: [hide-input, no-typst]
 melted = gdf_measurements.melt(
     id_vars='Treatment',
     value_vars=coils,
     var_name='Sensor',
     value_name='ECa_mSm'
 )
-
 fig = px.box(
     melted,
     x='Sensor',
@@ -402,12 +375,50 @@ fig.update_layout(boxmode='group', legend_title='Treatment')
 fig.show()
 ```
 
+```{code-cell} ipython3
+:tags: [remove-input]
+# Static fallback for Typst PDF
+melted = gdf_measurements.melt(
+    id_vars='Treatment',
+    value_vars=coils,
+    var_name='Sensor',
+    value_name='ECa_mSm'
+)
+treatments = melted['Treatment'].unique()
+sensors    = list(melted['Sensor'].unique())
+n_t        = len(treatments)
+width      = 0.8 / n_t
+positions  = np.arange(len(sensors))
+
+fig_s, ax_s = plt.subplots(figsize=(9, 4))
+for i, (treat, color) in enumerate(zip(treatments, plt.cm.Set2.colors)):
+    data = [melted[(melted['Treatment'] == treat) &
+                   (melted['Sensor'] == s)]['ECa_mSm'].dropna().values
+            for s in sensors]
+    ax_s.boxplot(data,
+                 positions=positions + (i - n_t / 2 + 0.5) * width,
+                 widths=width * 0.85,
+                 patch_artist=True,
+                 boxprops=dict(facecolor=color, alpha=0.7),
+                 medianprops=dict(color='black'),
+                 flierprops=dict(marker='o', markersize=2, alpha=0.4),
+                 label=treat)
+ax_s.set_xticks(positions)
+ax_s.set_xticklabels(sensors, fontsize=8)
+ax_s.set_xlabel('Coil (depth proxy)')
+ax_s.set_ylabel('ECa (mS/m)')
+ax_s.set_title('ECa Distribution per Coil and Treatment')
+ax_s.legend(title='Treatment', fontsize=8)
+plt.tight_layout()
+plt.show()
+```
+
 ### Conductivity vs Elevation & Treatment
 
 Scatter plots with OLS trendlines comparing how ECa varies with terrain elevation across treatments. The **shallowest coil** (HCP0.20, ~0–0.3 m) captures near-surface moisture; the **deepest coil** (HCP1.50, ~0–1.8 m) integrates the full profile.
 
 ```{code-cell} ipython3
-:tags: [hide-input]
+:tags: [hide-input, no-typst]
 for coil_col, depth_label in [
     (coils[0], f'Shallow (~0–0.3 m)  —  {coils[0]}'),
     (coils[5], f'Deep (~0–1.8 m)  —  {coils[5]}'),
@@ -430,83 +441,29 @@ for coil_col, depth_label in [
     fig.show()
 ```
 
-### 3-D Terrain & EMI Point Cloud
-
-Interactive 3-D scene: DEM surface coloured by terrain type, overlaid with HCP0.50 survey points coloured by ECa. **Rotate** with left-click drag, **pan** with right-click drag, **zoom** with scroll.
-
 ```{code-cell} ipython3
-:tags: [hide-input]
-array_name = "Plot6Control"
-da     = dtm_reprojected[array_name].fillna(0)
-x_rast = dtm_reprojected['x'].values
-y_rast = dtm_reprojected['y'].values
-z_grid = da.values
-
-# Subsample raster for browser rendering
-step  = max(1, len(x_rast) // 150)
-x_sub = x_rast[::step]
-y_sub = y_rast[::step]
-z_sub = z_grid[::step, ::step]
-XX, YY = np.meshgrid(x_sub, y_sub)
-
-# Interpolate elevation at survey points
-interp_func = RegularGridInterpolator(
-    (y_rast[::-1], x_rast), z_grid[::-1, :],
-    bounds_error=False, fill_value=0
-)
-x_pts = gdf_measurements['x'].values
-y_pts = gdf_measurements['y'].values
-z_pts = interp_func(np.column_stack((y_pts, x_pts)))
-
-fig = go.Figure()
-
-# DEM surface
-fig.add_trace(go.Surface(
-    x=XX, y=YY, z=z_sub,
-    colorscale='earth',
-    opacity=0.72,
-    showscale=False,
-    name='DEM',
-    hoverinfo='skip',
-))
-
-# EMI survey points
-fig.add_trace(go.Scatter3d(
-    x=x_pts, y=y_pts,
-    z=z_pts + 2,   # +2 m offset so points float above surface
-    mode='markers',
-    marker=dict(
-        size=4,
-        color=gdf_measurements['HCP0.50'].values,
-        colorscale='Viridis',
-        cmin=10, cmax=40,
-        colorbar=dict(title='HCP0.50<br>(mS/m)', thickness=14, len=0.55),
-        opacity=0.9,
-    ),
-    text=[
-        f"ECa: {v:.1f} mS/m<br>Elev: {e:.1f} m<br>Treatment: {t}"
-        for v, e, t in zip(
-            gdf_measurements['HCP0.50'].values,
-            z_pts,
-            gdf_measurements['Treatment'].values,
-        )
-    ],
-    hoverinfo='text',
-    name='ECa HCP0.50',
-))
-
-fig.update_layout(
-    title='3-D Terrain & EMI Survey — HCP0.50 Coil',
-    scene=dict(
-        xaxis_title='Easting (m)',
-        yaxis_title='Northing (m)',
-        zaxis_title='Elevation (m)',
-        aspectmode='data',
-    ),
-    height=650,
-    margin=dict(l=0, r=0, b=0, t=50),
-)
-fig.show()
+:tags: [remove-input]
+# Static fallback for Typst PDF
+for coil_col, depth_label in [
+    (coils[0], f'Shallow (~0–0.3 m)  —  {coils[0]}'),
+    (coils[5], f'Deep (~0–1.8 m)  —  {coils[5]}'),
+]:
+    df_plot    = df_with_elev.dropna(subset=[coil_col, 'Elevation', 'Treatment'])
+    treatments = df_plot['Treatment'].unique()
+    n_t        = len(treatments)
+    fig_s, axes = plt.subplots(1, n_t, figsize=(3.5 * n_t, 4), sharey=True)
+    if n_t == 1:
+        axes = [axes]
+    for ax, (treat, color) in zip(axes, zip(treatments, plt.cm.Set2.colors)):
+        sub = df_plot[df_plot['Treatment'] == treat]
+        ax.scatter(sub['Elevation'], sub[coil_col],
+                   color=color, s=10, alpha=0.6)
+        ax.set_title(treat, fontsize=9)
+        ax.set_xlabel('Elevation (m a.s.l.)', fontsize=8)
+    axes[0].set_ylabel('ECa (mS/m)', fontsize=8)
+    fig_s.suptitle(depth_label, fontsize=10)
+    plt.tight_layout()
+    plt.show()
 ```
 
 ---
@@ -518,8 +475,7 @@ fig.show()
 - [ ] Coupling with hydrological model (pyCATHY) at catchment scale
 - [ ] Integration with remote sensing for spatial upscaling
 
-```{admonition} GRWater project
-:class: tip
+```{tip} GRWater project
 This site is part of the [GRWater project](https://grwater.ica.csic.es/) — multi-scale monitoring of the Earth Critical Zone for post-fire forest management.
 ```
 
@@ -529,15 +485,13 @@ This site is part of the [GRWater project](https://grwater.ica.csic.es/) — mul
 
 Preliminary results indicate that EMI surveys successfully resolve spatial patterns of soil moisture at the catchment scale, with apparent electrical conductivity values strongly correlated with gravimetric measurements. Burn severity significantly alters the depth-moisture profile, with hydrophobic surface layers observed in heavily burned zones.
 
-```{admonition} Key takeaway
-:class: important
+```{important} Key takeaway
 Geophysical methods — particularly EMI — provide a cost-effective tool for catchment-scale soil moisture monitoring in post-fire Mediterranean landscapes.
 ```
 
 ---
 
-```{admonition} Data Acquisition & Processing Service
-:class: note
+```{note} Data Acquisition & Processing Service
 [ICA-CSIC](https://www.ica.csic.es) offers a professional service for geophysical
 data acquisition and processing as part of its
 [Geo-Spatial Technologies for Agro-Forestry Systems](https://www.ica.csic.es/servicios/servicios-cientifico-tecnicos/tecnologias-geo-espaciales-para-el-estudio-de-sistemas-agro-forestales)

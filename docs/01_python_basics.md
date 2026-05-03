@@ -10,8 +10,7 @@ kernelspec:
 
 Welcome to the Geophysics Python Course!
 
-```{admonition} 🐍 Python is optional — but powerful
-:class: caution
+```{caution} 🐍 Python is optional — but powerful
 Processing geophysical data **does not require writing code**. Many user-friendly software solutions exist for ERT acquisition, processing, and inversion:
 
 - **Commercial:** Res2DInv, EarthImager, IX1D, ...
@@ -22,13 +21,14 @@ Some are free, some are not — but all provide graphical interfaces that requir
 **So why learn Python here?**
 Using Python gives you full flexibility: you can automate workflows, customise plots, combine tools, and reproduce your analyses exactly. It is also easier to teach in a course setting. But it is absolutely **not a prerequisite** for doing good geophysics. Feel free to skip the code cells and focus on the concepts if Python is not your priority. 😊
 ```
-```{admonition} Learning Objectives
-:class: note
+
+```{note} Learning Objectives
 - Understand Python syntax and the interactive notebook environment
 - Work with variables and the most common data types
 - Use basic control structures (loops, conditionals)
 - Write and call your first functions
 ```
+
 ---
 
 ## Hello, Geophysics!
@@ -172,13 +172,11 @@ plt.show()
 
 ---
 
-```{admonition} Summary
-:class: tip
+```{tip} Summary
 You have covered:
 - Variables, data types, and lists
 - `if / elif / else` conditionals and `for` loops
 - Defining functions with docstrings
 - NumPy arrays and vectorised operations
 - Basic Matplotlib plotting
-
 ```

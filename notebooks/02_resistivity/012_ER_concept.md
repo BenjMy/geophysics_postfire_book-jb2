@@ -6,8 +6,7 @@ kernelspec:
   language: python
 ---
     
-```{admonition} Learning Objectives
-:class: note
+```{note} Learning Objectives
 - Understand the physical basis of electrical resistivity 
 - Apply Ohm's Law in a geophysical context
 - Electrical Resistivity ranges for common earth materials.
@@ -31,22 +30,6 @@ $$R = \rho \frac{L}{A}$$
 where $R$ is resistance (Ω). Rearranging:
 
 $$\rho = R \frac{A}{L}$$
-```{code-cell} ipython3
-:tags: [remove-input]
-import numpy as np
-import matplotlib.pyplot as plt
-import ipywidgets as widgets
-from IPython.display import display
-
-def resistance(rho, L, A):
-    """Ohm's Law: resistance of a homogeneous cylinder."""
-    return rho * L / A
-
-# Example: a 1 m³ cube of moist loam (rho ≈ 50 Ω·m)
-rho_loam = 50   # Ω·m
-R = resistance(rho_loam, L=1.0, A=1.0)
-print(f"\033[96mResistance of 1 m3 loam cube : {R:.1f} Ω\033[0m")
-```
 
 
 Adjust resistivity, length and cross-section to see how resistance changes:

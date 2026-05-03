@@ -5,10 +5,12 @@ title: "Getting Started"
 # Getting Started
 
 This course uses **Jupyter Book** with live, executable notebooks. This means the pages are not just static text — you can run code, move sliders, change parameters, and see results update instantly, all inside your browser.
-```{admonition} No installation required
-:class: tip
+
+
+```{tip} No installation required
 Everything runs in the cloud. You do not need to install Python or any library on your computer.
 ```
+
 
 ---
 
@@ -53,12 +55,6 @@ Many pages include **interactive widgets**: sliders, dropdowns, and input boxes 
 - **Type a value** into a number box for precise input
 
 The output updates automatically — no need to press anything extra.
-```{figure} ../assets/images/widget_example.png
-:width: 70%
-:align: center
-:alt: Example of an interactive slider widget
-Example widget: drag the slider and watch the plot update in real time.
-```
 
 ---
 

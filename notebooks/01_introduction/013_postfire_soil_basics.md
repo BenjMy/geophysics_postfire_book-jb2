@@ -1,9 +1,5 @@
 ---
 title: "Post-fire soil restoration"
-exports:
-  - format: pdf
-    template: plain_latex
-    output: exports/013_postfire_soil_basics.pdf
 ---
 
 # Post-fire soil and water cycle restoration
@@ -28,8 +24,7 @@ After a wildfire, soils are exposed and highly vulnerable. The main processes th
 - **Surface runoff** — hydrophobic compounds deposited by fire can create water-repellent layers that drastically increase runoff.
 - **Altered water flow** — changes in soil porosity, structure and the creation of hydrophobic layers modify subsurface water pathways and recharge rates {cite}`kopp_perspectives_2023`.
 
-```{admonition} Why does this matter?
-:class: important
+```{important} Why does this matter?
 These processes are interconnected: higher runoff promotes erosion, which removes the organic-rich topsoil layer that is slowest to recover. Early intervention is therefore critical to break this feedback cycle.
 ```
 
@@ -43,8 +38,7 @@ Three broad intervention approaches are commonly applied after wildfires, depend
 | **Erosion logs / barriers** | Slows overland flow; traps sediment | Steep slopes, gullies |
 | **Bare soil** (control) | No intervention; natural recovery reference | Monitoring and comparison plots |
 
-```{admonition} Choosing the right strategy
-:class: tip
+```{tip} Choosing the right strategy
 The choice of strategy depends on the time elapsed since the fire (see [Timeline of Actuation](#timeline-of-actuation)), slope gradient, rainfall regime, and the target ecosystem. Combining mulching with erosion barriers has shown synergistic effects in Mediterranean environments {cite}`lucas-borja_changes_2021`.
 ```
 
@@ -88,18 +82,14 @@ Restoration tools should be deployed according to the phase of post-fire regener
   - Remove barriers if vegetation established; assess long-term C sequestration
 ```
 
-```{admonition} Long-term perspective
-:class: warning
+```{warning} Long-term perspective
 Full ecosystem recovery after severe wildfire can take decades. The 8-year window captures the transition from active restoration to natural succession {cite}`lucas-borja_fostering_2024`.
 ```
 
 
-
-
-
 ## The Critical Zone Framework
 
-Post-fire soil restoration is best understood within the **Critical Zone** ({term}`CZ`) framework, which considers the thin layer of Earth from the top of the vegetation canopy down to fresh bedrock as a single, integrated system {cite}`kopp_perspectives_2023`.
+Post-fire soil restoration is best understood within the **Critical Zone** (CZ) framework, which considers the thin layer of Earth from the top of the vegetation canopy down to fresh bedrock as a single, integrated system {cite}`kopp_perspectives_2023`.
 
 ```{figure} ../../assets/images/ECZ.jpg
 :name: fig-critical-zone
@@ -109,8 +99,7 @@ Post-fire soil restoration is best understood within the **Critical Zone** ({ter
 Figure from {cite}`kopp_perspectives_2023`: the critical zone at nested scales from landscape to microscopic. The GRwater project investigates water fluxes from landscape to local scale in relation to biodiversity and ecosystem restoration.
 ```
 
-```{admonition} Critical Zone and fire
-:class: note
+```{note} Critical Zone and fire
 Wildfires represent one of the most intense and rapid disturbances to the Critical Zone. They alter the physical structure, biological community, and chemical composition of soils simultaneously, making post-fire landscapes ideal natural experiments for studying CZ dynamics {cite}`kopp_perspectives_2023`.
 ```
 
@@ -118,8 +107,7 @@ Wildfires represent one of the most intense and rapid disturbances to the Critic
 Geophysical methods provide a means for remotely examining CZ form and function over length scales that span centimeters to kilometers ({cite}`parsekian_multiscale_2015`). 
 
 ---
-```{admonition} Summary
-:class: tip
+```{tip} Summary
 In this introduction you have learned:
 - The **main threats** to soil after wildfire (erosion, organic matter loss, runoff, altered water flow).
 - The three main **remediation strategies** and when to apply them.
@@ -127,5 +115,3 @@ In this introduction you have learned:
 - How the **Critical Zone framework** provides a holistic view of post-fire soil dynamics.
 
 ```
-
-

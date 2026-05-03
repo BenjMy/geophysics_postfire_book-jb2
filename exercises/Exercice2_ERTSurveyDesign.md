@@ -6,8 +6,7 @@ authors:
     affiliations:
       - ICA-CSIC, Madrid, Spain
 ---
-````{admonition} Why forward modelling matters
-:class: tip
+````{tip} Why forward modelling matters
 Before going to the field, forward modelling allows you to simulate ERT data on a synthetic subsurface model. This is a critical step to:
 - Choose appropriate electrode spacing and array type
 - Assess the sensitivity of the survey to the target anomaly

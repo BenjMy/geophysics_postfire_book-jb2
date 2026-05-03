@@ -14,17 +14,19 @@ kernelspec:
 
 # 💧 Agramón — Depth of the sedimentation layer
 
++++{"no-pdf": true}
 ```{contents} On this page
 :depth: 2
 :local:
+` ` `
++++
 ```
 
 ---
 
 ## 👥 Authors
 
-```{admonition} Contributors
-:class: tip
+```{tip} Contributors
 **Benjamin Mary** — [benjamin.mary@ica.csic.es](mailto:benjamin.mary@ica.csic.es)
 ICA-CSIC, Madrid, Spain
 
@@ -60,8 +62,7 @@ m
 
 The Agramón catchment is located in a semi-arid region of southeastern Spain heavily impacted by recurring drought and wildfire events. Post-fire recovery of forest ecosystems in this area is tightly coupled to soil water availability, which controls vegetation re-establishment and erosion dynamics.
 
-```{admonition} Why this site?
-:class: note
+```{note} Why this site?
 Agramón offers a representative example of a Mediterranean catchment under combined fire and drought stress. Its relatively small size makes it tractable for multi-scale geophysical monitoring.
 ```
 
@@ -127,8 +128,7 @@ Key sub-questions:
   - For co-registration and NDVI mapping
 ```
 
-```{admonition} Data availability
-:class: warning
+```{warning} Data availability
 Raw data are stored in the ICA-CSIC data repository. Contact the authors for access.
 <!-- TODO: add DOI or data repository link -->
 ```
@@ -146,8 +146,7 @@ Raw data are stored in the ICA-CSIC data repository. Contact the authors for acc
 - [ ] Coupling with hydrological model (pyCATHY) at catchment scale
 - [ ] Integration with remote sensing for spatial upscaling
 
-```{admonition} GRWater project
-:class: tip
+```{tip} GRWater project
 This site is part of the [GRWater project](https://grwater.ica.csic.es/) — multi-scale monitoring of the Earth Critical Zone for post-fire forest management.
 ```
 
@@ -156,15 +155,13 @@ This site is part of the [GRWater project](https://grwater.ica.csic.es/) — mul
 ## ✅ Conclusion
 
 Preliminary results indicate that 
-```{admonition} Key takeaway
-:class: important
+```{important} Key takeaway
 ??
 ```
 
 ---
 
-```{admonition} Data Acquisition & Processing Service
-:class: note
+```{note} Data Acquisition & Processing Service
 [ICA-CSIC](https://www.ica.csic.es) offers a professional service for geophysical
 data acquisition and processing as part of its
 [Geo-Spatial Technologies for Agro-Forestry Systems](https://www.ica.csic.es/servicios/servicios-cientifico-tecnicos/tecnologias-geo-espaciales-para-el-estudio-de-sistemas-agro-forestales)

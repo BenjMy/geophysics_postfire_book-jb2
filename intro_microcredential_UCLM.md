@@ -2,6 +2,7 @@
 
 ---
 
+
 ```{image} assets/images/micro_UCLM_flyer.jpeg
 :width: 80%
 :align: center
@@ -16,6 +17,15 @@ data acquisition and processing as part of its
 [Geo-Spatial Technologies for Agro-Forestry Systems](https://www.ica.csic.es/servicios/servicios-cientifico-tecnicos/tecnologias-geo-espaciales-para-el-estudio-de-sistemas-agro-forestales)
 scientific-technical services unit.
 ```
+
+
+```{image} assets/images/logo_main
+:width: 80%
+:align: center
+:alt: LOGO G MICROCREDENCIALES SUBVENCIONADAS
+```
+
+
 
 ---
 

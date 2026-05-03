@@ -8,22 +8,15 @@ kernelspec:
 
 # Introduction to EMagPy
 
-```{contents} Table of Contents
-:depth: 3
-:local:
-:backlinks: none
-```
-
 ---
 
 ## Overview
 
-**EMagPy** is a Python package for processing and inverting {term}`EMI` data. It provides
+**EMagPy** is a Python package for processing and inverting EMI data. It provides
 both a **standalone graphical user interface (GUI)** and a **Python API** designed
 for use in Jupyter notebooks. The main class is `Problem`.
 
-```{admonition} Learning Objectives
-:class: note
+```{note} Learning Objectives
 
 By the end of this notebook you will be able to:
 
@@ -50,8 +43,7 @@ EMagPy can be installed in three ways depending on your needs.
 2. Download the latest **`EMagPy_x.x.x_windows.zip`**.
 3. Extract the zip and double-click **`EMagPy.exe`** to launch the GUI.
 
-```{admonition} Windows SmartScreen warning
-:class: warning
+```{warning} Windows SmartScreen warning
 If you see *"Windows protected your PC"*, click **More info** → **Run anyway**.
 The executable is not commercially signed but is safe to use.
 ```
@@ -102,7 +94,7 @@ df.head()  # inspect the header format
 
 `Problem.show()` plots ECa as a line graph per coil configuration.
 If spatial coordinates (`x`, `y`) are present, `Problem.showMap()` produces a
-plan-view {term}`apparent electrical conductivity` map.
+plan-view apparent electrical conductivity (ECa) map.
 
 ```{code-cell} python
 k.show(vmax=50)
@@ -117,7 +109,7 @@ k.showMap(coil='VCP0.71', contour=True, pts=True)
 ### 4 Starting model
 
 Before inversion, define a layered starting model: the **bottom depth of each
-layer** and an initial {term}`electrical conductivity` value for each layer
+layer** and an initial electrical conductivity value for each layer
 (including the half-space below).
 
 ```{code-cell} python
@@ -138,7 +130,7 @@ Several forward models are available, trading accuracy for speed:
 |---|---|
 | `CS` | Cumulative Sensitivity (McNeill 1980) — default, fastest |
 | `CSgn` | CS with Gauss-Newton solver — uses `invertGN()` automatically |
-| `FSlin` | Full Solution (Maxwell) with {term}`low induction number (LIN)` approximation |
+| `FSlin` | Full Solution (Maxwell) with low induction number (LIN) approximation |
 | `FSeq` | Full Solution without LIN — apparent ECa via optimisation (Andrade et al. 2016) |
 | `Q` | Full Solution minimising quadrature directly — preferred for ECa > 100 mS/m |
 
@@ -181,8 +173,7 @@ help(k.showSlice)
 
 ## Summary
 
-```{admonition} What you have learned
-:class: tip
+```{tip} What you have learned
 
 | Step | Method | Purpose |
 |------|--------|---------|

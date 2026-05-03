@@ -20,8 +20,7 @@ kernelspec:
 
 **ResIPy** (also called *resipy*) is a Python wrapper around the robust **R2 / cR2 / R3t / cR3t** inversion codes for 2-D and 3-D electrical resistivity tomography (ERT) and induced polarisation (IP). It provides both a **standalone graphical user interface (GUI)** and a **Python API** designed for use in Jupyter notebooks.
 
-```{admonition} Learning Objectives
-:class: note
+```{note} Learning Objectives
 
 By the end of this notebook you will be able to:
 
@@ -57,8 +56,7 @@ This is the quickest way to try ResIPy without installing anything else.
 3. Extract the zip to a folder of your choice (e.g. `C:\ResIPy`).
 4. Double-click **`ResIPy.exe`** to launch the GUI.
 
-```{admonition} Windows SmartScreen warning
-:class: warning
+```{warning} Windows SmartScreen warning
 If you see *"Windows protected your PC"*, click **More info** → **Run anyway**.
 This appears because the executable is not signed with a commercial certificate — it is
 safe to proceed. You may also need to add an exception in your antivirus program.
@@ -92,8 +90,7 @@ pip install resipy
 python -c "from resipy import Project; print('ResIPy OK')"
 ```
 
-```{admonition} Good news for Windows users
-:class: tip
+```{tip} Good news for Windows users
 On **Windows**, ResIPy ships with the inversion binaries (`R2.exe`, `cR2.exe`, `R3t.exe`,
 `cR3t.exe`) built natively for Windows. **No Wine or extra software is needed.**
 You can run full inversions straight away after `pip install resipy`.
@@ -272,8 +269,7 @@ Introduction to 2-D inversion with ResIPy
 
 ## Summary
 
-```{admonition} What you have learned
-:class: tip
+```{tip} What you have learned
 
 | Step | Method | Purpose |
 |------|--------|---------|

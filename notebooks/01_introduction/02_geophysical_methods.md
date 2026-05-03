@@ -1,9 +1,5 @@
 ---
 title: "Geophysical methods overview"
-exports:
-  - format: pdf
-    template: plain_latex
-    output: exports/02_geophysical_methods.pdf
 ---
 
 
@@ -14,16 +10,12 @@ principles — mechanics, electromagnetism, thermodynamics — to study the subs
 **without being destructive**. 
 
 
-```{figure} ../../assets/images/ImageForArticle_1202_44837100215127314495.png
-:name: ImageForArticle_1202_44837100215127314495.png
+```{figure} ../../assets/images/ImageForArticle
+:name: ImageForArticle_1202_44837100215127314495
 :width: 60%
 :align: center
 Image Credit: Lukiyanova Natalia / frenta / Shutterstock.com
 ```
-
-
-
-
 
 
 Geophysics is classically split into two families:
@@ -40,17 +32,16 @@ Geophysics is classically split into two families:
 
 
 
-::::{admonition} Key Concept: The "Anomaly"
-:class: tip
+::::{tip} Key Concept: The "Anomaly"
 The physical contrast measured in geophysical surveys is often referred to as an anomaly. Anomalies can vary in shape, size, and physical properties. For example, the water table may appear as an anomaly in electrical resistivity surveys, distinguishing it from surrounding soils.
 ::::
 
 
-```{figure} ../../assets/images/Geological cross-section with water anomaly.png
-:name: Geological cross-section with water anomaly.png
+```{figure} ../../assets/images/geological-cross-section-water-anomaly.png
+:name: geological-cross-section-water-anomaly
 :width: 60%
 :align: center
-Conceptual subsurface cross-section showing a layered ground profile with a localized anomaly in the shallow subsurface. A distinct zone contrasts with surrounding material properties, representing a water-saturated region (e.g., a water table signature) that differs from the background soil and underlying bedrock in physical response (such as electrical resistivity).. 
+Conceptual subsurface cross-section showing a layered ground profile with a localized anomaly in the shallow subsurface. A distinct zone contrasts with surrounding material properties, representing a water-saturated region (e.g., a water table signature) that differs from the background soil and underlying bedrock in physical response (such as electrical resistivity).
 ```
 
 
@@ -61,11 +52,7 @@ Applied geophysics operates by detecting  **physical contrast** between material
 - Seismic velocity
 - ...
 
-A range of geophysical methods exists for measuring the physical properties of the soil. Each method responds to one or multiple specific properties, offering unique insights into subsurface characteristics.The [table below](#geophysical-methods-table) summarises the main geophysical methods used organised by the physical property they measure.
-
-
-
-
+A range of geophysical methods exists for measuring the physical properties of the soil. Each method responds to one or multiple specific properties, offering unique insights into subsurface characteristics. The [table below](#geophysical-methods-table) summarises the main geophysical methods used organised by the physical property they measure.
 
 
 The measured **physical contrasts** are sensitive to the properties we care about: 
@@ -80,8 +67,7 @@ The measured **physical contrasts** are sensitive to the properties we care abou
 
 Geophysical methods allow us to image subsurface properties **non-invasively**, across **large areas**, and at [**repeated time steps**](#timelapseGeophy) — addressing exactly the limitations of traditional soil sampling. 
 
-::::{admonition} Why non-invasive?
-:class: tip
+::::{tip} Why non-invasive?
 Traditional soil sampling is destructive, slow, and spatially sparse. A single geophysical
 profile can produce thousands of subsurface data points in under an hour,
 preserving soil structure.
@@ -90,7 +76,7 @@ preserving soil structure.
 
 ## Geophysics to image the critical zone
 
-[**The figure below**](#fig-10_1002_wat2.1732_Fig1) illustrates the four themes where geophysics has been used as a hypothesis-testing tool in critical zone ({term}`CZ`) for imaging {cite}`dumont2024geophysics`:
+[**The figure below**](#fig-10_1002_wat2.1732_Fig1) illustrates the four themes where geophysics has been used as a hypothesis-testing tool in the Critical Zone (CZ) for imaging {cite}`dumont2024geophysics`:
 - (A) **subsurface structure** and controls on hydrologic properties and processes; 
 - (B) **storage and partitioning** of water in the CZ, parsed here as (B1) dimensionality of infiltration and controls on aquifer recharge, and (B2) seasonal- and event-based controls on groundwater–surface water exchange; 
 - (V) **tree water uptake** and its role in subsurface variability;
@@ -114,11 +100,11 @@ The table below summarises the main geophysical methods used in soil and post-fi
 
 | Method | Physical property | Typical depth | Scale | Platform |
 |---|---|---|---|---|
-| {term}`ERT` | Electrical resistivity | 0.5–20 m | Plot to hillslope | Ground |
-| {term}`EMI` | Electrical resistivity | 0.5–6 m | Field to catchment | Ground / UAV / Airborne |
-| {term}`GPR` | Dielectric permittivity | 0.1–5 m | Plot to field | Ground / UAV |
-| {term}`Seismic refraction` | P-wave velocity | 1–30 m | Plot to hillslope | Ground |
-| {term}`MASW` | S-wave velocity | 1–20 m | Plot to hillslope | Ground |
+| ERT | Electrical resistivity | 0.5–20 m | Plot to hillslope | Ground |
+| EMI | Electrical resistivity | 0.5–6 m | Field to catchment | Ground / UAV / Airborne |
+| GPR | Dielectric permittivity | 0.1–5 m | Plot to field | Ground / UAV |
+| Seismic refraction | P-wave velocity | 1–30 m | Plot to hillslope | Ground |
+| MASW | S-wave velocity | 1–20 m | Plot to hillslope | Ground |
 :::
 
 ---
@@ -129,8 +115,7 @@ The table below summarises the main geophysical methods used in soil and post-fi
 ### Electrical Resistivity Tomography (ERT)
 
 
-```{admonition} Analogy
-:class: hint
+```{hint} Analogy
 Tomography refers to the spatial reconstruction of a physical property within a medium from indirect measurements. The term is also widely used in medicine — most famously in CT (Computed Tomography) scans.
 ```
 
@@ -178,7 +163,7 @@ non-invasively {cite}`mary2023bg`.
 :name: fig-SG_ERT_plant
 :width: 50%
 :align: center
-Geophysics conquering new territories: The rise of “agrogeophysics”.
+Geophysics conquering new territories: The rise of "agrogeophysics".
 (after {cite}`garre2021geophysics`). 
 ```
 
@@ -233,7 +218,7 @@ EMI antenna being towed across a burned area. The instrument measures apparent e
 :name: fig-SG_EM_plant
 :width: 50%
 :align: center
-Geophysics conquering new territories: The rise of “agrogeophysics”.
+Geophysics conquering new territories: The rise of "agrogeophysics".
 (after {cite}`garre2021geophysics`). 
 ```
 
@@ -333,8 +318,7 @@ Applied geophysics works by measuring a **physical contrast** between materials 
 
 
 ---
-```{admonition} Summary
-:class: tip
+```{tip} Summary
 In this introduction you have learned:
 - **What geophysics is**: a non-invasive way to investigate the subsurface using physical principles.  
 - **How geophysical methods work**: by detecting **contrasts in physical properties** (e.g., resistivity, permittivity, seismic velocity).  
@@ -343,4 +327,3 @@ In this introduction you have learned:
 - **How multiple methods complement each other**: combining techniques improves interpretation of complex subsurface systems.  
 - **What a time-lapse strategy adds**: the ability to monitor **temporal changes**, revealing dynamic processes such as water movement and recharge.  
 ```
-

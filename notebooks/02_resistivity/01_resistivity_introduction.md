@@ -6,15 +6,14 @@ kernelspec:
   language: python
 bibliography:
   - references.bib
-exports:
-  - format: pdf
-    template: plain_latex
-    output: exports/01_resistivity_introduction.pdf
 ---
 
-```{admonition} Learning Objectives
-:class: note
-- Introduce the concept of a 4-electrode measurement
+```{note} Learning Objectives
+- Explain why a **4-electrode configuration** separates current injection from voltage measurement, and why this eliminates contact resistance errors
+- Define **apparent resistivity** (ρₐ) including the role of the geometric factor K
+- Compare common **electrode arrays** (Wenner, Schlumberger, Dipole-Dipole) in terms of sensitivity depth and typical use cases
+- Describe the **ERT processing workflow** 
+- Explain why inversion yields **a** plausible subsurface model rather than **the** unique solution
 ```
 
 
@@ -47,7 +46,7 @@ Using four electrodes separates the roles of **current injection** and **voltage
    - Measure the voltage drop in the subsurface.
 
 
-```{figure} ../../assets/images/current-flow-lines-and-equipotential-lines-for-a-half-space.png
+```{figure} ../../assets/images/current-flow-lines-and-equipotential-lines-for-a-half-space
 :name: fig-timeline-2
 :width: 70%
 :align: center
@@ -55,8 +54,7 @@ Source: Sharma, (1997).
 ```
 
 
-```{admonition} Why four electrodes?
-:class: hint
+```{hint} Why four electrodes?
 By separating these roles AB/MN, the measurement is **insensitive to contact resistance**, ensuring that ρₐ accurately represents the subsurface conditions.
 Potential electrodes draw **negligible current** because they are connected to a high-impedance voltmeter. As a result, the voltage drop across their contact resistance is insignificant, and the measured voltage (Vₘₙ) reflects only the subsurface resistivity.
 
@@ -87,20 +85,38 @@ Choosing the right measurement sequence is fundamental: the electrode
 configuration controls sensitivity, depth of investigation and resolution.
 
 
+::::{only} html
 :::{iframe} https://www.youtube.com/embed/IlqWXWprC1g?si=KJfat9-sMGUsI2Fh
 :width: 50%
-Wenner Measurement (resistive body) - Credit [@florianwagner4887](https://www.youtube.com/@florianwagner4887)
+Wenner Measurement (resistive body) - Credit [florianwagner4887](https://www.youtube.com/@florianwagner4887)
 :::
-
 :::{iframe} https://www.youtube.com/embed/lt1qV-2d5Ps?si=C1Vz5CDo1zCovlKQ
 :width: 50%
-Dipole-Dipole Measurement (resistive body) - Credit [@florianwagner4887](https://www.youtube.com/@florianwagner4887)
+Dipole-Dipole Measurement (resistive body) - Credit [florianwagner4887](https://www.youtube.com/@florianwagner4887)
 :::
-
 :::{iframe} https://www.youtube.com/embed/h0fnnpU5Pf8?si=DkoYLza1tkrqI6UO
 :width: 50%
-Schlumberger Measurement (conductive body) - Credit [@florianwagner4887](https://www.youtube.com/@florianwagner4887)
+Schlumberger Measurement (conductive body) - Credit [florianwagner4887](https://www.youtube.com/@florianwagner4887)
 :::
+::::
+
+::::{only} pdf
+```{figure} https://img.youtube.com/vi/IlqWXWprC1g/hqdefault.jpg
+:width: 50%
+:align: center
+Wenner Measurement (resistive body) — Credit [florianwagner4887](https://www.youtube.com/@florianwagner4887). [Watch on YouTube](https://www.youtube.com/watch?v=IlqWXWprC1g)
+```
+```{figure} https://img.youtube.com/vi/lt1qV-2d5Ps/hqdefault.jpg
+:width: 50%
+:align: center
+Dipole-Dipole Measurement (resistive body) — Credit [florianwagner4887](https://www.youtube.com/@florianwagner4887). [Watch on YouTube](https://www.youtube.com/watch?v=lt1qV-2d5Ps)
+```
+```{figure} https://img.youtube.com/vi/h0fnnpU5Pf8/hqdefault.jpg
+:width: 50%
+:align: center
+Schlumberger Measurement (conductive body) — Credit [florianwagner4887](https://www.youtube.com/@florianwagner4887). [Watch on YouTube](https://www.youtube.com/watch?v=h0fnnpU5Pf8)
+```
+::::
 
 
 | Array        | Sensitivity pattern         | Typical use case            |
@@ -181,11 +197,6 @@ Temporal dynamics of key soil properties following wildfire (after Dimech et al.
 Many different undergrounds can produce **exactly the same surface signal**. This
 is not a software limitation — it is a mathematical certainty.
 
-Think of guessing the shape of an object while blindfolded, poking it in just a
-few places. Many shapes would feel identical.
-
-To pick one answer, we favour the **simplest model** that fits the data.
-
 :::{warning}
 The result is **a** possible underground — not **the** real one.
 :::
@@ -213,17 +224,9 @@ knowledge with site-specific information:
 - **Integration with ancillary data** (soil cores, TDR probes, sap-flow sensors)
   is essential for unambiguous interpretation {cite}`mary2021vzj`
 
-:::{note}
-Petrophysical relationships are site-specific and non-unique.  Always report
-the uncertainty bounds on any moisture estimate derived from ERT data
-{cite}`tso2019wrr`.
-:::
-
-
 ---
 
-```{admonition} Summary
-:class: tip
+```{tip} Summary
 You now understand:
 - Electrical resistivity and its physical meaning
 - Typical resistivity values for common earth materials

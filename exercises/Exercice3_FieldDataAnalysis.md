@@ -52,7 +52,7 @@ elec = np.zeros((24,3))
 elec[:,0] = np.arange(0, 24*0.5, 0.5) # with 0.5 m spacing and 24 electrodes
 k.setElec(elec)
 print(k.elec)
-k.createMesh(typ='trian', show_output=False, res0=200) # let's create the mesh based on these electrodes position
+k.createMesh(show_output=False, res0=200) # let's create the mesh based on these electrodes position
 k.showMesh()
 k.addRegion(np.array([[2,-0.3],[2,-2],[3,-2],[3,-0.3],[2,-0.3]]), 50, iplot=True)
 k.createSequence([('dpdp', 1, 10, 1, 10)]) # create a dipole-dipole of diple spacing of 1 (=skip 0) with 10 levels

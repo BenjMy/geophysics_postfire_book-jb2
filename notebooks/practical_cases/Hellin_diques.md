@@ -13,17 +13,19 @@ kernelspec:
 
 # 🌊 River Bank ERT — Interactive Forward Model
 
++++{"no-pdf": true}
 ```{contents} On this page
 :depth: 2
 :local:
+` ` `
++++
 ```
 
 ---
 
 ## 👥 Authors
 
-```{admonition} Contributors
-:class: tip
+```{tip} Contributors
 **Benjamin Mary** — [benjamin.mary@ica.csic.es](mailto:benjamin.mary@ica.csic.es)
 ICA-CSIC, Madrid, Spain
 
@@ -62,7 +64,7 @@ m
 :alt: diques1
 :name: diques1
 
-One of the sediment check dams in the Hellín rambla network. Picture credit to ??.
+One of the sediment check dams in the Hellín rambla network. Picture credit to M.E. Lucas Borja.
 ```
 
 ```{figure} ../../assets/images/diques1.jpeg
@@ -71,7 +73,7 @@ One of the sediment check dams in the Hellín rambla network. Picture credit to 
 :alt: diques2
 :name: diques2
 
-One of the sediment check dams in the Hellín rambla network. Picture credit to ??.
+One of the sediment check dams in the Hellín rambla network. Picture credit to M.E. Lucas Borja.
 ```
 
 ```{figure} ../../assets/images/diques3.jpeg
@@ -80,18 +82,16 @@ One of the sediment check dams in the Hellín rambla network. Picture credit to 
 :alt: diques3
 :name: diques3
 
-One of the sediment check dams in the Hellín rambla network. Picture credit to ??.
+One of the sediment check dams in the Hellín rambla network. Picture credit to M.E. Lucas Borja.
 ```
 
 Sediment check dams (*diques de sedimentación*) are a common post-fire restoration measure in Spanish ramblas and ephemeral streams. They are designed to trap sediment mobilised by post-fire erosion, reduce downstream flood risk, and promote vegetation recovery in gully floors. However, their effectiveness and the physical properties of trapped sediments remain poorly characterised.
 
-```{admonition} Post-fire restoration context
-:class: note
+```{note} Post-fire restoration context
 After the 2022 wildfires in the Hellín area, a network of check dams was installed along the main rambla as an emergency erosion-control measure. This notebook provides a forward-modelling framework to design and evaluate ERT acquisition strategies for the geophysical characterisation of the sediment body behind these structures **prior to field data collection**.
 ```
 
-```{admonition} Semi-permeable or confined dam?
-:class: caution
+```{caution} Semi-permeable or confined dam?
 From the figures above, we can observe that the dams are not designed the same way i.e. {numref}`diques1` shows a concrete dam that does not let sediment nor water through, while {numref}`diques2` and {numref}`diques3` are permeable to water.
 ```
 
@@ -120,8 +120,7 @@ This notebook implements a **2D ERT forward model** of a river bank cross-sectio
 4. Run the forward model and inspect the synthetic apparent resistivity pseudosection
 5. Run the inversion and compare the recovered model to the true model
 
-```{admonition} Why forward modelling before fieldwork?
-:class: tip
+```{tip} Why forward modelling before fieldwork?
 Synthetic modelling before data collection allows optimisation of survey design — electrode spacing, array type, and profile length — to maximise sensitivity to the target structures (sediment layers, moisture zones) given the expected depth range and resistivity contrasts.
 ```
 
@@ -133,8 +132,7 @@ The geological model is built from available literature values and sediment core
 - A clay lens representative of overbank fine deposits
 - Weathered and competent bedrock
 
-```{admonition} Resistivity contrasts in post-fire sediments
-:class: note
+```{note} Resistivity contrasts in post-fire sediments
 Fine ash and silt layers deposited after the initial post-fire flood pulse are particularly conductive (low resistivity, ~20–50 Ω·m) due to their high surface area, ionic load from burnt organic material, and tendency to retain moisture. Coarser gravel layers deposited during high-energy events are more resistive (~150–300 Ω·m). This contrast is the primary target for ERT-based stratigraphic discrimination.
 ```
 
@@ -422,15 +420,38 @@ def run_inversion(_=None):
         if k is None:
             print('⚠️  Run the forward model first.')
             return
+
         print('Running inversion...')
-        k.invert()
-        k.showResults(index=0, electrodes=True, hor_cbar=False)
-        plt.title('True resistivity model')
-        plt.show()
-        k.showResults(index=1, electrodes=True)
-        plt.title('Inverted resistivity model')
-        plt.show()
-        print('✅ Inversion complete.')
+        try:
+            k.invert(iplot=False)
+
+            fig, axes = plt.subplots(1, 2, figsize=(14, 4))
+
+            # True model (initial resistivity assigned to mesh)
+            plt.sca(axes[0])
+            k.mesh.show(attr='res0', ax=axes[0])
+            axes[0].set_title('True resistivity model')
+
+            # Inverted model (first survey = index 0 after inversion)
+            plt.sca(axes[1])
+            k.showResults(index=0, ax=axes[1], electrodes=True, hor_cbar=True)
+            axes[1].set_title('Inverted resistivity model')
+
+            plt.tight_layout()
+            plt.show()
+
+            # Print misfit info if available
+            try:
+                rmse = k.surveys[0].df['resError'].mean()
+                print(f'📊 Mean residual error: {rmse:.2f}%')
+            except Exception:
+                pass
+
+            print('✅ Inversion complete.')
+
+        except Exception as e:
+            print(f'❌ Inversion failed: {e}')
+            print('Tip: ensure the forward model ran successfully and wine/R2 is available.')
 
 run_button.on_click(build_model)
 invert_button.on_click(run_inversion)
@@ -450,8 +471,7 @@ display(out)
 - [ ] Comparison of ERT sensitivity across array types for thin-layer detection
 - [ ] Integration with EMI (CMD Mini-Explorer) grid surveys for spatial extrapolation
 
-```{admonition} GRWater project
-:class: tip
+```{tip} GRWater project
 This site is part of the [GRWater project](https://grwater.ica.csic.es/) — multi-scale monitoring of the Earth Critical Zone for post-fire forest management.
 ```
 
@@ -461,15 +481,13 @@ This site is part of the [GRWater project](https://grwater.ica.csic.es/) — mul
 
 Forward modelling of the river bank ERT cross-section demonstrates that the main resistivity contrasts in a post-fire check dam system — between dry coarse gravels, conductive ash/silt layers, and the saturated alluvial substrate — are resolvable with a standard 48-electrode Dipole-Dipole or Wenner-α array at 0.5–1 m spacing. The clay lens and hyporheic zone produce distinct low-resistivity anomalies that are detectable even under moderate noise conditions (3–5%).
 
-```{admonition} Key takeaway
-:class: important
+```{important} Key takeaway
 Synthetic ERT modelling confirms that a cross-dam perpendicular transect with 48 electrodes at 1 m spacing provides sufficient depth of investigation (~8–10 m) and lateral resolution to discriminate post-fire sediment layers and moisture zones within the check dam sediment body — supporting the planned field campaign.
 ```
 
 ---
 
-```{admonition} Data Acquisition & Processing Service
-:class: note
+```{note} Data Acquisition & Processing Service
 [ICA-CSIC](https://www.ica.csic.es) offers a professional service for geophysical
 data acquisition and processing as part of its
 [Geo-Spatial Technologies for Agro-Forestry Systems](https://www.ica.csic.es/servicios/servicios-cientifico-tecnicos/tecnologias-geo-espaciales-para-el-estudio-de-sistemas-agro-forestales)

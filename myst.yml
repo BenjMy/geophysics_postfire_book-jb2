@@ -3,27 +3,41 @@ version: 1
 # ── Project metadata ────────────────────────────────────────────────────────
 project:
   title: Geophysics as a tool for post-fire soil restauration 🔥 
-  subtitle: resipy & emagpy Course
+  #subtitle: resipy & emagpy Course
   short_title: Geophysics & post-fire soil restauration 🔥 
-  jupyter: true
   bibliography: references.bib
-  settings:
-    output_stderr: show
-    
+  description: Material didáctico correspondiente a la Microcredencial en Inteligencia Artificial y Tecnologías Geoespaciales aplicadas a la Restauración de Ecosistemas Forestales afectados por incendios y sequías extremas.
   # ── Authors ────────────────────────────────────────────────────────────────
+  keywords:
+    - geophysics
+    - electrical resistivity tomography
+    - electromagnetic induction
+    - python
+    - resipy
+    - emagpy
+    - open education
   authors:
-    - name: Benjamin Mary
-      email: benjamin.mary@ica.csic.es
-      orcid: 0000-0000-0000-0000
-      affiliations:
-        - id: uni
-          institution: CSIC
-          department: ICA
-          city: Madrid
-          country: Spain
-      corresponding: true
+      - name: Benjamin Mary
+        affiliation:
+          - Instituto de Ciencias Agrarias
+          - CSIC
+        orcid: 0000-0003-0815-842X
+        email: benjamin.mary@ica.csic.es
+        corresponding: true
+      - name: Héctor Nieto
+        affiliation: 
+          - Instituto de Ciencias Agrarias
+          - CSIC
+        orcid: 0000-0003-4250-6424
+        email: hector.nieto@ica.csic.es
+      - name: María Burguet Marimón
+        affiliation: 
+          - Instituto de Ciencias Agrarias
+          - CSIC
+        orcid: 0000-0002-9748-8078
 
-
+        
+        
   # ── Publication info ───────────────────────────────────────────────────────
   copyright: "2025"
   license:
@@ -33,25 +47,43 @@ project:
   version: "1.0.0"
   date: 2025-01-19
 
-  keywords:
-    - geophysics
-    - electrical resistivity tomography
-    - electromagnetic induction
-    - python
-    - resipy
-    - emagpy
-    - open education
+
 
   # ── Repository & links ─────────────────────────────────────────────────────
   github: https://github.com/BenjMy/geophysics_postfire_book-jb2
-  binder: https://mybinder.org/v2/gh/BenjMy/geophysics_postfire_book-jb2/main
-
+  jupyter:
+    execute: true
+    binder:
+      repo: https://github.com/BenjMy/geophysics_postfire_book-jb2
+  settings:
+    output_matplotlib_strings: remove
+    output_stderr: remove-warn
+    #output_stderr: show
+    
   # ── Exports ───────────────────────────────────────────────────────────────
   exports:
-    - format: pdf
-      template: plain_latex  # clean academic PDF template
-      output: exports/intro_microcredential_UCLM.pdf    
-      
+    - format: typst
+      template: plain_typst_book  # clean academic PDF template
+      output: microcredencial-geophysics.pdf    
+      cover: ./assets/images/logo_main.png
+      logo: ./assets/images/logo_main.png
+      logo_width: 40
+      Logoposition: right
+      options:
+       toc: true
+       toc_depth: 2        # ← controls depth shown in PDF table of contents       
+
+
+  # ── Numbering ──────────────────────────────────────────────────────────────
+  numbering:
+    heading_1: true
+    heading_2: true
+    heading_3: true   # stops at 1.1 — never goes to 1.1.1
+    heading_4: false
+    heading_5: false
+    heading_6: false
+ 
+    
   # ── Notebook execution ─────────────────────────────────────────────────────
   execute:
     execute_notebooks: auto      # auto | force | never
@@ -68,13 +100,14 @@ project:
 
   # ── Table of Contents ──────────────────────────────────────────────────────
   toc:
+    - title: "Introduction"
     - file: intro_microcredential_UCLM.md
 
-    - title: "📅 Agenda"
+    - title: "Agenda"
       children:
         - file: docs/agenda.md
 
-    - title: "📚 How-to"
+    - title: "How-to"
       children:
         - file: docs/getting_started.md
         - file: docs/01_python_basics.md            
@@ -82,31 +115,29 @@ project:
         #- file: docs/troubleshooting.md
 
     # ── Theory ───────────────────────────────────────────────────────────────
-    - title: Theory
+    - title: Bloc 1 · Fundamentals
       children:
-        - title: "Bloc 1 · Fundamentals"
-          children:
-            #- file: notebooks/01_introduction/01_python_basics.md
-            - file: notebooks/01_introduction/013_postfire_soil_basics.md
-            - file: notebooks/01_introduction/02_geophysical_methods.md                       
-            - file: notebooks/01_introduction/013_postfire_soil_basics_geophysics.md                       
+        - file: notebooks/01_introduction/013_postfire_soil_basics.md
+        - file: notebooks/01_introduction/02_geophysical_methods.md                       
+        - file: notebooks/01_introduction/013_postfire_soil_basics_geophysics.md                       
 
 
 
-        - title: "⚡ Bloc 2 · Resistivity"
-          children:
-            - file: notebooks/02_resistivity/012_ER_concept.md           
-            - file: notebooks/02_resistivity/01_resistivity_introduction.md  
-            - file: notebooks/02_resistivity/01_resipy_introduction.md
+    - title: "Bloc 2 · Resistivity"
+      children:
+        - file: notebooks/02_resistivity/012_ER_concept.md           
+        - file: notebooks/02_resistivity/01_resistivity_introduction.md  
+        - file: notebooks/02_resistivity/01_resipy_introduction.md
 
-        - title: "⚛ Bloc 3 · Electromagnetics"
-          children:
-            - file: notebooks/03_electromagnetics/01_electromagnetics_introduction.md
-            - file: notebooks/03_electromagnetics/01_emagpy_introduction.md
+    - title: "Bloc 3 · Electromagnetics"
+      children:
+        - file: notebooks/03_electromagnetics/01_electromagnetics_introduction.md
+        - file: notebooks/03_electromagnetics/01_emagpy_introduction.md
 
 
-        - title: "Bloc 4 · Petro/pedophysics"
-          file: notebooks/pedophysics.md
+    - title: "Bloc 4 · Petro/pedophysics"
+      children:
+        - file: notebooks/pedophysics.md
           
     # ── Practical Cases ───────────────────────────────────────────────────────
     - title: Practical Cases
@@ -115,7 +146,7 @@ project:
         - title: "💧 Watershed case study"
           children:
             - file: notebooks/practical_cases/Agramon_EM.md
-            - file: notebooks/practical_cases/Agramon_ERT.md
+            #- file: notebooks/practical_cases/Agramon_ERT.md
             #- file: notebooks/practical_cases/Hellin_EM.md
         - title: "🪨 Sedimendation dams"
           children:
@@ -140,14 +171,25 @@ project:
     # children:
     #   - file: docs/RD.md
 
-	
+  parts:
+    abstract: | 
+      Este libro digital (*Jupyter Notebook*) contiene el material online necesario para cursar 
+      la parte `Geofisica aplicada a la restauración de espacios naturales` de la 
+      `Microcredencial en Inteligencia Artificial y Tecnologías Geoespaciales aplicadas a la 
+      Restauración de Ecosistemas Forestales afectados por incendios y sequías extremas`.
+    acknowledgements: |
+      Este material didáctico ha sido desarrollado gracias al proyecto GRwater – 
+      Programa Prismas y Problemas de la Fundación BBVA 2023
+  Options:
+    logo: ./assets/images/logo_main.png
+    
+    
 # ── Site (web) settings ─────────────────────────────────────────────────────
 site:
   template: book-theme
   index: intro.md
-  logo: logo.svg
-
-    
+  title: Libro digital sobre geofisica aplicada a la restauración de espacios naturales
+   
     
   # ── Call-to-action buttons ────────────────────────────────────────────────
   actions:
@@ -161,11 +203,14 @@ site:
   options:
     show_nav_depth: 2
     hide_outline: false
+    outline_maxdepth: 2         # Max depth shown in sidebar TOC (1 = titles only, 2 = titles + h2)
     # Show "Open in JupyterLab / Binder / Thebe" launch buttons on notebook pages
     launch_buttons: true
     thebe: true                  # 🐝 Enable Thebe live code execution in-page
     default_mode: light          # Default to light mode
-
+    logo_text: Microcredencial UCLM
+    logo: ./assets/images/logo_main.png
+    
 glossary: glossary.md
 
 

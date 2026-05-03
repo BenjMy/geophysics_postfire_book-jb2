@@ -16,8 +16,7 @@ kernelspec:
 Design a geophysical prospection campaign for a burned site of your choice.
 No wrong answers — your reasoning matters more than the result.
 
-::::{admonition} Instructions
-:class: tip
+::::{tip} Instructions
 You have **~10 minutes**. Work through each part and click **"Review my answers"** at the end.
 ::::
 
@@ -198,8 +197,7 @@ def on_click(_):
 btn.on_click(on_click)
 display(btn, out)
 ```
-```{admonition} Data Acquisition & Processing Service
-:class: note
+```{note} Data Acquisition & Processing Service
 [ICA-CSIC](https://www.ica.csic.es) offers a professional service for geophysical
 data acquisition and processing as part of its
 [Geo-Spatial Technologies for Agro-Forestry Systems](https://www.ica.csic.es/servicios/servicios-cientifico-tecnicos/tecnologias-geo-espaciales-para-el-estudio-de-sistemas-agro-forestales)

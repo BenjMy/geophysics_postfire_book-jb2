@@ -4,7 +4,7 @@
     "opts": {
       "execute": true,
       "executeParallel": 11,
-      "pdf": false,
+      "pdf": true,
       "tex": false,
       "typst": false,
       "docx": false,
@@ -23,9 +23,181 @@
       "ci": false,
       "maxSizeWebp": 1572864,
       "keepHost": false
-    },
-    "performSiteBuild": true
+    }
   },
-  "exports": [],
-  "buildSite": true
+  "exports": [
+    {
+      "format": "typst",
+      "template": "plain_typst_book",
+      "output": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/microcredencial-geophysics.pdf",
+      "cover": "./assets/images/logo_main.png",
+      "logo": "./assets/images/logo_main.png",
+      "logo_width": 40,
+      "Logoposition": "right",
+      "options": {
+        "toc": true,
+        "toc_depth": 2
+      },
+      "articles": [
+        {
+          "level": 1,
+          "title": "Agenda"
+        },
+        {
+          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/docs/agenda.md",
+          "level": 2,
+          "slug": "agenda"
+        },
+        {
+          "level": 1,
+          "title": "How-to"
+        },
+        {
+          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/docs/getting_started.md",
+          "level": 2,
+          "slug": "getting-started"
+        },
+        {
+          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/docs/01_python_basics.md",
+          "level": 2,
+          "slug": "python-basics"
+        },
+        {
+          "level": 1,
+          "title": "Bloc 1 · Fundamentals"
+        },
+        {
+          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/notebooks/01_introduction/013_postfire_soil_basics.md",
+          "level": 2,
+          "slug": "postfire-soil-basics"
+        },
+        {
+          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/notebooks/01_introduction/02_geophysical_methods.md",
+          "level": 2,
+          "slug": "geophysical-methods"
+        },
+        {
+          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/notebooks/01_introduction/013_postfire_soil_basics_geophysics.md",
+          "level": 2,
+          "slug": "postfire-soil-basics-geophysics"
+        },
+        {
+          "level": 1,
+          "title": "Bloc 2 · Resistivity"
+        },
+        {
+          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/notebooks/02_resistivity/012_ER_concept.md",
+          "level": 2,
+          "slug": "er-concept"
+        },
+        {
+          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/notebooks/02_resistivity/01_resistivity_introduction.md",
+          "level": 2,
+          "slug": "resistivity-introduction"
+        },
+        {
+          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/notebooks/02_resistivity/01_resipy_introduction.md",
+          "level": 2,
+          "slug": "resipy-introduction"
+        },
+        {
+          "level": 1,
+          "title": "Bloc 3 · Electromagnetics"
+        },
+        {
+          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/notebooks/03_electromagnetics/01_electromagnetics_introduction.md",
+          "level": 2,
+          "slug": "electromagnetics-introduction"
+        },
+        {
+          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/notebooks/03_electromagnetics/01_emagpy_introduction.md",
+          "level": 2,
+          "slug": "emagpy-introduction"
+        },
+        {
+          "level": 1,
+          "title": "Bloc 4 · Petro/pedophysics"
+        },
+        {
+          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/notebooks/pedophysics.md",
+          "level": 2,
+          "slug": "pedophysics"
+        },
+        {
+          "level": 1,
+          "title": "Practical Cases"
+        },
+        {
+          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/notebooks/practical_cases/introduction_GRWATER.md",
+          "level": 2,
+          "slug": "introduction-grwater"
+        },
+        {
+          "level": 2,
+          "title": "💧 Watershed case study"
+        },
+        {
+          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/notebooks/practical_cases/Agramon_EM.md",
+          "level": 3,
+          "slug": "agramon-em"
+        },
+        {
+          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/notebooks/practical_cases/Agramon_ERT.ipynb",
+          "level": 3,
+          "slug": "agramon-ert"
+        },
+        {
+          "level": 2,
+          "title": "🪨 Sedimendation dams"
+        },
+        {
+          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/notebooks/practical_cases/Hellin_diques.ipynb",
+          "level": 3,
+          "slug": "hellin-diques"
+        },
+        {
+          "level": 1,
+          "title": "🧪 Exercises"
+        },
+        {
+          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/exercises/README.md",
+          "level": 2,
+          "slug": "readme"
+        },
+        {
+          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/exercises/Exercice1_ResistivityBasics.md",
+          "level": 2,
+          "slug": "exercice1-resistivitybasics"
+        },
+        {
+          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/exercises/Exercice2_ERTSurveyDesign.md",
+          "level": 2,
+          "slug": "exercice2-ertsurveydesign"
+        },
+        {
+          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/exercises/Exercice3_FieldDataAnalysis.md",
+          "level": 2,
+          "slug": "exercice3-fielddataanalysis"
+        },
+        {
+          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/exercises/Exercice4_FieldDataInterpretation.md",
+          "level": 2,
+          "slug": "exercice4-fielddatainterpretation"
+        },
+        {
+          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/exercises/Exercice5_PostFire_bib.md",
+          "level": 2,
+          "slug": "exercice5-postfire-bib"
+        },
+        {
+          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/glossary.md",
+          "level": 1,
+          "slug": "glossary",
+          "title": "Glossary"
+        }
+      ],
+      "$file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/myst.yml",
+      "$project": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2"
+    }
+  ]
 }

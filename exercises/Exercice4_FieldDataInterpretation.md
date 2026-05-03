@@ -27,8 +27,7 @@ authors:
 # Exploring Soil Management Legacies in Agronomy through EM and ERT
 
 
-```{admonition} No relation with post-fire!
-:class: caution
+```{caution} No relation with post-fire!
 This example is not directly linked to post-fire soil management but rather to agronomy. But the results obtained are also interesting to understand dynamics of the measured electrical conductivity under varying soil conditions.
 ```
 
