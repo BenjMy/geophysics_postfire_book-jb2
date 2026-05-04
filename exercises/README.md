@@ -10,9 +10,7 @@ title: "Course Exercises"
 Always **attempt the exercise yourself** before looking at the solution. Struggling with a problem is where learning happens!
 ```
 
----
 
----
 ## Topics
 
 ::::{grid} 1 1 2 2
@@ -50,35 +48,6 @@ Analyze real data and make the interpretation.
 :::
 
 ::::
----
-
-
-## Further Reading
-
-- [resipy documentation](https://resipy.readthedocs.io/)
-- [PyGimli: ERT and EM inversion](https://www.pygimli.org/)
-- [EM Survey Guidelines](https://www.geometrics.com/)
-
-
-## Structure
-
-Each week's exercise folder contains:
-
-- **Main exercise notebook** — problems with guidance and hints
-- **`solutions/` sub-folder** — reference implementations to review after your attempt
-
-```
-exercises/
-├── exercice1/
-│   ├── exercise1.md
-│   └── solutions/
-│       └── exercise1.md
-├── exercice2/
-│   ├── exercise2.md
-│   └── solutions/
-│       └── exercise2.md
-```
-
 
 
 ## Guidelines

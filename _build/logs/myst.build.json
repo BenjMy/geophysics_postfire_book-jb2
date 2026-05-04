@@ -67,52 +67,52 @@
           "title": "Bloc 1 · Fundamentals"
         },
         {
-          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/notebooks/01_introduction/011_postfire_soil_basics_ES.md",
+          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/notebooks/01_introduction/011_postfire_soil_basics.md",
           "level": 2,
-          "slug": "postfire-soil-basics-es"
+          "slug": "postfire-soil-basics"
         },
         {
-          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/notebooks/01_introduction/012_geophysical_methods_ES.md",
+          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/notebooks/01_introduction/012_geophysical_methods.md",
           "level": 2,
-          "slug": "geophysical-methods-es"
+          "slug": "geophysical-methods"
         },
         {
-          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/notebooks/01_introduction/013_postfire_soil_basics_geophysics_ES.md",
+          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/notebooks/01_introduction/013_postfire_soil_basics_geophysics.md",
           "level": 2,
-          "slug": "postfire-soil-basics-geophysics-es"
+          "slug": "postfire-soil-basics-geophysics"
         },
         {
           "level": 1,
           "title": "Bloc 2 · Resistivity"
         },
         {
-          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/notebooks/02_resistivity/021_ER_concept_ES.md",
+          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/notebooks/02_resistivity/021_ER_concept.md",
           "level": 2,
-          "slug": "er-concept-es"
+          "slug": "er-concept"
         },
         {
-          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/notebooks/02_resistivity/022_resistivity_introduction_ES.md",
+          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/notebooks/02_resistivity/022_resistivity_introduction.md",
           "level": 2,
-          "slug": "resistivity-introduction-es"
+          "slug": "resistivity-introduction"
         },
         {
-          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/notebooks/02_resistivity/023_resipy_introduction_ES.md",
+          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/notebooks/02_resistivity/023_resipy_introduction.md",
           "level": 2,
-          "slug": "resipy-introduction-es"
+          "slug": "resipy-introduction"
         },
         {
           "level": 1,
           "title": "Bloc 3 · Electromagnetics"
         },
         {
-          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/notebooks/03_electromagnetics/031_electromagnetics_introduction_ES.md",
+          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/notebooks/03_electromagnetics/031_electromagnetics_introduction.md",
           "level": 2,
-          "slug": "electromagnetics-introduction-es"
+          "slug": "electromagnetics-introduction"
         },
         {
-          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/notebooks/03_electromagnetics/032_emagpy_introduction_ES.md",
+          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/notebooks/03_electromagnetics/032_emagpy_introduction.md",
           "level": 2,
-          "slug": "emagpy-introduction-es"
+          "slug": "emagpy-introduction"
         },
         {
           "level": 1,
