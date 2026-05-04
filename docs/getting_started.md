@@ -70,6 +70,7 @@ This kind of exploration is the core of the practical sections of this course.
 
 ---
 
+<!--
 ## Exporting the Book to PDF
 ```{tip}
 To save a page as a PDF, click the **download icon** (⬇) in the top toolbar and select **PDF**. 
@@ -79,6 +80,7 @@ For the best result:
 - Use your browser's **Print → Save as PDF** option if the toolbar button is unavailable
 - Note that interactive widgets will appear as static images in the PDF — they are only live in the browser
 ```
+-->
 
 ---
 
@@ -88,5 +90,5 @@ For the best result:
 - **Complete sections in order** — each notebook builds on concepts introduced in the previous one
 - **Try exercises before looking at solutions** — the struggle is where the learning happens
 - **Play with the widgets** — changing parameters and observing effects is as important as reading the theory
-- **Ask questions** — use the course discussion forum if something does not behave as expected
+- **Ask questions** — contact benjamin.mary@ica.csic.es if something does not behave as expected
 ```

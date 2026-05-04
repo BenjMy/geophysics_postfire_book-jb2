@@ -1,0 +1,191 @@
+# ── Metadatos del proyecto ────────────────────────────────────────────────
+project:
+  title: Geofísica como herramienta para la restauración de suelos post-incendio 🔥
+  short_title: Geofísica y restauración post-incendio 🔥
+  bibliography: references.bib
+  description: >
+    Material didáctico correspondiente a la Microcredencial en Inteligencia Artificial 
+    y Tecnologías Geoespaciales aplicadas a la restauración de ecosistemas forestales 
+    afectados por incendios y sequías extremas.
+
+  # ── Palabras clave ──────────────────────────────────────────────────────
+  keywords:
+    - geofísica
+    - tomografía de resistividad eléctrica
+    - inducción electromagnética
+    - python
+    - resipy
+    - emagpy
+    - educación abierta
+
+  # ── Autores ─────────────────────────────────────────────────────────────
+  authors:
+    - name: Benjamin Mary
+      affiliation:
+        - Instituto de Ciencias Agrarias
+        - CSIC
+      orcid: 0000-0003-0815-842X
+      email: benjamin.mary@ica.csic.es
+      corresponding: true
+
+    - name: Héctor Nieto
+      affiliation:
+        - Instituto de Ciencias Agrarias
+        - CSIC
+      orcid: 0000-0003-4250-6424
+      email: hector.nieto@ica.csic.es
+
+    - name: María Burguet Marimón
+      affiliation:
+        - Instituto de Ciencias Agrarias
+        - CSIC
+      orcid: 0000-0002-9748-8078
+
+  # ── Información de publicación ──────────────────────────────────────────
+  copyright: "2025"
+  license:
+    content: CC-BY-4.0
+    code: MIT
+  #doi: 10.5281/zenodo.0000000  # actualizar al publicar
+  version: "1.0.0"
+  date: 2025-01-19
+
+  # ── Repositorio y ejecución ─────────────────────────────────────────────
+  github: https://github.com/BenjMy/geophysics_postfire_book-jb2
+
+  jupyter:
+    execute: true
+    binder:
+      repo: https://github.com/BenjMy/geophysics_postfire_book-jb2
+
+  settings:
+    output_matplotlib_strings: remove
+    output_stderr: remove-warn
+
+  # ── Exportación ─────────────────────────────────────────────────────────
+  exports:
+    - format: typst
+      template: plain_typst_book
+      output: microcredencial-geofisica_ES.pdf
+      cover: ./assets/images/logo_main.png
+      logo: ./assets/images/logo_main.png
+      logo_width: 40
+      Logoposition: right
+      options:
+        toc: true
+        toc_depth: 2
+
+  # ── Numeración ──────────────────────────────────────────────────────────
+  numbering:
+    heading_1: false
+    heading_2: false
+    heading_3: false
+    heading_4: false
+    heading_5: false
+    heading_6: false
+
+  # ── Ejecución de notebooks ──────────────────────────────────────────────
+  execute:
+    execute_notebooks: auto
+    timeout: 600
+    allow_errors: false
+    stderr_output: show
+    requirements: requirements.txt
+
+  kernels:
+    - id: python3
+      display_name: Python 3 (Geofísica)
+      language: python
+
+  # ── Tabla de contenidos ─────────────────────────────────────────────────
+  toc:
+    - title: Introducción
+    - file: intro_microcredential_UCLM.md
+
+    - title: Agenda
+      children:
+        - file: docs/agenda.md
+
+    - title: Guía práctica
+      children:
+        - file: docs/getting_started.md
+        - file: docs/01_python_basics.md
+
+    - title: Bloque 1 · Fundamentos
+      children:
+        - file: notebooks/01_introduction/011_postfire_soil_basics_ES.md
+        - file: notebooks/01_introduction/012_geophysical_methods_ES.md
+        - file: notebooks/01_introduction/013_postfire_soil_basics_geophysics_ES.md
+
+    - title: Bloque 2 · Resistividad
+      children:
+        - file: notebooks/02_resistivity/021_ER_concept_ES.md
+        - file: notebooks/02_resistivity/022_resistivity_introduction_ES.md
+        - file: notebooks/02_resistivity/023_resipy_introduction_ES.md
+
+    - title: Bloque 3 · Electromagnetismo
+      children:
+        - file: notebooks/03_electromagnetics/031_electromagnetics_introduction_ES.md
+        - file: notebooks/03_electromagnetics/032_emagpy_introduction_ES.md
+
+    - title: Bloque 4 · Petro/Pedofísica
+      children:
+        - file: notebooks/pedophysics_ES.md
+
+    - title: Casos prácticos
+      children:
+        - file: notebooks/practical_cases/introduction_GRWATER.md
+        - title: 💧 Caso de estudio de cuenca
+          children:
+            - file: notebooks/practical_cases/Agramon_EM.md
+        - title: 🪨 Diques de sedimentación
+          children:
+            - file: notebooks/practical_cases/Hellin_diques.md
+
+    - title: 🧪 Ejercicios
+      children:
+        - file: exercises/README.md
+        - file: exercises/Exercice1_ResistivityBasics.md
+        - file: exercises/Exercice2_ERTSurveyDesign.md
+        - file: exercises/Exercice3_FieldDataAnalysis.md
+        - file: exercises/Exercice4_FieldDataInterpretation.md
+        - file: exercises/Exercice5_PostFire_bib.md
+
+    - file: glossary.md
+      title: Glosario
+
+  # ── Partes del documento ────────────────────────────────────────────────
+  parts:
+    abstract: |
+      Este libro digital (Jupyter Notebook) contiene el material necesario para cursar 
+      la parte de "Geofísica aplicada a la restauración de espacios naturales" dentro de la 
+      Microcredencial en Inteligencia Artificial y Tecnologías Geoespaciales aplicadas a la 
+      restauración de ecosistemas forestales afectados por incendios y sequías extremas.
+
+    acknowledgements: |
+      Este material didáctico ha sido desarrollado gracias al proyecto GRwater – 
+      Programa Prismas y Problemas de la Fundación BBVA 2023.
+
+# ── Configuración del sitio web ────────────────────────────────────────────
+site:
+  template: book-theme
+  index: intro.md
+  title: Libro digital sobre geofísica aplicada a la restauración de espacios naturales
+
+  actions:
+    - title: ⭐ Star
+      url: https://github.com/BenjMy/geophysics_postfire_book-jb2
+    - title: 🚀 Lanzar
+      url: https://mybinder.org/v2/gh/BenjMy/geophysics_postfire_book-jb2/main
+
+  options:
+    show_nav_depth: 3
+    hide_outline: false
+    outline_maxdepth: 3
+    launch_buttons: true
+    thebe: true
+    default_mode: light
+    logo_text: Microcredencial UCLM
+    logo: ./assets/images/logo_main.png
+
+glossary: glossary.md

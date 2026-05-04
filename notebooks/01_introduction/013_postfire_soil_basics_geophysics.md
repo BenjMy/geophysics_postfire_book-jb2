@@ -1,5 +1,10 @@
 ---
 title: "Post-fire & Geophysics: a good match?"
+authors:
+  - name: Benjamin Mary
+    email: benjamin.mary@ica.csic.es
+    affiliations:
+      - ICA-CSIC, Madrid, Spain
 ---
 
 
@@ -9,24 +14,20 @@ Applying geophysical methods to post-fire soils is an **emerging field**. The se
 ```
 
 
-## Geophysical monitoring for post-fire environments
+From the on-going [GRwater project (2025-2027)](../practical_cases/introduction_GRWATER.md) we are trying to use geophysical methods by repeating geophysical surveys at various years post-fire on different field sites. We can track the temporal trajectory of soil recovery and assess the effectiveness of different restoration interventions — without disturbing the plots we are monitoring. The [concept figure](fig-concept) shows how to slice the catchment affected by the fire using different methods depending on the tree density etc. More results are available in the [Agramon EM](../practical_cases/Agramon_EM.md), [Agramon ERT](../practical_cases/Agramon_ERT.md) and [Hellin EM](../practical_cases/Hellin_EM.md) sections.
 
+
+
+```{figure} ../../assets/images/concept_fig.png
+:name: fig-concept
+:width: 80%
+:align: center
+Conceptual figure illustrating how complementary geophysical methods detect changes in subsurface moisture pathways, soil structure, and surface topography following wildfire and restoration treatments.
+```
+
+---
 
 The table below maps key post-fire soil properties to the methods potentially sensitive to them. 
-
-
-
-
-| Soil property | ERT | EMI | GPR | Seismic | Hypothesised change after fire |
-|---|---|---|---|---|---|
-| Water content | 🟡 Likely high | 🟡 Likely high | 🟡 Likely high | ❓ Unclear | Probably reduced due to hydrophobicity — but variable |
-| Clay content & texture | 🟡 Possibly moderate | 🟡 Possibly moderate | ⚪ Unlikely | ⚪ Unlikely | Likely unchanged short-term — but ash mixing uncertain |
-| Bulk density / compaction | 🟠 Indirect, uncertain | 🟠 Indirect, uncertain | ⚪ Unlikely | 🟡 Possibly | May increase — evidence limited in post-fire contexts |
-| Ion concentration (salinity) | 🟡 Likely sensitive | 🟡 Likely sensitive | ⚪ Unlikely | ⚪ Unlikely | May increase with ash leaching — timing poorly constrained |
-| Char / ash layer | 🟠 Weakly, uncertain | 🟠 Weakly, uncertain | 🟠 Possibly — untested | ⚪ Unlikely | Present immediately post-fire — signature unclear |
-| Organic matter loss | 🟠 Possibly indirect | 🟠 Possibly indirect | ⚪ Unlikely | ⚪ Unlikely | Strongly reduced — geophysical detectability unknown |
-| Bedrock depth | 🟡 Moderate | ⚪ Unlikely | 🟡 Moderate | 🟡 Likely | Unchanged — but weathering front may shift over years |
-| Hydrophobic layer | 🟠 Speculative | 🟠 Speculative | 🟠 Speculative | ⚪ Unlikely | Expected — no clear geophysical signature documented yet |
 
 **Legend:**
 🟡 Plausible sensitivity based on physical principles or analogous studies  
@@ -35,9 +36,16 @@ The table below maps key post-fire soil properties to the methods potentially se
 ❓ Theoretically possible but direction and magnitude unknown
 
 
-
-
-
+| Soil property | ERT | EMI | GPR | Seismic | Hypothesised change after fire |
+|---|---|---|---|---|---|
+| Water content | 🟡 Likely high | 🟡 Likely high | 🟡 Likely high | 🟡 Likely high | Probably reduced due to hydrophobicity — but variable |
+| Clay content & texture | 🟡 Possibly moderate | 🟡 Possibly moderate | ⚪ Unlikely | ⚪ Unlikely | Likely unchanged short-term — but ash mixing uncertain |
+| Bulk density / compaction | 🟠 Indirect, uncertain | 🟠 Indirect, uncertain | ⚪ Unlikely | 🟡 Possibly | May increase — evidence limited in post-fire contexts |
+| Ion concentration (salinity) | 🟡 Likely sensitive | 🟡 Likely sensitive | ⚪ Unlikely | ⚪ Unlikely | May increase with ash leaching — timing poorly constrained |
+| Char / ash layer | 🟠 Weakly, uncertain | 🟠 Weakly, uncertain | 🟠 Possibly — untested | ⚪ Unlikely | Present immediately post-fire — signature unclear |
+| Organic matter loss | 🟠 Possibly indirect | 🟠 Possibly indirect | ⚪ Unlikely | ⚪ Unlikely | Strongly reduced — geophysical detectability unknown |
+| Bedrock depth | 🟡 Moderate | ⚪ Unlikely | 🟡 Moderate | 🟡 Likely | Unchanged — but weathering front may shift over years |
+| Hydrophobic layer | 🟠 Speculative | 🟠 Speculative | 🟠 Speculative | ⚪ Unlikely | Expected — no clear geophysical signature documented yet |
 
 
 Wildfire fundamentally alters the physical properties of soil — burning organic matter,
@@ -57,14 +65,4 @@ These are among the core questions this project aims to address.
 ```
 
 
-During the on-going [GRwater project (2025-2027)](../practical_cases/introduction_GRWATER.md) we are trying to use geophysical methods by repeating geophysical surveys at various years post-fire on different field sites. We can track the temporal trajectory of soil recovery and assess the effectiveness of different restoration interventions — without disturbing the plots we are monitoring. The [concept figure](fig-concept) shows how to slice the catchment affected by the fire using different methods depending on the tree density etc. More results are available in the [Agramon EM](../practical_cases/Agramon_EM.md), [Agramon ERT](../practical_cases/Agramon_ERT.md) and [Hellin EM](../practical_cases/Hellin_EM.md) sections.
-
-
-
-```{figure} ../../assets/images/concept_fig.png
-:name: fig-concept
-:width: 80%
-:align: center
-Conceptual figure illustrating how complementary geophysical methods detect changes in subsurface moisture pathways, soil structure, and surface topography following wildfire and restoration treatments.
-```
 

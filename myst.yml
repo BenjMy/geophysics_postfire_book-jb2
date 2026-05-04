@@ -43,7 +43,7 @@ project:
   license:
     content: CC-BY-4.0
     code: MIT
-  doi: 10.5281/zenodo.0000000   # update once published
+  #doi: 10.5281/zenodo.0000000   # update once published
   version: "1.0.0"
   date: 2025-01-19
 
@@ -117,22 +117,20 @@ project:
     # ── Theory ───────────────────────────────────────────────────────────────
     - title: Bloc 1 · Fundamentals
       children:
-        - file: notebooks/01_introduction/013_postfire_soil_basics.md
-        - file: notebooks/01_introduction/02_geophysical_methods.md                       
+        - file: notebooks/01_introduction/011_postfire_soil_basics.md
+        - file: notebooks/01_introduction/012_geophysical_methods.md                       
         - file: notebooks/01_introduction/013_postfire_soil_basics_geophysics.md                       
-
-
 
     - title: "Bloc 2 · Resistivity"
       children:
-        - file: notebooks/02_resistivity/012_ER_concept.md           
-        - file: notebooks/02_resistivity/01_resistivity_introduction.md  
-        - file: notebooks/02_resistivity/01_resipy_introduction.md
+        - file: notebooks/02_resistivity/021_ER_concept.md           
+        - file: notebooks/02_resistivity/022_resistivity_introduction.md  
+        - file: notebooks/02_resistivity/023_resipy_introduction.md
 
     - title: "Bloc 3 · Electromagnetics"
       children:
-        - file: notebooks/03_electromagnetics/01_electromagnetics_introduction.md
-        - file: notebooks/03_electromagnetics/01_emagpy_introduction.md
+        - file: notebooks/03_electromagnetics/031_electromagnetics_introduction.md
+        - file: notebooks/03_electromagnetics/032_emagpy_introduction.md
 
 
     - title: "Bloc 4 · Petro/pedophysics"
@@ -201,9 +199,9 @@ site:
 
   # ── Theme options ─────────────────────────────────────────────────────────
   options:
-    show_nav_depth: 2
+    show_nav_depth: 3
     hide_outline: false
-    outline_maxdepth: 2         # Max depth shown in sidebar TOC (1 = titles only, 2 = titles + h2)
+    outline_maxdepth: 3         # Max depth shown in sidebar TOC (1 = titles only, 2 = titles + h2)
     # Show "Open in JupyterLab / Binder / Thebe" launch buttons on notebook pages
     launch_buttons: true
     thebe: true                  # 🐝 Enable Thebe live code execution in-page

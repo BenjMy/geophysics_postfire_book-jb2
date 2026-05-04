@@ -13,22 +13,6 @@ numbering:
   headings: false
 ---
 
-# Agramón — Soil Moisture at Catchment Scale
-
----
-
-## 👥 Authors
-
-```{tip} Contributors
-**Benjamin Mary** — [benjamin.mary@ica.csic.es](mailto:benjamin.mary@ica.csic.es)
-ICA-CSIC, Madrid, Spain
-
-**Hector Nieto**
-ICA-CSIC, Madrid, Spain
-```
-
----
-
 ## 📍 Location
 
 **Site:** Agramón, Albacete, Spain  
@@ -59,6 +43,7 @@ m
 Aerial view of the Agramón catchment showing vegetation cover and topography.
 ```
 +++
+
 
 The Agramón catchment is located in a semi-arid region of southeastern Spain heavily impacted by recurring drought and wildfire events. Post-fire recovery of forest ecosystems in this area is tightly coupled to soil water availability, which controls vegetation re-establishment and erosion dynamics.
 
@@ -263,7 +248,6 @@ fig.show()
 -->
 
 ```{code-cell} ipython3
-# Static fallback for Typst PDF
 fig_s, ax_s = plt.subplots(figsize=(8, 3))
 for col in col2plot:
     ax_s.plot(df_survey['dist_m'], df_survey[col], label=col, lw=1)
@@ -279,6 +263,7 @@ plt.show()
 
 Interactive scatter map of all six coil spacings (faceted). Hover for coordinates and ECa value; use the colour scale to identify high-conductivity zones.
 
+<!--
 ```{code-cell} ipython3
 :tags: [hide-input, no-typst]
 df_long = df_survey[['x', 'y'] + col2plot].melt(
@@ -304,6 +289,7 @@ fig.update_traces(marker=dict(size=4))
 fig.update_layout(coloraxis_colorbar=dict(title='ECa (mS/m)'))
 fig.show()
 ```
+-->
 
 ```{code-cell} ipython3
 :tags: [remove-input]
@@ -354,6 +340,7 @@ k.surveys[0].df.elevation = df_with_elev['Elevation']
 
 Boxplots comparing ECa across coil spacings (depth proxies) grouped by burn treatment.
 
+<!--
 ```{code-cell} ipython3
 :tags: [hide-input, no-typst]
 melted = gdf_measurements.melt(
@@ -376,10 +363,10 @@ fig = px.box(
 fig.update_layout(boxmode='group', legend_title='Treatment')
 fig.show()
 ```
+-->
 
 ```{code-cell} ipython3
 :tags: [remove-input]
-# Static fallback for Typst PDF
 melted = gdf_measurements.melt(
     id_vars='Treatment',
     value_vars=coils,
@@ -419,6 +406,7 @@ plt.show()
 
 Scatter plots with OLS trendlines comparing how ECa varies with terrain elevation across treatments. The **shallowest coil** (HCP0.20, ~0–0.3 m) captures near-surface moisture; the **deepest coil** (HCP1.50, ~0–1.8 m) integrates the full profile.
 
+<!--
 ```{code-cell} ipython3
 :tags: [hide-input, no-typst]
 for coil_col, depth_label in [
@@ -442,10 +430,10 @@ for coil_col, depth_label in [
     fig.update_layout(showlegend=False)
     fig.show()
 ```
+-->
 
 ```{code-cell} ipython3
 :tags: [remove-input]
-# Static fallback for Typst PDF
 for coil_col, depth_label in [
     (coils[0], f'Shallow (~0–0.3 m)  —  {coils[0]}'),
     (coils[5], f'Deep (~0–1.8 m)  —  {coils[5]}'),
