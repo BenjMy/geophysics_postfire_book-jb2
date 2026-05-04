@@ -29,7 +29,7 @@
     {
       "format": "typst",
       "template": "plain_typst_book",
-      "output": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/microcredencial-geophysics.pdf",
+      "output": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/microcredencial-geofisica_ES.pdf",
       "cover": "./assets/images/logo_main.png",
       "logo": "./assets/images/logo_main.png",
       "logo_width": 40,
@@ -50,7 +50,7 @@
         },
         {
           "level": 1,
-          "title": "How-to"
+          "title": "Guía práctica"
         },
         {
           "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/docs/getting_started.md",
@@ -64,68 +64,68 @@
         },
         {
           "level": 1,
-          "title": "Bloc 1 · Fundamentals"
+          "title": "Bloque 1 · Fundamentos"
         },
         {
-          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/notebooks/01_introduction/011_postfire_soil_basics.md",
+          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/notebooks/01_introduction/011_postfire_soil_basics_ES.md",
           "level": 2,
-          "slug": "postfire-soil-basics"
+          "slug": "postfire-soil-basics-es"
         },
         {
-          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/notebooks/01_introduction/012_geophysical_methods.md",
+          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/notebooks/01_introduction/012_geophysical_methods_ES.md",
           "level": 2,
-          "slug": "geophysical-methods"
+          "slug": "geophysical-methods-es"
         },
         {
-          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/notebooks/01_introduction/013_postfire_soil_basics_geophysics.md",
+          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/notebooks/01_introduction/013_postfire_soil_basics_geophysics_ES.md",
           "level": 2,
-          "slug": "postfire-soil-basics-geophysics"
+          "slug": "postfire-soil-basics-geophysics-es"
         },
         {
           "level": 1,
-          "title": "Bloc 2 · Resistivity"
+          "title": "Bloque 2 · Resistividad"
         },
         {
-          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/notebooks/02_resistivity/021_ER_concept.md",
+          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/notebooks/02_resistivity/021_ER_concept_ES.md",
           "level": 2,
-          "slug": "er-concept"
+          "slug": "er-concept-es"
         },
         {
-          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/notebooks/02_resistivity/022_resistivity_introduction.md",
+          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/notebooks/02_resistivity/022_resistivity_introduction_ES.md",
           "level": 2,
-          "slug": "resistivity-introduction"
+          "slug": "resistivity-introduction-es"
         },
         {
-          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/notebooks/02_resistivity/023_resipy_introduction.md",
+          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/notebooks/02_resistivity/023_resipy_introduction_ES.md",
           "level": 2,
-          "slug": "resipy-introduction"
+          "slug": "resipy-introduction-es"
         },
         {
           "level": 1,
-          "title": "Bloc 3 · Electromagnetics"
+          "title": "Bloque 3 · Electromagnetismo"
         },
         {
-          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/notebooks/03_electromagnetics/031_electromagnetics_introduction.md",
+          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/notebooks/03_electromagnetics/031_electromagnetics_introduction_ES.md",
           "level": 2,
-          "slug": "electromagnetics-introduction"
+          "slug": "electromagnetics-introduction-es"
         },
         {
-          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/notebooks/03_electromagnetics/032_emagpy_introduction.md",
+          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/notebooks/03_electromagnetics/032_emagpy_introduction_ES.md",
           "level": 2,
-          "slug": "emagpy-introduction"
+          "slug": "emagpy-introduction-es"
         },
         {
           "level": 1,
-          "title": "Bloc 4 · Petro/pedophysics"
+          "title": "Bloque 4 · Petro/Pedofísica"
         },
         {
-          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/notebooks/pedophysics.md",
+          "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/notebooks/pedophysics_ES.md",
           "level": 2,
-          "slug": "pedophysics"
+          "slug": "pedophysics-es"
         },
         {
           "level": 1,
-          "title": "Practical Cases"
+          "title": "Casos prácticos"
         },
         {
           "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/notebooks/practical_cases/introduction_GRWATER.md",
@@ -134,7 +134,7 @@
         },
         {
           "level": 2,
-          "title": "💧 Watershed case study"
+          "title": "💧 Caso de estudio de cuenca"
         },
         {
           "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/notebooks/practical_cases/Agramon_EM.md",
@@ -143,7 +143,7 @@
         },
         {
           "level": 2,
-          "title": "🪨 Sedimendation dams"
+          "title": "🪨 Diques de sedimentación"
         },
         {
           "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/notebooks/practical_cases/Hellin_diques.md",
@@ -152,7 +152,7 @@
         },
         {
           "level": 1,
-          "title": "🧪 Exercises"
+          "title": "🧪 Ejercicios"
         },
         {
           "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/exercises/README.md",
@@ -188,7 +188,7 @@
           "file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/glossary.md",
           "level": 1,
           "slug": "glossary",
-          "title": "Glossary"
+          "title": "Glosario"
         }
       ],
       "$file": "/home/ben/Nextcloud/BenCSIC/Codes/Tech4agro_org/geophysics_postfire_book-jb2/myst.yml",

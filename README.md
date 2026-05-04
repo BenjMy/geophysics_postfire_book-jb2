@@ -6,6 +6,23 @@
 
 Welcome to the Geophysics with Python course! This comprehensive course teaches geophysical data analysis using resipy (resistivity) and emagpy (electromagnetic) Python packages applied to post-fire topic.
 
+
+## 📄 Download Course PDFs
+
+<p align="center">
+
+<a href="./microcredencial-geofisica_EN.pdf">
+  <img src="https://img.shields.io/badge/Download%20PDF-English-blue?style=for-the-badge&logo=adobeacrobatreader" />
+</a>
+
+&nbsp;&nbsp;
+
+<a href="./microcredencial-geofisica_ES.pdf">
+  <img src="https://img.shields.io/badge/Descargar%20PDF-Español-red?style=for-the-badge&logo=adobeacrobatreader" />
+</a>
+
+</p>
+
 ## 📚 Course Overview
 
 This course covers:
@@ -18,44 +35,13 @@ This course covers:
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Python 3.9 or higher
 - Basic understanding of geophysics (helpful but not required)
 - Jupyter Notebook or JupyterLab
 
 ### Installation
 
-#### Option 1: Using Poetry (Recommended)
-```bash
-# Clone the repository
-git clone https://github.com/BenjMy/geophysics_postfire_book-jb2.git
-cd geophysics-python-course
-
-# Install Poetry (if not already installed)
-curl -sSL https://install.python-poetry.org | python3 -
-
-# Install dependencies and create virtual environment
-poetry install
-
-# Activate the virtual environment
-poetry shell
-
-# Launch Jupyter
-jupyter lab
-```
-
-#### Option 2: Using Conda
-```bash
-# Clone the repository
-git clone https://github.com/BenjMy/geophysics_postfire_book-jb2.git
-cd geophysics_postfire_book-jb2
-
-# Create conda environment
-conda env create -f environment.yml
-conda activate geophysics-course
-
-# Launch Jupyter
-jupyter lab
-```
+- [resipy documentation](https://gitlab.com/hkex/resipy)
+- [emagpy documentation](https://gitlab.com/hkex/emagpy)
 
 ## 📖 Course Structure
 

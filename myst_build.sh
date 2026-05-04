@@ -1,18 +1,14 @@
 #!/usr/bin/env bash
 # =============================================================================
-# clean_and_build.sh (CLEAN REWRITE)
+# clean_and_build.sh (FINAL CLEAN VERSION)
 #
-# Language switching for MyST builds.
+# Language-aware MyST build system.
 #
-# CONFIG RULES:
-#   English → myst.yml   (default, always used directly)
-#   Spanish → myst_ES.yml
+# Rules:
+#   en → myst.yml (default, no switching needed)
+#   es → myst_ES.yml (copied/symlinked to myst.yml)
 #
-# Usage:
-#   bash clean_and_build.sh
-#   bash clean_and_build.sh --lang es
-#   bash clean_and_build.sh --lang en --all
-#   bash clean_and_build.sh clean --lang es
+# MyST NEVER receives --lang (handled internally only)
 # =============================================================================
 
 set -euo pipefail
@@ -34,19 +30,35 @@ CLEAN=false
 BUILD_ARGS=()
 
 # -----------------------------------------------------------------------------
-# Parse arguments
+# Parse arguments (STRICT separation: MyST vs internal)
 # -----------------------------------------------------------------------------
 for arg in "$@"; do
     case "$arg" in
-        clean) CLEAN=true ;;
-        --all) BUILD_ARGS+=("--all") ;;
-        --lang=*) LANG="${arg#--lang=}" ;;
-        en|es|EN|ES) LANG="${arg,,}" ;;
-        *) BUILD_ARGS+=("$arg") ;;
+        clean)
+            CLEAN=true
+            ;;
+        --all)
+            BUILD_ARGS+=("--all")
+            ;;
+        --lang=*)
+            LANG="${arg#--lang=}"
+            ;;
+        en|es|EN|ES)
+            LANG="${arg,,}"
+            ;;
+        --lang)
+            # ignore standalone flag (value handled in next loop)
+            ;;
+        *)
+            # ONLY pass valid MyST args (explicit whitelist behavior)
+            if [[ "$arg" != "en" && "$arg" != "es" ]]; then
+                BUILD_ARGS+=("$arg")
+            fi
+            ;;
     esac
 done
 
-# handle "--lang es"
+# handle: --lang es
 prev=""
 for arg in "$@"; do
     if [[ "$prev" == "--lang" ]]; then
@@ -62,7 +74,7 @@ if [[ "$LANG" != "en" && "$LANG" != "es" ]]; then
     exit 1
 fi
 
-# default build mode
+# Default build mode
 if [[ ${#BUILD_ARGS[@]} -eq 0 ]]; then
     BUILD_ARGS=("--pdf")
 fi
@@ -93,18 +105,17 @@ echo "============================================================"
 echo ""
 
 # -----------------------------------------------------------------------------
-# Activate config ONLY if needed
+# Activate config (ONLY for non-English)
 # -----------------------------------------------------------------------------
 if [[ "$LANG" == "en" ]]; then
-    echo "🔹 Using default English config (myst.yml) — no symlink needed"
+    echo "🔹 Using default config (myst.yml)"
 else
     echo "🔗 Activating Spanish config → myst.yml"
-
     ln -sf "$LANG_CONFIG" "$ACTIVE_CONFIG"
 fi
 
 # -----------------------------------------------------------------------------
-# Cleanup
+# Clean build cache
 # -----------------------------------------------------------------------------
 if [[ "$CLEAN" == true ]]; then
     echo "============================================================"
@@ -113,7 +124,7 @@ if [[ "$CLEAN" == true ]]; then
 
     if [[ -d "$BUILD_DIR" ]]; then
         rm -rf "$BUILD_DIR/execute" "$BUILD_DIR/cache"
-        echo "🗑️ Build cache cleaned"
+        echo "🗑️ Cache cleaned"
     else
         echo "⚠️ No build directory found"
     fi
@@ -121,11 +132,19 @@ if [[ "$CLEAN" == true ]]; then
 fi
 
 # -----------------------------------------------------------------------------
+# FINAL SAFETY FILTER (guarantees no --lang leakage)
+# -----------------------------------------------------------------------------
+SAFE_BUILD_ARGS=()
+for a in "${BUILD_ARGS[@]}"; do
+    [[ "$a" != "--lang" ]] && SAFE_BUILD_ARGS+=("$a")
+done
+
+# -----------------------------------------------------------------------------
 # Build
 # -----------------------------------------------------------------------------
 echo "============================================================"
-echo " Running: myst build --execute ${BUILD_ARGS[*]}"
+echo " Running: myst build --execute ${SAFE_BUILD_ARGS[*]}"
 echo "============================================================"
 echo ""
 
-myst build --execute "${BUILD_ARGS[@]}"
+myst build --execute "${SAFE_BUILD_ARGS[@]}"
