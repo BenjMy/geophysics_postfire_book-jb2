@@ -10,17 +10,13 @@ Welcome to the Geophysics with Python course! This comprehensive course teaches 
 ## 📄 Download Course PDFs
 
 <p align="center">
-
-<a href="./microcredencial-geofisica_EN.pdf">
+<a href="https://github.com/BenjMy/geophysics_postfire_book-jb2/raw/main/microcredencial-geofisica_EN.pdf">
   <img src="https://img.shields.io/badge/Download%20PDF-English-blue?style=for-the-badge&logo=adobeacrobatreader" />
 </a>
-
 &nbsp;&nbsp;
-
-<a href="./microcredencial-geofisica_ES.pdf">
+<a href="https://github.com/BenjMy/geophysics_postfire_book-jb2/raw/main/microcredencial-geofisica_ES.pdf">
   <img src="https://img.shields.io/badge/Descargar%20PDF-Español-red?style=for-the-badge&logo=adobeacrobatreader" />
 </a>
-
 </p>
 
 ## 📚 Course Overview
