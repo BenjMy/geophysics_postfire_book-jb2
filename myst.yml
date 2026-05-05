@@ -171,7 +171,7 @@ project:
 # ── Configuración del sitio web ────────────────────────────────────────────
 site:
   template: book-theme
-  index: intro.md
+  index: intro_microcredential_UCLM.md
   title: Libro digital sobre geofísica aplicada a la restauración de espacios naturales
 
   actions:
