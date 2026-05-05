@@ -1,218 +1,193 @@
 version: 1
 
-# ── Project metadata ────────────────────────────────────────────────────────
+# ── Metadatos del proyecto ────────────────────────────────────────────────
 project:
-  title: Geophysics as a tool for post-fire soil restauration 🔥 
-  #subtitle: resipy & emagpy Course
-  short_title: Geophysics & post-fire soil restauration 🔥 
+  title: Geofísica como herramienta para la restauración de suelos post-incendio 🔥
+  short_title: Geofísica y restauración post-incendio 🔥
   bibliography: references.bib
-  description: Material didáctico correspondiente a la Microcredencial en Inteligencia Artificial y Tecnologías Geoespaciales aplicadas a la Restauración de Ecosistemas Forestales afectados por incendios y sequías extremas.
-  # ── Authors ────────────────────────────────────────────────────────────────
+  description: >
+    Material didáctico correspondiente a la Microcredencial en Inteligencia Artificial 
+    y Tecnologías Geoespaciales aplicadas a la restauración de ecosistemas forestales 
+    afectados por incendios y sequías extremas.
+
+  # ── Palabras clave ──────────────────────────────────────────────────────
   keywords:
-    - geophysics
-    - electrical resistivity tomography
-    - electromagnetic induction
+    - geofísica
+    - tomografía de resistividad eléctrica
+    - inducción electromagnética
     - python
     - resipy
     - emagpy
-    - open education
-  authors:
-      - name: Benjamin Mary
-        affiliation:
-          - Instituto de Ciencias Agrarias
-          - CSIC
-        orcid: 0000-0003-0815-842X
-        email: benjamin.mary@ica.csic.es
-        corresponding: true
-      - name: Héctor Nieto
-        affiliation: 
-          - Instituto de Ciencias Agrarias
-          - CSIC
-        orcid: 0000-0003-4250-6424
-        email: hector.nieto@ica.csic.es
-      - name: María Burguet Marimón
-        affiliation: 
-          - Instituto de Ciencias Agrarias
-          - CSIC
-        orcid: 0000-0002-9748-8078
+    - educación abierta
 
-        
-        
-  # ── Publication info ───────────────────────────────────────────────────────
+  # ── Autores ─────────────────────────────────────────────────────────────
+  authors:
+    - name: Benjamin Mary
+      affiliation:
+        - Instituto de Ciencias Agrarias
+        - CSIC
+      orcid: 0000-0003-0815-842X
+      email: benjamin.mary@ica.csic.es
+      corresponding: true
+
+    - name: Héctor Nieto
+      affiliation:
+        - Instituto de Ciencias Agrarias
+        - CSIC
+      orcid: 0000-0003-4250-6424
+      email: hector.nieto@ica.csic.es
+
+    - name: María Burguet Marimón
+      affiliation:
+        - Instituto de Ciencias Agrarias
+        - CSIC
+      orcid: 0000-0002-9748-8078
+
+  # ── Información de publicación ──────────────────────────────────────────
   copyright: "2025"
   license:
     content: CC-BY-4.0
     code: MIT
-  #doi: 10.5281/zenodo.0000000   # update once published
+  #doi: 10.5281/zenodo.0000000  # actualizar al publicar
   version: "1.0.0"
   date: 2025-01-19
 
-
-
-  # ── Repository & links ─────────────────────────────────────────────────────
+  # ── Repositorio y ejecución ─────────────────────────────────────────────
   github: https://github.com/BenjMy/geophysics_postfire_book-jb2
+
   jupyter:
     execute: true
     binder:
       repo: https://github.com/BenjMy/geophysics_postfire_book-jb2
+
   settings:
     output_matplotlib_strings: remove
     output_stderr: remove-warn
-    #output_stderr: show
-    
-  # ── Exports ───────────────────────────────────────────────────────────────
+
+  # ── Exportación ─────────────────────────────────────────────────────────
   exports:
     - format: typst
-      template: plain_typst_book  # clean academic PDF template
-      output: microcredencial-geophysics.pdf    
+      template: plain_typst_book
+      output: microcredencial-geofisica_ES.pdf
       cover: ./assets/images/logo_main.png
       logo: ./assets/images/logo_main.png
       logo_width: 40
       Logoposition: right
       options:
-       toc: true
-       toc_depth: 2        # ← controls depth shown in PDF table of contents       
+        toc: true
+        toc_depth: 2
 
-
-  # ── Numbering ──────────────────────────────────────────────────────────────
+  # ── Numeración ──────────────────────────────────────────────────────────
   numbering:
     heading_1: false
     heading_2: false
-    heading_3: false   # stops at 1.1 — never goes to 1.1.1
+    heading_3: false
     heading_4: false
     heading_5: false
     heading_6: false
- 
-    
-  # ── Notebook execution ─────────────────────────────────────────────────────
+
+  # ── Ejecución de notebooks ──────────────────────────────────────────────
   execute:
-    execute_notebooks: auto      # auto | force | never
-    timeout: 600                 # seconds per cell before aborting
-    allow_errors: false          # fail build on cell error
-    stderr_output: show          # show | remove | warn
+    execute_notebooks: auto
+    timeout: 600
+    allow_errors: false
+    stderr_output: show
     requirements: requirements.txt
 
-  # Kernel to use for .md code-cell pages (MyST notebooks without .ipynb)
   kernels:
     - id: python3
-      display_name: Python 3 (Geophysics)
+      display_name: Python 3 (Geofísica)
       language: python
 
-  # ── Table of Contents ──────────────────────────────────────────────────────
+  # ── Tabla de contenidos ─────────────────────────────────────────────────
   toc:
-    - title: "Introduction"
+    - title: Introducción
     - file: intro_microcredential_UCLM.md
 
-    - title: "Agenda"
+    - title: Agenda
       children:
         - file: docs/agenda.md
 
-    - title: "How-to"
+    - title: Guía práctica
       children:
         - file: docs/getting_started.md
-        - file: docs/01_python_basics.md            
-        #- file: docs/installation.md
-        #- file: docs/troubleshooting.md
+        - file: docs/01_python_basics.md
 
-    # ── Theory ───────────────────────────────────────────────────────────────
-    - title: Bloc 1 · Fundamentals
+    - title: Bloque 1 · Fundamentos
       children:
-        - file: notebooks/01_introduction/011_postfire_soil_basics.md
-        - file: notebooks/01_introduction/012_geophysical_methods.md                       
-        - file: notebooks/01_introduction/013_postfire_soil_basics_geophysics.md                       
+        - file: notebooks/01_introduction/011_postfire_soil_basics_ES.md
+        - file: notebooks/01_introduction/012_geophysical_methods_ES.md
+        - file: notebooks/01_introduction/013_postfire_soil_basics_geophysics_ES.md
 
-    - title: "Bloc 2 · Resistivity"
+    - title: Bloque 2 · Resistividad
       children:
-        - file: notebooks/02_resistivity/021_ER_concept.md           
-        - file: notebooks/02_resistivity/022_resistivity_introduction.md  
-        - file: notebooks/02_resistivity/023_resipy_introduction.md
+        - file: notebooks/02_resistivity/021_ER_concept_ES.md
+        - file: notebooks/02_resistivity/022_resistivity_introduction_ES.md
+        - file: notebooks/02_resistivity/023_resipy_introduction_ES.md
 
-    - title: "Bloc 3 · Electromagnetics"
+    - title: Bloque 3 · Electromagnetismo
       children:
-        - file: notebooks/03_electromagnetics/031_electromagnetics_introduction.md
-        - file: notebooks/03_electromagnetics/032_emagpy_introduction.md
+        - file: notebooks/03_electromagnetics/031_electromagnetics_introduction_ES.md
+        - file: notebooks/03_electromagnetics/032_emagpy_introduction_ES.md
 
-
-    - title: "Bloc 4 · Petro/pedophysics"
+    - title: Bloque 4 · Petro/Pedofísica
       children:
-        - file: notebooks/pedophysics.md
-          
-    # ── Practical Cases ───────────────────────────────────────────────────────
-    - title: Practical Cases
+        - file: notebooks/pedophysics_ES.md
+
+    - title: Casos prácticos
       children:
         - file: notebooks/practical_cases/introduction_GRWATER.md
-        - title: "💧 Watershed case study"
+        - title: 💧 Caso de estudio de cuenca
           children:
             - file: notebooks/practical_cases/Agramon_EM.md
-            #- file: notebooks/practical_cases/Agramon_ERT.md
-            #- file: notebooks/practical_cases/Hellin_EM.md
-        - title: "🪨 Sedimendation dams"
+        - title: 🪨 Diques de sedimentación
           children:
             - file: notebooks/practical_cases/Hellin_diques.md
 
-    # ── Exercises ─────────────────────────────────────────────────────────────
-    - title: "🧪 Exercises"
+    - title: 🧪 Ejercicios
       children:
         - file: exercises/README.md
         - file: exercises/Exercice1_ResistivityBasics.md
         - file: exercises/Exercice2_ERTSurveyDesign.md
         - file: exercises/Exercice3_FieldDataAnalysis.md
-        - file: exercises/Exercice4_FieldDataInterpretation.md    
+        - file: exercises/Exercice4_FieldDataInterpretation.md
         - file: exercises/Exercice5_PostFire_bib.md
-    
-    - file: glossary.md
-      title: Glossary
-  
-  
-    # ── R&D ─────────────────────────────────────────────────────────────
-    #- title: "R&D"
-    # children:
-    #   - file: docs/RD.md
 
+    - file: glossary.md
+      title: Glosario
+
+  # ── Partes del documento ────────────────────────────────────────────────
   parts:
-    abstract: | 
-      Este libro digital (*Jupyter Notebook*) contiene el material online necesario para cursar 
-      la parte `Geofisica aplicada a la restauración de espacios naturales` de la 
-      `Microcredencial en Inteligencia Artificial y Tecnologías Geoespaciales aplicadas a la 
-      Restauración de Ecosistemas Forestales afectados por incendios y sequías extremas`.
+    abstract: |
+      Este libro digital (Jupyter Notebook) contiene el material necesario para cursar 
+      la parte de "Geofísica aplicada a la restauración de espacios naturales" dentro de la 
+      Microcredencial en Inteligencia Artificial y Tecnologías Geoespaciales aplicadas a la 
+      restauración de ecosistemas forestales afectados por incendios y sequías extremas.
+
     acknowledgements: |
       Este material didáctico ha sido desarrollado gracias al proyecto GRwater – 
-      Programa Prismas y Problemas de la Fundación BBVA 2023
-  Options:
-    logo: ./assets/images/logo_main.png
-    
-    
-# ── Site (web) settings ─────────────────────────────────────────────────────
+      Programa Prismas y Problemas de la Fundación BBVA 2023.
+
+# ── Configuración del sitio web ────────────────────────────────────────────
 site:
   template: book-theme
   index: intro.md
-  title: Libro digital sobre geofisica aplicada a la restauración de espacios naturales
-   
-    
-  # ── Call-to-action buttons ────────────────────────────────────────────────
+  title: Libro digital sobre geofísica aplicada a la restauración de espacios naturales
+
   actions:
     - title: ⭐ Star
       url: https://github.com/BenjMy/geophysics_postfire_book-jb2
-    - title: 🚀 Launch
+    - title: 🚀 Lanzar
       url: https://mybinder.org/v2/gh/BenjMy/geophysics_postfire_book-jb2/main
 
-
-  # ── Theme options ─────────────────────────────────────────────────────────
   options:
     show_nav_depth: 3
     hide_outline: false
-    outline_maxdepth: 3         # Max depth shown in sidebar TOC (1 = titles only, 2 = titles + h2)
-    # Show "Open in JupyterLab / Binder / Thebe" launch buttons on notebook pages
+    outline_maxdepth: 3
     launch_buttons: true
-    thebe: true                  # 🐝 Enable Thebe live code execution in-page
-    default_mode: light          # Default to light mode
+    thebe: true
+    default_mode: light
     logo_text: Microcredencial UCLM
     logo: ./assets/images/logo_main.png
-    
+
 glossary: glossary.md
-
-
-
-
-
-  
