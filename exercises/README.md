@@ -1,5 +1,10 @@
 ---
 title: "Course Exercises"
+authors:
+  - name: Benjamin Mary
+    email: benjamin.mary@ica.csic.es
+    affiliations:
+      - ICA-CSIC, Madrid, Spain
 ---
 
 

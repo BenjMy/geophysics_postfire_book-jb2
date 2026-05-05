@@ -31,51 +31,7 @@ Electrical resistivity quantifies how strongly a material opposes the flow of el
 
 ---
 
-### 🟡 Q2 (Medium) — Effect of moisture content
-
-A soil sample is progressively wetted with saline water. **Describe and explain** how its resistivity evolves as moisture content increases. Your answer should address:
-
-1. What happens physically inside the pore space?
-2. What role do ions play?
-3. Under what condition could a soil **remain resistive** despite being saturated?
-```{dropdown} Answer
-As moisture content increases, resistivity generally **decreases** because:
-
-1. Water fills pore spaces, reducing air gaps that block current flow
-2. Dissolved ions in pore water create charge carriers that conduct electricity
-3. Connectivity between grains improves conduction pathways
-
-**Exception:** Very clean (ion-poor) sands may remain relatively resistive even when saturated, because resistivity depends on both fluid content *and* fluid conductivity.
-```
-
----
-
-### 🟠 Q3 (Hard) — Multi-cause reasoning
-
-The two soil profiles below show the **same low resistivity value** (ρ ≈ 5 Ω·m) at shallow depth, but have **very different origins**.
-
-> Profile A is located in a coastal area with known seawater infiltration.  
-> Profile B is located inland over a glacial deposit.
-
-1. Propose **one geological interpretation** for each profile that explains the low resistivity.
-2. What additional data (geochemical, lithological, or geophysical) would help **distinguish** between the two causes?
-3. What fundamental limitation of resistivity surveys does this illustrate?
-```{dropdown} Answer
-1. **Profile A:** Saline groundwater intrusion — seawater lowers resistivity through high ionic concentration.  
-   **Profile B:** Clay-rich or organic-rich saturated sediment — clay has high surface conductivity.
-
-2. Distinguishing data:
-   - Water conductivity / salinity measurements (EC probe)
-   - Borehole or core sampling for lithology
-   - IP (Induced Polarization) to detect clay minerals
-   - Seismic survey for stratigraphic context
-
-3. This illustrates the **non-uniqueness problem**: identical resistivity values can result from very different geological causes, making ground-truth data essential for reliable interpretation.
-```
-
----
-
-### 📊 Q4 (MCQ) — Material identification
+### 📊 Q2 (MCQ) — Material identification
 
 Which of the following materials typically has the **highest electrical resistivity**?
 
@@ -91,7 +47,7 @@ Dry granite contains virtually no free ions or connected fluid pathways, making 
 
 ---
 
-### 📊 Q5 (MCQ) — Moisture and resistivity trend
+### 📊 Q3 (MCQ) — Moisture and resistivity trend
 
 In a soil profile, resistivity values **decrease with depth** from 500 Ω·m at the surface to 20 Ω·m at 3 m depth. What is the **most likely explanation**?
 
@@ -103,4 +59,51 @@ In a soil profile, resistivity values **decrease with depth** from 500 Ω·m at 
 ✅ **B. Moisture content and/or pore water salinity increase with depth**
 
 Approaching the water table, pore spaces become increasingly saturated with electrolytic water, dramatically lowering resistivity. This is one of the most common patterns observed in ERT profiles.
+```
+
+---
+
+### 🟡 Q4 (Medium) — Effect of moisture content
+
+A soil sample is progressively wetted with saline water. **Describe and explain** how its resistivity evolves as moisture content increases. Your answer should address:
+
+1. What happens physically inside the pore space?
+2. What role do ions play?
+3. Under what condition could a soil **remain resistive** despite being saturated?
+
+````{dropdown} Answer
+As moisture content increases, resistivity generally **decreases** because:
+1. Water fills pore spaces, reducing air gaps that block current flow
+2. Dissolved ions in pore water create charge carriers that conduct electricity
+3. Connectivity between grains improves conduction pathways
+
+```{image} ../../assets/images/ChatGPT_soil_moisture.png
+:width: 70%
+:align: center
+:alt: Effect of soil moisture on resistivity
+```
+````
+
+
+---
+
+### 🟠 Q5 (Hard) — Multi-cause reasoning
+The two soil profiles below show the **same low resistivity value** (ρ ≈ 5 Ω·m) at shallow depth, but have **very different origins**.
+
+> Profile A is located in a **burned forest area** with known ash-laden runoff accumulation.  
+> Profile B is located in an **unburned forest** over an organic-rich topsoil horizon.
+
+1. Propose **one geological interpretation** for each profile that explains the low resistivity.
+2. What additional data (geochemical, lithological, or geophysical) would help **distinguish** between the two causes?
+3. What fundamental limitation of resistivity surveys does this illustrate?
+
+```{dropdown} Answer
+1. **Profile A:** Post-fire ash and char dissolution — fire-derived soluble salts and ions leached into the shallow soil lower resistivity through increased pore water conductivity.  
+   **Profile B:** Waterlogged organic-rich topsoil — decomposed forest litter and humus exhibit high surface conductivity when saturated after rainfall.
+2. Distinguishing data:
+   - Pore water conductivity / salinity measurements (EC probe) to detect elevated ions from ash leaching
+   - Soil sampling to characterise organic matter content and degree of decomposition
+   - IP (Induced Polarization) to distinguish ionic conduction (Profile A) from surface conduction of organic matter (Profile B)
+   - Soil burn severity mapping (dNBR from remote sensing) to confirm fire history
+3. This illustrates the **non-uniqueness problem**: identical resistivity values can result from very different causes (post-fire ionic enrichment vs. natural organic-rich saturated soil), making ground-truth data essential for reliable interpretation in post-fire restoration surveys.
 ```

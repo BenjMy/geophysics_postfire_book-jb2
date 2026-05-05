@@ -102,7 +102,7 @@ project:
   # ── Tabla de contenidos ─────────────────────────────────────────────────
   toc:
     - title: Introducción
-    - file: intro_microcredential_UCLM.md
+    - file: intro_microcredential_UCLM_ES.md
 
     - title: Agenda
       children:
@@ -146,12 +146,12 @@ project:
 
     - title: 🧪 Ejercicios
       children:
-        - file: exercises/README.md
-        - file: exercises/Exercice1_ResistivityBasics.md
-        - file: exercises/Exercice2_ERTSurveyDesign.md
-        - file: exercises/Exercice3_FieldDataAnalysis.md
-        - file: exercises/Exercice4_FieldDataInterpretation.md
-        - file: exercises/Exercice5_PostFire_bib.md
+        - file: exercises/README_ES.md
+        - file: exercises/Exercice1_ResistivityBasics_ES.md
+        - file: exercises/Exercice2_ERTSurveyDesign_ES.md
+        - file: exercises/Exercice3_FieldDataAnalysis_ES.md
+        - file: exercises/Exercice4_FieldDataInterpretation_ES.md
+        - file: exercises/Exercice5_PostFire_bib_ES.md
 
     - file: glossary.md
       title: Glosario
@@ -171,7 +171,7 @@ project:
 # ── Configuración del sitio web ────────────────────────────────────────────
 site:
   template: book-theme
-  index: intro_microcredential_UCLM.md
+  index: intro_microcredential_UCLM_ES.md
   title: Libro digital sobre geofísica aplicada a la restauración de espacios naturales
 
   actions:

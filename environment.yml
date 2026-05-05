@@ -2,8 +2,7 @@ name: geophysics-course
 
 channels:
   - conda-forge
-  - defaults
-
+  
 dependencies:
   - python=3.10
   - pip
